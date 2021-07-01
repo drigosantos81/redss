@@ -1,0 +1,379 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>Formulário de Funcionários</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Formulário de Cadastro de Novo Funcionários</h1>
+    </div>
+
+    <p class="mb-4">Preencha todos os campos para incluir o novo funcionário.</p>
+
+    <div class="mb-4">
+      <div class="cad-func">
+        <form action="/cadastros/funcionarios" method="POST">
+
+          {# **** BLOCO 1 **** #}
+          <div class="bloco-1">          
+            <div>
+              <div class="rotulo">Função</div>
+              <select id="selectFuncao" name="funcao"> {#  onchange="salarioFuncao()" #}
+                <option>Selecione a Função</option>
+                <option value="Pedreiro">Pedreiro</option>
+                <option value="Ajudante Comum">Ajudante Comum</option>
+                <option value="Ajudante Prático">Ajudante Prático</option>
+              </select>
+            </div>
+
+            {# QUANDO SELECINAR A FUNÇÃO EXIBIR O VALOR #}
+            <div>
+              <div class="rotulo">Salário</div>
+              {# <label class="label-salario" for=""
+                id="valorSalario"
+                type="text"
+                name="salario"
+                onchange="Mask.apply(this, 'formatBRL')"
+              >R$ 00.000,00</label> #}
+
+              <input
+                id="valorSalario"
+                placeholder="R$ 00.000,00"
+                type="text"
+                name="salario"
+                >
+                {# onkeydown="Mask.apply(this, 'formatBRL')" value="{{ recipe.title }}" #}
+            </div>
+
+            <div>
+              <div class="rotulo">Tipo do Contrato</div>
+              <select class="tipo_contrato" name="tipo_contrato">
+                <option>Selecione uma opção</option>
+                <option value="45 + 45">Experiência de 45 dias + 45 dias</option>
+                <option value="30 + 60">Experiência de 30 dias + 60 dias</option>
+                <option value="Definitivo">Definitivo</option>
+              </select>
+            </div>
+
+            <div>
+              <div class="rotulo">Data da admissão</div>
+              <input
+                placeholder="DD/MM/AAAA"
+                type="text"
+                name="data_admissao"
+                onkeydown="Mask.apply(this, 'data')"
+              
+              >{# onblur="Validate.apply(this, 'isEmail')" 
+                  onkeydown="Mask.apply(this, 'formatBRL')"
+                  value="{{ recipe.title }}" #}
+            </div>          
+          </div>
+
+          {# **** BLOCO 2 **** #}
+          <div class="bloco-2">
+            <div class="bloco-2-1">
+              <div>
+                <div class="rotulo">Nome completo</div>
+                <input class="nome" placeholder="Dígite o nome completo..." type="text" name="nome"> {# value="{{ recipe.title }}" #}
+              </div>
+
+              <div>
+                <div class="rotulo">CPF</div>
+                <input
+                  placeholder="000.000.000-00"
+                  type="text"
+                  name="cpf"
+                  onkeydown="Mask.apply(this, 'cpf')"
+                > {# value="{{ recipe.title }}" #}
+              </div>
+
+              <div>
+                <div class="rotulo">PIS</div>
+                <input
+                  placeholder="000.00000.00-0"
+                  type="text"
+                  name="pis"
+                  onkeydown="Mask.apply(this, 'nPis')"
+                > {# value="{{ recipe.title }}" #}
+              </div>
+
+              <div>
+                <div class="rotulo">RG</div>
+                <input placeholder="Dígite o RG..." type="text" name="rg"> {# value="{{ recipe.title }}" #}
+              </div>
+
+              <div>
+                <div class="rotulo">Nascimento</div>
+                <input
+                  placeholder="DD/MM/AAAA"
+                  type="text"
+                  name="nascimento"
+                  onkeydown="Mask.apply(this, 'data')"
+                > {# value="{{ recipe.title }}" #}
+              </div>
+            </div>
+
+            <div class="bloco-2-2">
+              <div class="ctps">
+                <div>
+                  <label class="rotulo">CTPS: </label>
+                  <input placeholder="Dígite o CTPS..." type="text" name="ctps"> {# value="{{ recipe.title }}" #}
+                </div>
+
+                <div>
+                  <label class="rotulo">Série: </label>
+                  <input placeholder="Série" type="text" name="serie_ctps"> {# value="{{ recipe.title }}" #}
+                </div>
+
+                <div>
+                  <label class="rotulo">UF: </label>
+                  <select name="uf_ctps">
+                    <option value="BA">BA</option>
+                    <option value="PE">PE</option>
+                    <option value="SP">SP</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="titulo">
+                <div>
+                  <label class="rotulo">Título de Eleitor: </label>
+                  <input
+                    placeholder="0000 0000 0000"
+                    type="text"
+                    name="titulo_eleitor"
+                    onkeydown="Mask.apply(this, 'titulo')"
+                  > {# value="{{ recipe.title }}" #}
+                </div>
+
+                <div>
+                  <label class="rotulo">Zona: </label>
+                  <input
+                    placeholder="000"
+                    type="text"
+                    name="zona_titulo"
+                    onkeydown="Mask.apply(this, 'zonaSecao')"
+                  > {# value="{{ recipe.title }}" #}
+                </div>
+
+                <div>
+                  <label class="rotulo">Seção: </label>
+                  <input
+                    placeholder="000"
+                    type="text"
+                    name="secao_titulo"
+                    onkeydown="Mask.apply(this, 'zonaSecao')"
+                  > {# value="{{ recipe.title }}" #}
+                </div>
+              </div>
+            </div>
+            
+            <div class="bloco-2-3">
+              <div>
+                <label for="" class="rotulo">
+                  País: 
+                  <select id="pais" name="nacionalidade">
+                  </select>
+                </label>
+                {# value="{{ recipe.title }}" #}
+              </div>
+
+              <div>
+                <label id="campo_estado" class="rotulo">
+                  UF: 
+                  <select id="estado" name="uf"></select>
+                </label>
+              </div>
+
+              <div>
+                <label id="campo_cidade" class="rotulo">
+                  Cidade: 
+                  <select id="cidade" name="naturalidade_id"></select>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          {# **** BLOCO 3 **** #}
+          <div class="bloco-3">
+            <div class="rotulo">Filiação
+              <div class="modulo">
+                <div>
+                  <div class="sub-rotulo">Nome da Mãe</div>
+                  <input class="nome" placeholder="Informe o nome da Mãe" type="text" name="nome_mae" value="{{ recipe.title }}">
+                </div>
+
+                <div>
+                  <div class="sub-rotulo">Nome do Pai</div>
+                  <input class="nome" placeholder="Informe o nome do Pai" type="text" name="nome_pai" value="{{ recipe.title }}">
+                </div>
+              </div>
+            </div>
+
+            <div class="bloco-3-1">
+              <div class="est-civil">
+                <div>
+                  <span class="rotulo">Estado Civil: </span>
+                  <select name="estado_civil">
+                    <option value="casado">Casado</option>
+                    <option value="solteiro">Solteiro</option>
+                    <option value="divorciado">Divorciado</option>
+                  </select>
+                </div>
+
+                <div>
+                  {# SE SELECINAR CASADO EXIBIR O CAMPO DO NOME DO CONJUGE #}
+                  <span class="rotulo">Conjuge: </span>
+                  <input class="nome" placeholder="Informe o nome do conjuge" type="text" name="conjuge" value="{{ recipe.title }}">
+                </div>
+              </div>
+
+              <div class="rotulo-endereco">Endereço</div>
+              
+              <div class="endereco">
+                  <div>
+                    <div class="sub-rotulo">CEP</div>
+                    <input
+                      placeholder="00.000-000"
+                      type="text"
+                      name="cep"
+                      onkeydown="Mask.apply(this, 'cep')"
+                    > {# value="{{ recipe.title }}"} #}
+                  </div>
+
+                  <div>
+                    <div class="sub-rotulo">Logradouro</div>
+                  <input placeholder="Rua, Av." type="text" name="endereco" value="{{ recipe.title }}">
+                  </div>
+
+                  <div>
+                    <div class="sub-rotulo">Número</div>
+                  <input placeholder="Nº" type="text" name="endereco" value="{{ recipe.title }}">
+                  </div>
+
+                  <div>
+                    <div class="sub-rotulo">Bairro</div>
+                  <input placeholder="Informe o bairro" type="text" name="bairro" value="{{ recipe.title }}">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {# **** BLOCO 4 **** #}
+          <div class="bloco-4">
+
+            {# FILIAÇÃO #}
+            <div class="filhos">
+              <div class="add-filho">
+                <div class="rotulo">Filhos</div>
+                <div>
+                  <a href="/#">Incluir filho</a>
+                </div>
+              </div>
+
+              <div class="dados-filhos">
+                <div>
+                  <div class="rotulo">Nome: </div>
+                  <input class="nome" placeholder="Nome do filho(a)" type="text" name="filhos[]"> {# value="{{ recipe.title }}" #}
+                </div>
+
+                <div>
+                  <div class="rotulo">Data de Nascimento</div>
+                  <input
+                    placeholder="DD/MM/AAAA"
+                    type="text"
+                    name="filhos[]"
+                    onkeydown="Mask.apply(this, 'data')"
+                  > {# value="{{ recipe.title }}" #}
+                </div>
+              </div>
+            </div>
+
+            {# CONTATOS #}
+            <div class="dados-telefone">
+
+              {# TELEFONES #}
+              <div class="telefone">
+                <div>
+                  <span class="rotulo">Celular: </span>
+                  <input
+                    class="telefone"
+                    type="text"
+                    name="telefone[]"
+                    placeholder="(00) 0 0000-0000"
+                    onkeydown="Mask.apply(this, 'celular')"
+                  >
+                </div>
+
+                <div>
+                  <span class="rotulo">Telefone: </span>
+                  <input
+                    class="telefone"
+                    type="text"
+                    name="telefone[]"
+                    placeholder="(00) 0000-0000"
+                    onkeydown="Mask.apply(this, 'telefone')"
+                  >
+                </div>
+              </div>
+
+              {# BANCO #}
+              <div class="dados-banco">
+                <div>
+                  <span class="rotulo">Banco: </span>
+                  <input
+                    class="telefone"
+                    type="text"
+                    name="dados-conta[]"
+                    placeholder="Nome do Banco"
+                  > {# onkeydown="Mask.apply(this, 'celular')" #}
+                </div>
+
+                <div>
+                  <span class="rotulo">Ag.: </span>
+                  <input
+                    class="agencia"
+                    type="text"
+                    name="dados-conta[]"
+                    placeholder="0000"
+                  > {# onkeydown="Mask.apply(this, 'celular')" #}
+                </div>
+
+                <div>
+                  <span class="rotulo">Conta: </span>
+                  <input
+                    class="telefone"
+                    type="text"
+                    name="dados-conta[]"
+                    placeholder="Nº cem o dígito"
+                  > {# onkeydown="Mask.apply(this, 'conta')" #}
+                </div>
+
+                 <div>
+                  <span class="rotulo">Op: </span>
+                  <input
+                    class="agencia"
+                    type="text"
+                    name="dados-conta[]"
+                    placeholder="Número com o dígito"
+                  > {# onkeydown="Mask.apply(this, 'celular')" #}
+                </div>
+              </div>
+
+            </div>
+          
+          </div>
+
+          <button type="submit">Cadastrar</button>
+          <a id="cancelar" href="/cadastros/funcionarios">Cancelar</a>
+        </form>
+      </div>
+    </div>
+    
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}

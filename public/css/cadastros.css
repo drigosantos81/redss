@@ -1,0 +1,42 @@
+.novo-botao-func {
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-search {
+  background-color: var(--azul);
+  color: aliceblue;
+}
+
+.btn-search:hover {
+  background-color: cadetblue;
+  color: aliceblue;
+}
+
+.button-new {
+  background-color: var(--azul);
+  color: var(--white);
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  line-height: inherit;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
+}
+
+.button-new:hover {
+  text-decoration: none;
+  text-transform: none;
+  color: white;
+}
+
+.tbody-func tr:hover {
+  cursor: pointer;
+  background-color: cornflowerblue;
+  color: aliceblue;
+}

@@ -1,0 +1,79 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>Funcionários</title>
+{% endblock %}
+
+{% block content %}	
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Funcionários</h1>
+      <a class="button-new" href="/cadastros/funcionarios/form-funcionario">Cadastrar Novo</a>
+      {# <button href="/cadastros/funcionarios">Cadastrar Novo</button> #}
+    </div>
+
+    <p class="mb-4">- {{funcionarios.funcao}} Para mais informações sobre DataTables, por favor visite a 
+      <a target="_blank"
+        href="https://datatables.net">Documentação oficial de DataTables
+      </a>
+      .
+    </p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Funcionários ativos</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">              
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Função</th>
+                <th>Lotação</th>
+                <th>Idade</th>
+                <th>Tempo</th>
+                <th>Salário</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Nome</th>
+                <th>Função</th>
+                <th>Lotação</th>
+                <th>Idade</th>
+                <th>Tempo</th>
+                <th>Salário</th>
+              </tr>
+            </tfoot>
+            <tbody class="tbody-func">
+              {% for funcionario in funcionarios %}
+                <tr id="{{funcionario.id}}" onclick="showFunc()">
+                  <td>{{funcionario.nome}}</td>
+                  <td>{{funcionario.funcao}}</td>
+                  <td>{{funcionario.nome}}</td>
+                  {# <td>43</td> #}
+                  <td>{{funcionario.nascimento}}</td>
+                  <td>2 meses e 23 dias</td>
+                  <td>{{funcionario.salario}}</td>                      
+                </tr>
+              {% endfor %}
+              <tr>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+                <td>2012/03/29</td>
+                <td>$433,060</td>
+              </tr>
+            </tbody>                
+          </table>
+        </div>
+      </div>
+    </div>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,460 @@
+:root {
+  --vermelho: #e66848;
+  --azul: #398CBF;
+  --cinza: #f0f0f0;
+}
+
+.cad-func {
+  width: 100%;
+  max-width: 1340px;
+  min-height: 100%;
+  margin: 0 auto 10px auto;
+  background-color: var(--cinza);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.rotulo {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sub-rotulo {
+  margin: 5px 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.bloco-1 {
+  border-right-color: black;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: black;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  box-shadow: 1px 2px gray, 0px 0 0px;
+  padding: 0 5px 10px 5px;
+  margin: 0 0 15px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bloco-1 div:nth-child(1) select {
+  width: 200px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.label-salario {
+  border-width: 2px;
+  border-style: inset;
+  border-color: rgb(118, 118, 118);
+  border-image: initial;
+  padding: 0 5px 0 5px;
+  width: 115px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  margin: 0;
+  font-weight: bold;
+  background-color: honeydew;
+  color: black;
+}
+
+.bloco-1 div:nth-child(2) input {
+  width: 125px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+  background-color: var(--cinza);
+}
+
+.bloco-1 div:nth-child(3) select {
+  width: 300px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.bloco-1 div:nth-child(4) input {
+  width: 122px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.bloco-2 {
+  border-right-color: black;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: black;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  box-shadow: 1px 2px gray, 0px 0 0px;
+  padding: 0 5px 10px 5px;
+  margin: 0 0 15px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 13px;
+  row-gap: 5px;
+}
+
+.bloco-2 div input {
+  width: 100%;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.bloco-2 div .nome, .bloco-3 div .nome {
+  width: 320px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.bloco-2-1 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 13px;
+  row-gap: 5px;
+  margin: 0 0 10px 0;
+}
+
+.bloco-2-1 div input {
+  width: 136px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.bloco-2-1 div:last-child input {
+  width: 122px;
+}
+
+.bloco-2-2 {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  column-gap: 13px;
+  row-gap: 5px;
+  margin: 0 0 10px 0;
+}
+
+.bloco-2-2 .ctps,
+.bloco-2-2 .titulo {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.ctps div:nth-child(1) input {
+  width: 160px;
+}
+
+.ctps div:nth-child(2) input {
+  width: 80px;
+}
+
+.titulo div:nth-child(1) input {
+  width: 140px;
+}
+
+.titulo div:nth-child(2) input {
+  width: 45px;
+}
+.titulo div:nth-child(3) input {
+  width: 45px;
+}
+
+.bloco-2-3 {
+  display: flex;
+  justify-content: end;
+  column-gap: 13px;
+  row-gap: 5px;
+  margin: 0 0 10px 0;
+}
+
+.bloco-2-2 div select {
+  width: 50px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.bloco-2-3 div:nth-child(1) select {
+  width: 90px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.bloco-2-3 div:nth-child(2) select,
+.bloco-2-3 div:nth-child(3) select {
+  width: auto;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.bloco-3 {
+  border-right-color: black;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: black;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  box-shadow: 1px 2px gray, 0px 0 0px;
+  padding: 0 5px 10px 5px;
+  margin: 0 0 15px 0;
+  display: grid;
+  grid-template-columns: 330px 1fr;
+}
+
+.bloco-3 div select {
+  width: 130px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.bloco-3-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-left-color: black;
+  border-left-style: solid;
+  border-left-width: 1px;
+  box-shadow: -1px 0px grey, 0px 0 0px;
+  padding: 0 0 0px 5px;
+}
+
+.bloco-3-1 div input {
+  width: 100%;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.bloco-3-1 .est-civil {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  margin: 0;
+  border-bottom: 2px solid;
+}
+
+.bloco-3-1 .endereco {
+  display: grid;
+  grid-template-columns: 125px 1fr 55px 1fr;
+  column-gap: 10px;
+}
+
+.modulo {
+  margin: 0;
+}
+
+.modulo div {
+  margin: 0 0 3px 0;
+}
+
+.rotulo-endereco {
+  margin: 8px 0 0 0;
+  height: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.bloco-4 {
+  border-right-color: black;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: black;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  box-shadow: 1px 2px gray, 0px 0 0px;
+  padding: 0 5px 10px 5px;
+  margin: 0 0 15px 0;
+  display: grid;
+  grid-template-columns: 520px 1fr;
+}
+
+.dados-filhos div:nth-child(2) input {
+  width: 122px;
+}
+
+.filhos {
+  border-right-color: black;
+  border-right-style: solid;
+  border-right-width: 1px;
+  box-shadow: 1px 0px grey, 0px 0 0px;
+  padding: 0 0 0px 5px;
+}
+
+.add-filho {
+  margin: 0 0 10px 0;
+}
+
+.add-filho a {
+  background-color: #398CBF;
+  color: white;
+  font-size: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
+}
+
+.dados-filhos {
+  display: grid;
+  grid-template-columns: 320px 190px;
+  column-gap: 10px;
+  margin: 0 0 10px 0;
+}
+
+.dados-filhos div input {
+  width: 100%;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.dados-telefone {
+  display: grid;
+  margin: 0px 0px 5px 5px;
+}
+
+.telefone {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  
+  width: 150px;
+  height: 28px;
+  margin: 0 5px 0 0;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  gap: 5px;
+}
+
+.telefone div {
+  display: flex;
+  align-items: center;
+}
+
+.telefone div span {
+  margin: 0 5px 0 0;
+}
+
+.dados-banco{
+  display: flex;
+  gap: 5px;
+  justify-content: space-around;
+  border-top: 2px solid;
+  padding: 7px 0 0 0;
+}
+
+.agencia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 70px;
+  height: 28px;
+  margin: 0 5px 0 0;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  gap: 5px;
+}
+
+form button {
+  background-color: var(--azul);
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#cancelar {
+  background-color: var(--vermelho);
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
+  /* border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133)); */
+}
