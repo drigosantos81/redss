@@ -1,0 +1,100 @@
+.cad-cliente {
+  width: 100%;
+  max-width: 1340px;
+  min-height: 100%;
+  margin: 0 auto 10px auto;
+  background-color: var(--cinza);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.rotulo {
+  margin: 5px 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sub-rotulo {
+  margin: 5px 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.form-cliente {
+  border-right-color: black;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: black;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  box-shadow: 1px 2px gray, 0px 0 0px;
+  padding: 0 5px 10px 5px;
+  margin: 0 0 15px 0;
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+
+.form-cliente div select {
+  width: 200px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.label-salario {
+  border-width: 2px;
+  border-style: inset;
+  border-color: rgb(118, 118, 118);
+  border-image: initial;
+  padding: 0 5px 0 5px;
+  width: 115px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  margin: 0;
+  font-weight: bold;
+  background-color: honeydew;
+  color: black;
+}
+
+.fields-cliente {
+  width: 450px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.form-cliente div select {
+  width: 300px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.data-contrato {
+  width: 125px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}

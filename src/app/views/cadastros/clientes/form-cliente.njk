@@ -1,0 +1,169 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>Clientes</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+
+<!-- Page Heading -->
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Formulário de Cadastro de Novo Cliente ou Obra</h1>
+      {# <a class="button-new" href="/cadastros/clientes/form-cliente">Cadastrar Novo</a> #}
+    </div>
+
+    <p class="mb-4">Preencha todos os campos para incluir o novo funcionário.</p>
+
+    <div class="mb-4">
+      <div class="cad-cliente">
+        <form action="/cadastros/clientes" method="POST">
+
+          <div class="form-cliente">
+            <div>
+              <div class="rotulo">
+                NOME: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nome / Razão Social"
+                type="text"
+                name="nome"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">
+                CEI: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nº do CEI"
+                type="text"
+                name="cei"
+              >
+              {# onkeydown="Mask.apply(this, 'data')" #}
+            </div>
+
+             <div>
+              <div class="rotulo">
+                CNPJ ou CPF: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nº do CNPJ ou CPF"
+                type="text"
+                name="cnpj_cpf"
+                onkeydown="Mask.apply(this, 'cpfCnpj')"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">
+                Valor do Contrato: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="R$ 000.000,00"
+                type="text"
+                name="valor_contrato"
+                onkeydown="Mask.apply(this, 'formatBRL')"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">
+                Data da assinatura do Contrato: 
+              </div>
+              <input 
+                class="data-contrato"
+                placeholder="DD/MM/AAAA"
+                type="text"
+                name="data_contrato"
+                onkeydown="Mask.apply(this, 'data')"
+              >
+            </div>
+
+            {# QUANDO SELECINAR A FUNÇÃO EXIBIR O VALOR #}
+            <div>
+              <div class="rotulo">CEP: </div>
+              <input
+                class="fields-cliente"
+                placeholder="00.000-00"
+                type="text"
+                name="cep"
+                onkeydown="Mask.apply(this, 'cep')"
+                >
+                {#  value="{{ recipe.title }}" #}
+            </div>
+
+            <div>
+              <div class="rotulo">Logradouro: </div>
+              <input
+                class="fields-cliente"
+                placeholder="Rua, Av."
+                type="text"
+                name="endereco"
+                >
+                {#  value="{{ recipe.title }}" #}
+            </div>
+
+            <div>
+              <div class="rotulo">Nº: </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nº ou S/N."
+                type="text"
+                name="numero_end"
+                >
+                {#  value="{{ recipe.title }}" #}
+            </div>
+
+            <div>
+              <div class="rotulo">Bairro: </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nome do bairro."
+                type="text"
+                name="bairro"
+                >
+                {#  value="{{ recipe.title }}" #}
+            </div>
+
+            <div>
+              <div class="rotulo">País: </div>
+              <select id="pais" name="pais"></select>
+            </div>
+
+            <div>
+              <div class="rotulo">UF: </div>
+              <select id="estado" name="uf"></select>
+            </div>
+
+            <div>
+              <div class="rotulo">Cidade: </div>
+                <select id="cidade" name="cidade"></select>
+            </div>
+
+            <div>
+              <div class="rotulo">Data do Encerramento do Contrato</div>
+              <input
+                class="data-contrato"
+                placeholder="DD/MM/AAAA"
+                type="text"
+                name="data_fim_contrato"
+                onkeydown="Mask.apply(this, 'data')"
+              
+              >{# value="{{ recipe.title }}" #}
+            </div>
+          </div>
+
+          <button type="submit">Cadastrar</button>
+          <a id="cancelar" href="/cadastros/funcionarios">Cancelar</a>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}

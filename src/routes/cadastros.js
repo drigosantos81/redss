@@ -17,5 +17,9 @@ routes.get('/fornecedores', fornecedoresController.index);
 
 /* ==== CLIENTES ==== */
 routes.get('/clientes', clientesController.index);
+routes.get('/clientes/form-cliente', clientesController.formCentroCusto);
+// routes.get('/clientes', clientesController.formCentroCusto);
+
+routes.post('/clientes', clientesController.post);
 
 module.exports = routes;
