@@ -36,20 +36,14 @@
             {# QUANDO SELECINAR A FUNÇÃO EXIBIR O VALOR #}
             <div>
               <div class="rotulo">Salário</div>
-              {# <label class="label-salario" for=""
-                id="valorSalario"
-                type="text"
-                name="salario"
-                onchange="Mask.apply(this, 'formatBRL')"
-              >R$ 00.000,00</label> #}
-
               <input
                 id="valorSalario"
                 placeholder="R$ 00.000,00"
                 type="text"
                 name="salario"
+                onkeydown="Mask.apply(this, 'formatBRL')"
                 >
-                {# onkeydown="Mask.apply(this, 'formatBRL')" value="{{ recipe.title }}" #}
+                {#  value="{{ recipe.title }}" #}
             </div>
 
             <div>
@@ -198,13 +192,24 @@
                   <select id="cidade" name="naturalidade_id"></select>
                 </label>
               </div>
-                <label id="campo_cidade" class="rotulo">
-                  Setor: 
-                  <input type="text" name="centro_custo_id">
-                </label>
-              <div>
 
+              <div>
+                <label id="centro_custo_id" class="rotulo">
+                  Setor: 
+                  <select id="selectFuncao" name="centro_custo_id"> {#  onchange="salarioFuncao()" #}
+                    <option>Selecione o Centro de Custo</option>
+                    {% for cliente in clienteName %}
+                      <option
+                        value="{{cliente.id}}"
+                        {% if cliente.id == funcionario.centro_custo_id %}
+                          selected
+                        {% endif %}
+                      >{{cliente.nome}}</option>
+                    {% endfor %}
+                  </select>
+                </label>
               </div>
+
             </div>
           </div>
 
@@ -262,7 +267,7 @@
 
                   <div>
                     <div class="sub-rotulo">Número</div>
-                  <input placeholder="Nº" type="text" name="endereco" value="{{ recipe.title }}">
+                  <input placeholder="Nº" type="text" name="numero_end" value="{{ recipe.title }}">
                   </div>
 
                   <div>
@@ -387,3 +392,7 @@
   </div>
   <!-- /.container-fluid -->
 {% endblock %}
+
+{% block scripts %}
+  <script src="/js/scriptsApiExterna.js"></script>
+{% endblock scripts %}

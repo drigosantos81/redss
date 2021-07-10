@@ -2,20 +2,19 @@ const db = require('../../config/db');
 const { date } = require('../../libs/utils');
 
 module.exports = {
-  // Retorna os dados de todos funcionários
+  // Retorna os dados de todos Clientes / Centro de Custo
   all() {
     try {
       return db.query(`
         SELECT * FROM centro_custo
       `);
-      // SELECT recipes.*, chefs.name AS chef_name FROM recipes
-      //   LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-      //   ORDER BY recipes.created_at DESC
+
     } catch (error) {
       console.log(error);
     }
   },
-  // Comando POST para um novo funcinário
+
+  // Comando POST para um novo Cliente / Centro de Custo
   post(data) {
     try {
       const query = `
@@ -32,11 +31,13 @@ module.exports = {
       ]
 
       return db.query(query, values);
+
     } catch (error) {
       console.log(error);
     }	
   },
-  // Retorna os dados de um Funcionário
+
+  // Retorna os dados de um Cliente / Centro de Custo
 	find(id) {
 		try {
 			return db.query(`
@@ -45,12 +46,57 @@ module.exports = {
 			`, [id]
 			);
 
-      // SELECT recipes.*, chefs.name AS chef_name FROM recipes 
-      // LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-      // WHERE recipes.id = $1
+		} catch (error) {
+			console.log(error);
+		}
+  },
+
+  // Retorna os Clientes / Centro de Custo no Selector
+  clienteSelector() {
+    try {
+      return db.query(`
+        SELECT nome, id FROM centro_custo
+        ORDER BY nome ASC
+      `);
+
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  updateCliente(data) {
+		try {
+			const query = (`
+				UPDATE centro_custo SET
+				nome=($1), cei=($2), cnpj_cpf=($3), cep=($4), endereco=($5), numero_end=($6), bairro=($7), pais=($8), uf=($9),
+        cidade=($10), data_contrato=($11), data_fim_contrato=($12), valor_contrato=($13)
+				WHERE id = $14
+			`);
+      // created_at, updated_at
+			const values = [
+				data.nome, data.cei, data.cnpj_cpf, data.cep, data.endereco, data.numero_end, data.bairro, data.pais, data.uf,
+        data.cidade, data.data_contrato, data.data_fim_contrato, data.valor_contrato,
+        data.id
+			]
+
+			return db.query(query, values);
 
 		} catch (error) {
 			console.log(error);
 		}
-},
+	},
+
+  // Delete de um Centro de Custo
+  delete(id) {
+    try {
+      return db.query(`
+        DELETE FROM centro_custo
+        WHERE id = $1
+      `, [id]);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 }

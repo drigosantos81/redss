@@ -42,7 +42,6 @@ Este projeto foi desenvolvido com NodeJS. Abaixo está a lista das dependências
 * Browser Sync
 * Intl;
 * Method-OverRide;
-* <https://twitter.com/SBootstrap>
 
 ## Licença
 

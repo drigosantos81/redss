@@ -1,27 +1,3 @@
-// function salarioFuncao() {
-//   const funcaoSelected = document.querySelector("#selectFuncao").value;
-//   if (funcaoSelected == "Pedreiro") {
-//     document.getElementById("valorSalario").value = 1910.65;
-//   } else if (funcaoSelected == "Ajudante Comum") {
-//     document.getElementById("valorSalario").value = 1128.34;
-//   } else {
-//     document.getElementById("valorSalario").value = 900.00;
-//   }
-  
-//   console.log('Formulário do Funcionário!');  
-// }
-
-function showFunc() {
-	const tbodyFunc = document.querySelector('.tbody-func');
-	const trFuncs = document.getElementsByTagName('tr');
-	for (let trFunc of trFuncs) {
-    trFunc.addEventListener("click", function() {
-      const dataFunc = trFunc.getAttribute("id");
-      window.location.href = `/cadastros/funcionarios/funcionario/${dataFunc}`;
-    });
-	}
-}
-
 const Validate = {
   apply(input, func) {
     Validate.clearErrors(input);
@@ -104,6 +80,19 @@ const Mask = {
     value = value.replace(/^(\d{3})(\d)/, "$1.$2"); // 111.22222334
     value = value.replace(/^(\d{3})\.(\d{5})(\d)/, "$1.$2.$3"); // 111.22222.334
     value = value.replace(/(\d{3})\.(\d{5})\.(\d{2})(\d)/, "$1.$2.$3-$4"); // 111.22222.33-4
+
+    return value;
+  },
+  cei(value) {
+    value = value.replace(/\D/g,"");
+
+    if (value.length > 12) {
+      value = value.slice(0, -1);
+    }
+
+    value = value.replace(/^(\d{2})(\d)/, "$1.$2"); // 11.2223333344
+    value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3"); // 11.222.3333344
+    value = value.replace(/^(\d{2})\.(\d{3})\.(\d{5})(\d)/, "$1.$2.$3/$4"); // 11.222.33333/44
 
     return value;
   },
@@ -211,7 +200,7 @@ const Mask = {
     value = value.replace(/(\d{5})(\d)/, "$1-$2"); // (11) 22222-3333
     
     return value;
-  },
+  },  
   conta(value) {
     value = value.replace(/\D/g,"");
 
@@ -226,107 +215,38 @@ const Mask = {
   },
 }
 
-// BUSCA LOCALIZAÇÃO
-
-function montaCidade(estado, pais){
-	$.ajax({
-		type:'GET',
-		url:'http://api.londrinaweb.com.br/PUC/Cidades/'+estado+'/'+pais+'/0/10000',
-		contentType: "application/json; charset=utf-8",
-		dataType: "jsonp",
-		async:false
-	}).done(function(response){
-		cidades='';
-
-		$.each(response, function(c, cidade){
-
-			cidades+='<option value="'+cidade+'">'+cidade+'</option>';
-
-		});
-
-		// PREENCHE AS CIDADES DE ACORDO COM O ESTADO
-		$('#cidade').html(cidades);
-
-	});
+function alertDelete() {
+  const formDelete = document.querySelector("#form-delete");
+  formDelete.addEventListener("submit", function(event) {
+    const confirmation = confirm("Deseja mesmo deletar este registro?");
+    if (!confirmation) {
+        event.preventDefault();
+    }
+  });
 }
 
-function montaUF(pais){
-	$.ajax({
-		type:'GET',
-		url:'http://api.londrinaweb.com.br/PUC/Estados/'+pais+'/0/10000',
-		contentType: "application/json; charset=utf-8",
-		dataType: "jsonp",
-		async:false
-	}).done(function(response){
-		estados='';
-		$.each(response, function(e, estado){
+// function salarioFuncao() {
+//   const funcaoSelected = document.querySelector("#selectFuncao").value;
+//   if (funcaoSelected == "Pedreiro") {
+//     document.getElementById("valorSalario").value = 1910.65;
+//   } else if (funcaoSelected == "Ajudante Comum") {
+//     document.getElementById("valorSalario").value = 1128.34;
+//   } else {
+//     document.getElementById("valorSalario").value = 900.00;
+//   }
+  
+//   console.log('Formulário do Funcionário!');  
+// }
 
-			estados+='<option value="'+estado.UF+'">'+estado.Estado+'</option>';
+// *******************************************
 
-		});
-
-		// PREENCHE OS ESTADOS BRASILEIROS
-		$('#estado').html(estados);
-
-		// CHAMA A FUNÇÃO QUE PREENCHE AS CIDADES DE ACORDO COM O ESTADO
-		montaCidade($('#estado').val(), pais);
-
-		// VERIFICA A MUDANÇA NO VALOR DO CAMPO ESTADO E ATUALIZA AS CIDADES
-		$('#estado').change(function(){
-			montaCidade($(this).val(), pais);
-		});
-
-	});
-}
-
-function montaPais(){
-	$.ajax({
-		type:	'GET',
-		url:	'http://api.londrinaweb.com.br/PUC/Paisesv2/0/1000',
-		contentType: "application/json; charset=utf-8",
-		dataType: "jsonp",
-		async:false
-	}).done(function(response){
-		
-		paises='';
-
-		$.each(response, function(p, pais){
-
-			if(pais.Pais == 'Brasil'){
-				paises+='<option value="'+pais.Sigla+'" selected>'+pais.Pais+'</option>';
-			} else {
-				paises+='<option value="'+pais.Sigla+'">'+pais.Pais+'</option>';
-			}
-
-		});
-
-		// PREENCHE O SELECT DE PAÍSES
-		$('#pais').html(paises);
-
-		// PREENCHE O SELECT DE ACORDO COM O VALOR DO PAÍS
-		montaUF($('#pais').val());
-
-		// VERIFICA A MUDANÇA DO VALOR DO SELECT DE PAÍS
-		$('#pais').change(function(){
-			if($('#pais').val() == 'BR'){
-				// SE O VALOR FOR BR E CONFIRMA OS SELECTS
-				$('#estado').remove();
-				$('#cidade').remove();
-				$('#campo_estado').append('<select id="estado"></select>');
-				$('#campo_cidade').append('<select id="cidade"></select>');
-
-				// CHAMA A FUNÇÃO QUE MONTA OS ESTADOS
-				montaUF('BR');		
-			} else {
-				// SE NÃO FOR, TROCA OS SELECTS POR INPUTS DE TEXTO
-				$('#estado').remove();
-				$('#cidade').remove();
-				$('#campo_estado').append('<input type="text" id="estado">');
-				$('#campo_cidade').append('<input type="text" id="cidade">');
-			}
-		})
-
-	});
-}
-
-montaPais();
+// function showFunc() {
+	// const tbodyFunc = document.querySelector('.tbody-func');
+	// const trFuncs = document.getElementsByTagName('tr');
+	// for (let trFunc of trFuncs) {
+  //   trFunc.addEventListener("click", function() {
+  //     const dataFunc = trFunc.getAttribute("id");
+  //     window.location.href = `/cadastros/funcionarios/funcionario/${dataFunc}`;
+  //   });
+	// }
+// }

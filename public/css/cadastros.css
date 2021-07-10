@@ -1,7 +1,12 @@
 .novo-botao-func {
   display: flex;
-    justify-content: space-between;
-    align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 15px 0;
+}
+
+.novo-botao-func .rotulo-main-pagina {
+  margin: 0;
 }
 
 .btn-search {
@@ -36,7 +41,34 @@
 }
 
 .tbody-func tr:hover {
-  cursor: pointer;
   background-color: cornflowerblue;
   color: aliceblue;
+}
+
+.edita-registro {
+  background-color: var(--azul);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.edita-registro:hover {
+  color: white;
+  text-decoration: none;
+  text-transform: none;
+}
+
+#navegar {
+  background-color: var(--azul);
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
+  /* border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133)); */
 }

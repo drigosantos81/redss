@@ -1,0 +1,25 @@
+.label-all {
+  border-width: 2px;
+  /* border-style: inset; */
+  border-color: rgb(118, 118, 118);
+  border-image: initial;
+  padding: 0 5px 0 5px;
+  width: auto;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.show-data-registro {
+  display: grid;
+  /* grid-template-columns: 1fr 1fr; */
+  padding: 0;
+}
+
+.edit-data-registro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

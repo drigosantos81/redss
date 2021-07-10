@@ -18,8 +18,11 @@ routes.get('/fornecedores', fornecedoresController.index);
 /* ==== CLIENTES ==== */
 routes.get('/clientes', clientesController.index);
 routes.get('/clientes/form-cliente', clientesController.formCentroCusto);
-// routes.get('/clientes', clientesController.formCentroCusto);
+routes.get('/clientes/show-cliente/:id', clientesController.umCliente);
+routes.get('/clientes/edit-cliente/:id/editar', clientesController.editValues);
 
 routes.post('/clientes', clientesController.post);
+routes.put('/clientes', clientesController.putCliente);
+routes.delete('/clientes', clientesController.deleteCliente);
 
 module.exports = routes;

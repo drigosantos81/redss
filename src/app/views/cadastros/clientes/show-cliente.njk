@@ -1,49 +1,100 @@
 {% extends 'layout.njk' %}
 
 {% block head %}
-  <title>{{cliente.nome}}</title>
+  <title>{{cliente.nome}} | REDSS</title>
 {% endblock %}
 
 {% block content %}
   <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">{{cliente.nome}}</h1>
-    <p class="mb-4"><strong>Função: {{cliente.funcao}}</strong></p>
-
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Dados do Centro de Custo / Cliente</h1>
+    </div>
+    
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Funcionários ativos</h6>
+      <div class="card-header py-3 edit-data-registro">
+        <h6 class="m-0 font-weight-bold text-primary">{{cliente.nome}}</h6>
+        <a class="edita-registro" href="/cadastros/clientes/edit-cliente/{{cliente.id}}/editar">Editar</a>
       </div>
+
       <div class="card-body">
-        <div class="table-responsive">              
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Função</th>
-                <th>Lotação</th>
-                <th>Idade</th>
-                <th>Tempo</th>
-                <th>Salário</th>
-              </tr>
-            </thead>
-            <tbody class="tbody-func">
-              <tr id="{{cliente.id}}">
-                <td>{{cliente.nome}}</td>
-                <td>{{cliente.funcao}}</td>
-                <td>{{cliente.nome}}</td>
-                <td>{{cliente.nascimento}}</td>
-                <td>{{cliente.data_admissao}}</td>
-                <td>{{cliente.salario}}</td>                      
-              </tr>
-            </tbody>                
-          </table>
+        <div class="card-body show-data-registro">
+          <div>
+            <span class="rotulo">
+              <strong>CNPJ: </strong>
+            </span>
+            <label class="label-all">{{cliente.cnpj_cpf}}</label>
+          </div>
+
+          <div>
+            <span class="rotulo">
+              <strong>CEI: </strong>
+            </span>
+            <label class="label-all">
+              {% if cliente.cei == "" %}
+                CEI não cadastrado
+              {% else %}
+                {{cliente.cei}}
+              {% endif %}
+            </label>
+          </div>
+
+          <div>
+            <span class="rotulo">
+              <strong>Valor do Contrato: </strong>
+            </span>
+            <label class="label-all">{{cliente.valor_contrato}}</label>
+          </div>
+
+          <div>
+            <span class="rotulo">
+              <strong>Data da Assinatura: </strong>
+            </span>
+            <label class="label-all">{{cliente.data_contrato}}</label>
+          </div>
+
+          <div>
+            <span class="rotulo">
+              <strong>Logradouro: </strong>
+            </span>
+            <label class="label-all">{{cliente.endereco}}</label>
+          </div>
+
+          <div>
+            <span class="rotulo">
+              <strong>Nº: </strong>
+            </span>
+            <label class="label-all">{{cliente.numero_end}}</label>
+          </div>
+
+          <div>
+            <span class="rotulo">
+              <strong>Cidade: </strong>
+            </span>
+            <label class="label-all">{{cliente.cidade}}</label>
+          </div>
+
+          <div>
+            <span class="rotulo">
+              <strong>UF: </strong>
+            </span>
+            <label class="label-all">{{cliente.uf}}</label>
+          </div>
+
+          <div>
+            <span class="rotulo">
+              <strong>Data do Encerramento do Contrato: </strong>
+            </span>
+            <label class="label-all">{{cliente.data_fim_contrato}}</label>
+          </div>
         </div>
       </div>
     </div>
 
+    <a class="edita-registro" href="/cadastros/clientes">Voltar</a>
+    
   </div>
   <!-- /.container-fluid -->
 {% endblock %}

@@ -11,8 +11,6 @@ module.exports = {
 
       clientes.valor_contrato = formatPrice(clientes.valor_contrato);
 
-      console.log('LISTA DOS CLIENTES: ', clientes);
-
       return res.render('cadastros/clientes/index', { clientes });
       
     } catch (error) {
@@ -29,6 +27,7 @@ module.exports = {
       console.log(error);
     }
   },
+
   // CADASTRA NOVO FUNCIONÁRIO
   async post(req, res) {
     try {
@@ -39,7 +38,6 @@ module.exports = {
       //     return res.send("Por favor, preencha todos os campos.");
       //   }
       // }
-      // date(Date.now()).iso, date(Date.now()).iso, 
 
       let { nome, cei, cnpj_cpf, cep, endereco, numero_end, bairro, pais, uf,
         cidade, data_contrato, data_fim_contrato, valor_contrato } = req.body;
@@ -50,11 +48,6 @@ module.exports = {
         nome, cei, cnpj_cpf, cep, endereco, numero_end, bairro, pais, uf,
         cidade, data_contrato, data_fim_contrato, valor_contrato
       });
-
-      // let results = await CentroCusto.post(req.body);
-      // const clienteId = results.rows[0].id;
-
-      console.log('DADOS DO CLIENTE: ');
       
       return res.redirect(`/cadastros/clientes`);
       // return res.redirect(`/cadastros/clientes/form-cliente/${clienteId}`);
@@ -63,4 +56,82 @@ module.exports = {
       console.log(error);
     }
   },
+
+  // RETORNA UM CLIENTE
+  async umCliente(req, res) {
+    try {
+      let results = await CentroCusto.find(req.params.id);
+      const cliente = results.rows[0];
+
+      cliente.data_contrato = date(cliente.data_contrato).format;
+      cliente.valor_contrato = formatPrice(cliente.valor_contrato);
+      cliente.data_fim_contrato = date(cliente.data_fim_contrato).format;
+      
+      return res.render('cadastros/clientes/show-cliente', { cliente });
+      
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  // RETORNA OS DADOS DE UM CLIENTE PARA OS CAMPOS DE EDIÇÃO
+  async editValues(req, res) {
+    try {
+      let results = await CentroCusto.find(req.params.id);
+      const cliente = results.rows[0];
+
+      cliente.data_contrato = date(cliente.data_contrato).format;
+      cliente.valor_contrato = formatPrice(cliente.valor_contrato);
+      cliente.data_fim_contrato = date(cliente.data_fim_contrato).format;
+      
+      return res.render('cadastros/clientes/edit-cliente', { cliente });
+
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  // COMANDO PUT PARA ATUALIZAÇÃO DO CLIENTE / CENTRO DE CUSTO
+	async putCliente(req, res) {
+		try {
+			const keys = Object.keys(req.body);
+			// Verifica se todos os campos estão preenchidos
+			for (key of keys) {
+				if ((req.body.path == '') || req.body[key] == '') {
+					return res.send('Preencha todos os campos.');
+				}
+			}
+
+      let valor_contrato = req.body.valor_contrato;
+
+      valor_contrato = valor_contrato.replace(/\D/g,"");
+
+
+      await CentroCusto.updateCliente(req.body);
+      
+      return res.redirect(`/cadastros/clientes/show-cliente/${req.body.id}`/*, { cliente }*/);
+
+    } catch (error) {
+      console.error(error);
+      // req.session.error = 'Erro inesperado, tente novamente.'
+      return res.redirect(`/cadastros/clientes/show-cliente/${req.body.id}`);
+    }
+	},
+
+  // COMANDO DELETE PARA EXCLUSÃO DE UM CENTRO DE CUSTO
+  async deleteCliente(req, res) {
+    try {
+      await CentroCusto.delete(req.body.id);
+
+      // req.session.success = 'Receita excluída do FoodFy com sucesso.';
+
+      return res.redirect('/cadastros/clientes');
+
+    } catch (error) {
+      console.error(error);
+      // req.session.error = 'Erro inesperado, tente novamente.'
+      return res.redirect(`/cadastros/clientes`);
+    }
+  },
+
 }

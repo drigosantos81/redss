@@ -1,4 +1,5 @@
 const Funcionarios = require('../../models/Funcionarios');
+const CentroCusto = require('../../models/CentroCusto');
 const { date, age, formatPrice, birthDay } = require('../../../libs/utils');
 
 module.exports = {
@@ -21,15 +22,20 @@ module.exports = {
       console.log(error);
     }
   },
+
   // EXIBE O FORMULÁRIO
   async formFunc(req, res) {
-    try {      
-      return res.render('cadastros/funcionarios/form-funcionario');
+    try {
+      let results = await CentroCusto.clienteSelector();
+      const clienteName = results.rows;
+
+      return res.render('cadastros/funcionarios/form-funcionario', { clienteName });
       
     } catch (error) {
       console.log(error);
     }
   },
+
   // CADASTRA NOVO FUNCIONÁRIO
   async post(req, res) {
     try {
@@ -41,10 +47,23 @@ module.exports = {
       //   }
       // }
 
-      let results = await Funcionarios.post(req.body);
-      const funcionarioId = results.rows[0].id;
+      let { nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor,
+        zona_titulo, secao_titulo, data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id,
+        uf, nome_mae, nome_pai, estado_civil, telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato,
+        filhos, centro_custo_id } = req.body;
 
-      console.log('DADOS DO FUNCIONÁRIO: ');
+      salario = salario.replace(/\D/g,"");
+
+      const funcionarioId = await Funcionarios.post({
+        nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor,
+        zona_titulo, secao_titulo, data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id,
+        uf, nome_mae, nome_pai, estado_civil, telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato,
+        filhos, centro_custo_id
+      });
+      
+      // const funcionarioId = results.rows[0].id;
+
+      console.log('DADOS DO FUNCIONÁRIO: ', funcionarioId);
       
       return res.redirect(`/cadastros/funcionarios`);
       // return res.redirect(`/cadastros/funcionarios/form-funcionario/${funcionarioId}`);
@@ -53,6 +72,7 @@ module.exports = {
       console.log(error);
     }
   },
+
   // RETORNA UM FUNCIONÁRIO
   async find(req, res) {
     try {

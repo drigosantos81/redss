@@ -1,3 +1,7 @@
+-- PASSO 1 - CRIAÇÃO DO BANCO DE DADOS
+CREATE DATABASE "redss";
+
+-- PASSO 2 - CRIAÇÃO DAS TABELAS DO BANCO DE DADOS
 CREATE TABLE "funcinoarios" (
   "id" SERIAL PRIMARY KEY,
   "nome" text NOT NULL,
@@ -80,7 +84,8 @@ CREATE TABLE "ordem_pagamento" (
   "status" boolean
 );
 
-ALTER TABLE "funcinoarios" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "folha_pgto" ("id");
+-- PASSO 3 - CRIAR OS RELACIONAMENTOS
+ALTER TABLE "funcinoarios" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "centro_custo" ("id");
 
 ALTER TABLE "fornecedor" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "centro_custo" ("id");
 
@@ -91,3 +96,44 @@ ALTER TABLE "folha_pgto" ADD FOREIGN KEY ("ordem_pagamento_id") REFERENCES "orde
 ALTER TABLE "recebimentos" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "centro_custo" ("id");
 
 ALTER TABLE "ordem_pagamento" ADD FOREIGN KEY ("fornecedor_id") REFERENCES "fornecedor" ("id");
+
+
+/* PASSO 4: Criar Procedure para atualização automática do campo "updated_at" */
+
+/* Passo 4.1 ==== CRIAÇÃO DA PROCEDURE ==== */
+CREATE OR REPLACE FUNCTION public.trigger_set_timestamp()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+	NEW.updated_at = NOW();
+	RETURN NEW;
+END;
+$function$
+
+/* PASSO 5: Aplicar a Trigger nas tabelas seleionadas */
+
+/* ==== CONFIGURAÇÃO DA TRIGGER  ==== */
+/* Trigger para tabela centro_custo */
+
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON centro_custo
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+/* Trigger para tabela funcionarios */
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON funcionarios
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+/* PASSO 6: ==== TABELA PARA CONTROLE DA SESSÃO DO USUÁRIO */
+CREATE TABLE "session" (
+  "sid" varchar NOT NULL COLLATE "default",
+  "sess" json NOT NULL,
+  "expire" timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+ALTER TABLE "session" 
+ADD CONSTRAINT "session_pkey" 
+PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;

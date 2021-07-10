@@ -1,7 +1,7 @@
 {% extends 'layout.njk' %}
 
 {% block head %}
-  <title>Centro de Custo / Clientes</title>
+  <title>Centro de Custo | REDSS</title>
 {% endblock %}
 
 {% block content %}	
@@ -13,12 +13,10 @@
       <a class="button-new" href="/cadastros/clientes/form-cliente">Cadastrar Novo</a>
     </div>
 
-    <p class="mb-4">- Clientes Ativos.</p>
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Funcionários ativos</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Contratos ativos</h6>
       </div>
       <div class="card-body">
         <div class="table-responsive">              
@@ -30,25 +28,24 @@
                 <th>CNPJ</th>
                 <th>Data do Contrato</th>
                 <th>Valor do Cntrato</th>
+                <th>Detalhes</th>
                 </tr>
             </thead>
-            <tfoot>
-              <tr>
-                <th>Nome</th>
-                <th>CEI</th>
-                <th>CNPJ</th>
-                <th>Data do Contrato</th>
-                <th>Valor do Cntrato</th>
-                </tr>
-            </tfoot>
             <tbody class="tbody-func">
               {% for cliente in clientes %}
-                <tr id="{{cliente.id}}" onclick="showFunc()">
+                <tr id="{{cliente.id}}">
                   <td>{{cliente.nome}}</td>
-                  <td>{{cliente.cei}}</td>
-                  <td>{{cliente.cnpj}}</td>
+                  <td>
+                    {% if cliente.cei == '' %}
+                      ******
+                    {% else %}
+                      {{cliente.cei}}
+                    {% endif %}                    
+                  </td>
+                  <td>{{cliente.cnpj_cpf}}</td>
                   <td>{{cliente.data_contrato}}</td>
                   <td>{{cliente.valor_contrato}}</td>
+                  <td><a class="edita-registro" href="/cadastros/clientes/show-cliente/{{cliente.id}}">Exibir</a></td>
                 </tr>
               {% endfor %}
             </tbody>                
