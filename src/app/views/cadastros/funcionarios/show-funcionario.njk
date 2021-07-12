@@ -1,7 +1,7 @@
 {% extends 'layout.njk' %}
 
 {% block head %}
-  <title>{{funcionario.nome}}</title>
+  <title>{{funcionario.nome}} | REDSS</title>
 {% endblock %}
 
 {% block content %}
@@ -9,41 +9,182 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">{{funcionario.nome}}</h1>
-    <p class="mb-4"><strong>Função: {{funcionario.funcao}}</strong></p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-      <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Funcionários ativos</h6>
+      <div class="card-header py-3 edit-data-registro">
+        <h6 class="m-0 font-weight-bold text-primary">{{funcionario.funcao}}</h6>
+        <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{funcionario.id}}/editar">Editar</a>
       </div>
+
       <div class="card-body">
-        <div class="table-responsive">              
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Função</th>
-                <th>Lotação</th>
-                <th>Idade</th>
-                <th>Tempo</th>
-                <th>Salário</th>
-              </tr>
-            </thead>
-            <tbody class="tbody-func">
-              <tr id="{{funcionario.id}}">
-                <td>{{funcionario.nome}}</td>
-                <td>{{funcionario.funcao}}</td>
-                <td>{{funcionario.centro_custo_id}}</td>
-                <td>{{funcionario.nascimento}}</td>
-                <td>{{funcionario.data_admissao}}</td>
-                <td>{{funcionario.salario}}</td>                      
-              </tr>
-            </tbody>                
-          </table>
+        <div>
+          <span class="rotulo">
+            <strong>Centro de Custo: </strong>
+          </span>
+          <label class="label-all">{{funcionario.cencusto}}</label>
         </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Admissão: </strong>
+          </span>
+          <label class="label-all">{{funcionario.data_admissao}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Salário: </strong>
+          </span>
+          <label class="label-all">{{funcionario.salario}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Tipo do Contrato: </strong>
+          </span>
+          <label class="label-all">{{funcionario.tipo_contrato}}</label>
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <div>
+          <span class="rotulo">
+            <strong>CPF: </strong>
+          </span>
+          <label class="label-all">{{funcionario.cpf}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>RG: </strong>
+          </span>
+          <label class="label-all">{{funcionario.rg}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>PIS: </strong>
+          </span>
+          <label class="label-all">{{funcionario.pis}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>CTPS: </strong>
+          </span>
+          <label class="label-all">{{funcionario.ctps}} / <strong>Série: </strong>{{funcionario.serie_ctps}} / <strong>UF: </strong>{{funcionario.uf_ctps}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Título de Eleitor: </strong>
+          </span>
+          <label class="label-all">{{funcionario.titulo_eleitor}} / <strong>Zona: </strong>{{funcionario.zona_titulo}} / <strong>Seção: </strong>{{funcionario.zona_titulo}}</label>
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <div>
+          <span class="rotulo">
+            <strong>Nascimento: </strong>
+          </span>
+          <label class="label-all">{{funcionario.nascimento}} <strong>Idade: </strong>{{funcionario.idade}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Nacionalidade: </strong>
+          </span>
+          <label class="label-all">{{funcionario.nacionalidade}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Natural de: </strong>
+          </span>
+          <label class="label-all">{{funcionario.naturalidade_id}} / {{funcionario.uf}}</label>
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <div>
+          <span class="rotulo">
+            <strong>Filiação</strong>
+          </span>
+          <p></p>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Nome da Mãe: </strong>
+          </span>
+          <label class="label-all">{{funcionario.nome_mae}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Nome do Pai: </strong>
+          </span>
+          <label class="label-all">{{funcionario.nome_pai}}</label>
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <div>
+          <span class="rotulo">
+            <strong>Endereço e Contatos</strong>
+          </span>
+          <p></p>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Telefones: </strong>
+          </span>
+          <label class="label-all">{{funcionario.telefone}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>CEP: </strong>
+          </span>
+          <label class="label-all">{{funcionario.cep}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Logradouro: </strong>
+          </span>
+          <label class="label-all">{{funcionario.endereco}}, Nº: {{funcionario.numero_end}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Bairro: </strong>
+          </span>
+          <label class="label-all">{{funcionario.bairro}} - Salvador/BA</strong></label>
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <div>
+          <span class="rotulo">
+            <strong>Estado Civil: </strong>
+          </span>
+          <label class="label-all">{{funcionario.estado_civil}} <strong>Cônjuge: </strong>{{funcionario.conjuge}}</label>
+        </div>
+
+        <div>
+          <span class="rotulo">
+            <strong>Filhos: </strong>
+          </span>
+          <label class="label-all">{{funcionario.filhos}} <strong>Nascimento: </strong>CPF: <strong></strong></label>
+        </div>
+
       </div>
     </div>
-
+    
   </div>
   <!-- /.container-fluid -->
 {% endblock %}

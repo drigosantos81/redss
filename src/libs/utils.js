@@ -1,5 +1,5 @@
 module.exports = {
-	age: function(timestamp) { // age: function(timestamp) {
+	age(timestamp) { // age: function(timestamp) {
 		const today = new Date();
 		const birthDate = new Date(timestamp);
 
@@ -34,20 +34,24 @@ module.exports = {
 	birthDay(timestamp) {
 		const date = new Date(timestamp);
 
-		const year = date.getUTCFullYear();
-		const month = `0${date.getUTCMonth() + 1}`.slice(-2);
-		const day = `0${date.getUTCDate()}`.slice(-2);
+		const year = date.getFullYear();
+		const month = `0${date.getMonth() + 1}`.slice(-2);
+		const day = `0${date.getDate()}`.slice(-2);
+
+		// const year = date.getUTCFullYear();
+		// const month = `0${date.getUTCMonth() + 1}`.slice(-2);
+		// const day = `0${date.getUTCDate()}`.slice(-2);
 
 		// Padrão de data no HTML: yyyy-mm-dd
 		return {
-				day,
+			day,
 			month,
 			year,
 			iso: `${day}/${month}`,
 			birthDate: `${month}/${year}`,
 			format: `${day}/${month}/${year}`
 		};
-	} ,
+	},
 
 	formatPrice(salario) {
 		return new Intl.NumberFormat('pt-BR', {

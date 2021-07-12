@@ -10,9 +10,9 @@ module.exports = {
       let results = await Funcionarios.all();
       const funcionarios = results.rows;
 
-      funcionarios.nascimento = birthDay(funcionarios.nascimento).iso;
-      funcionarios.formatData_admissao = date(funcionarios.data_admissao).format;
-      funcionarios.salario = formatPrice(funcionarios.salario);
+      // funcionarios.nascimento = birthDay(funcionarios.nascimento).iso;
+      // funcionarios.formatData_admissao = date(funcionarios.data_admissao).format;
+      // funcionarios.salario = formatPrice(funcionarios.salario);
 
       console.log('LISTA DOS FUNCIONÁRIOS: ', funcionarios);
       
@@ -79,8 +79,10 @@ module.exports = {
       let results = await Funcionarios.find(req.params.id);
       const funcionario = results.rows[0];
 
-      funcionario.nascimento = age(funcionario.nascimento);
+      console.log('UM FUNCIONÁRIO: ', funcionario);
       funcionario.data_admissao = date(funcionario.data_admissao).format;
+      funcionario.nascimento = date(funcionario.nascimento).format;
+      funcionario.idade = age(funcionario.nascimento);
       funcionario.salario = formatPrice(funcionario.salario);
       
       return res.render('cadastros/funcionarios/show-funcionario', { funcionario });
@@ -88,5 +90,24 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
+
+  // RETORNA OS DADOS DE UM FUNCIONÁRIO PARA OS CAMPOS DE EDIÇÃO
+  async editValues(req, res) {
+    try {
+      let results = await Funcionarios.find(req.params.id);
+      const funcionario = results.rows[0];
+
+      console.log('UM FUNCIONÁRIO: ', funcionario);
+      funcionario.data_admissao = date(funcionario.data_admissao).format;
+      funcionario.nascimento = date(funcionario.nascimento).format;
+      funcionario.idade = age(funcionario.nascimento);
+      funcionario.salario = formatPrice(funcionario.salario);
+      
+      return res.render('cadastros/funcionarios/edit-funcionario', { funcionario });
+
+    } catch (error) {
+      console.log(error);
+    }
+  },
 }

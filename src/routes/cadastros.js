@@ -9,6 +9,7 @@ const clientesController = require('../app/controllers/clientes/ClientesControll
 routes.get('/funcionarios/', funcionariosController.index);
 routes.get('/funcionarios/form-funcionario', funcionariosController.formFunc);
 routes.get('/funcionarios/funcionario/:id', funcionariosController.find);
+routes.get('/funcionarios/edit-funcionario/:id/editar', funcionariosController.editValues);
 
 routes.post('/funcionarios', funcionariosController.post);
 

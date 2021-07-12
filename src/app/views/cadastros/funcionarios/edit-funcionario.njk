@@ -1,0 +1,202 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>{{funcionario.nome}} | REDSS</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+
+<!-- Page Heading -->
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Edição do funcionário: <strong>{{funcionario.nome}}</strong></h1>
+    </div>
+
+    <p class="mb-4">Preencha todos os campos para atualizar o cadastro.</p>
+
+    <div class="mb-4">
+      <div class="cad-cliente">
+        <form id="salva_cliente" action="/cadastros/clientes?_method=PUT" method="post">
+          <div class="form-cliente">
+            <div>
+              <div class="rotulo">
+                NOME: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nome / Razão Social"
+                type="text"
+                name="nome"
+                value="{{ funcionario.nome }}"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">
+                CEI: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="00.000.00000/00"
+                type="text"
+                name="cei"
+                value="{{ funcionario.cei }}"
+                onkeydown="Mask.apply(this, 'cei')"
+              >
+            </div>
+
+             <div>
+              <div class="rotulo">
+                CNPJ ou CPF: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nº do CNPJ ou CPF"
+                type="text"
+                name="cnpj_cpf"
+                value="{{ funcionario.cnpj_cpf }}"
+                onkeydown="Mask.apply(this, 'cpfCnpj')"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">
+                Valor do Contrato: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="R$ 000.000,00"
+                type="text"
+                name="valor_contrato"
+                value="{{ funcionario.valor_contrato }}"
+                onkeydown="Mask.apply(this, 'formatBRL')"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">
+                Data da assinatura do Contrato: 
+              </div>
+              <input 
+                class="data-contrato"
+                placeholder="DD/MM/AAAA"
+                type="text"
+                name="data_contrato"
+                value="{{ funcionario.data_contrato }}"
+                onkeydown="Mask.apply(this, 'data')"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">CEP: </div>
+              <input
+                class="fields-cliente-cep"
+                placeholder="00.000-000"
+                type="text"
+                name="cep"
+                value="{{ funcionario.cep }}"
+                onkeydown="Mask.apply(this, 'cep')"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">Logradouro: </div>
+              <input
+                class="fields-cliente"
+                placeholder="Rua, Av."
+                type="text"
+                name="endereco"
+                value="{{ funcionario.endereco }}"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">Nº: </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nº ou S/N."
+                type="text"
+                name="numero_end"
+                value="{{ funcionario.numero_end }}"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">Bairro: </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nome do bairro."
+                type="text"
+                name="bairro"
+                value="{{ funcionario.bairro }}"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">País: </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nome do país."
+                type="text"
+                name="pais"
+                value="{{ funcionario.pais }}"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">UF: </div>
+              <input
+                class="fields-cliente"
+                placeholder="UF."
+                type="text"
+                name="uf"
+                value="{{ funcionario.uf }}"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">Cidade: </div>
+              <input
+                class="fields-cliente"
+                placeholder="Cidade"
+                type="text"
+                name="cidade"
+                value="{{ funcionario.cidade }}"
+              >
+            </div>
+
+            <div>
+              <div class="rotulo">Data do Encerramento do Contrato</div>
+              <input
+                class="data-contrato"
+                placeholder="DD/MM/AAAA"
+                type="text"
+                name="data_fim_contrato"
+                value="{{ funcionario.data_fim_contrato }}"
+                onkeydown="Mask.apply(this, 'data')"
+              >
+            </div>
+          </div>
+          <input type="hidden" name="id" value="{{ funcionario.id }}">
+        </form>
+
+        <div class="crud-button">
+          <button class="submit-crud-button" form="salva_cliente" type="submit">Atualizar</button>
+
+          <form id="form-delete" action="/cadastros/clientes?_method=DELETE" method="post">
+            <input type="hidden" name="id" value="{{ funcionario.id }}">
+            <button class="delete-crud-button" type="submit" onclick="alertDelete()">Deletar</button>
+          </form>
+
+          <a id="cancelar" href="/cadastros/clientes/show-cliente/{{funcionario.id}}">Cancelar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}
+
+{% block scripts %}
+  <script src="/js/scriptsApiExterna.js"></script>
+{% endblock scripts %}

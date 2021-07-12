@@ -9,12 +9,7 @@ module.exports = {
         SELECT funcionarios.*, centro_custo.nome AS SETOR FROM funcionarios
         LEFT JOIN centro_custo ON (funcionarios.centro_custo_id = centro_custo.id)
       `);
-// WHERE funcionarios.id = $1
 
-      // SELECT * FROM funcionarios
-      // SELECT recipes.*, chefs.name AS chef_name FROM recipes
-      //   LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-      //   ORDER BY recipes.created_at DESC
     } catch (error) {
       console.log(error);
     }
@@ -52,8 +47,9 @@ module.exports = {
 	find(id) {
 		try {
 			return db.query(`
-				SELECT * FROM funcionarios 
-				WHERE id = $1
+      SELECT funcionarios.*, centro_custo.nome AS CENCUSTO FROM funcionarios
+      LEFT JOIN centro_custo ON (funcionarios.centro_custo_id = centro_custo.id)
+      WHERE funcionarios.id = $1
 			`, [id]
 			);
 
