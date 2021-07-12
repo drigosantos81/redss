@@ -1,7 +1,7 @@
 {% extends 'layout.njk' %}
 
 {% block head %}
-  <title>Clientes</title>
+  <title>Novo Cliente</title>
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,6 @@
 <!-- Page Heading -->
     <div class="novo-botao-func">
       <h1 class="h3 mb-2 text-gray-800">Formulário de Cadastro de Novo Cliente ou Obra</h1>
-      {# <a class="button-new" href="/cadastros/clientes/form-cliente">Cadastrar Novo</a> #}
     </div>
 
     <p class="mb-4">Preencha todos os campos para incluir o novo funcionário.</p>
@@ -41,8 +40,8 @@
                 placeholder="00.000.00000/00"
                 type="text"
                 name="cei"
+                onkeydown="Mask.apply(this, 'cei')"
               >
-              {# onkeydown="Mask.apply(this, 'data')" #}
             </div>
 
              <div>

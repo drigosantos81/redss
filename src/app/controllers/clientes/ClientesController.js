@@ -102,14 +102,11 @@ module.exports = {
 				}
 			}
 
-      let valor_contrato = req.body.valor_contrato;
-
-      valor_contrato = valor_contrato.replace(/\D/g,"");
-
+      req.body.valor_contrato = req.body.valor_contrato.replace(/\D/g,"");
 
       await CentroCusto.updateCliente(req.body);
       
-      return res.redirect(`/cadastros/clientes/show-cliente/${req.body.id}`/*, { cliente }*/);
+      return res.redirect(`/cadastros/clientes/show-cliente/${req.body.id}`);
 
     } catch (error) {
       console.error(error);

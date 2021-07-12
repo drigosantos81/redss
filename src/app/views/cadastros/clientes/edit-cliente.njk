@@ -16,7 +16,7 @@
 
     <div class="mb-4">
       <div class="cad-cliente">
-        <form id="salva_receita" method="POST" action="/cadastros/clientes?_method=PUT">
+        <form id="salva_cliente" action="/cadastros/clientes?_method=PUT" method="post">
           <div class="form-cliente">
             <div>
               <div class="rotulo">
@@ -181,7 +181,7 @@
         </form>
 
         <div class="crud-button">
-          <button class="submit-crud-button" form="salva_receita" type="submit">Atualizar</button>
+          <button class="submit-crud-button" form="salva_cliente" type="submit">Atualizar</button>
 
           <form id="form-delete" action="/cadastros/clientes?_method=DELETE" method="post">
             <input type="hidden" name="id" value="{{ cliente.id }}">
