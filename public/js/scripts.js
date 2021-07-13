@@ -208,9 +208,9 @@ const Mask = {
       value = value.slice(0, -1);
     }
 
-    value = value.replace(/(\d{11})(\d)/, "$1-$2"); // 1111 22223333
-    // value = value.replace(/(\d{4})(\d)/, "$1 $2"); // 1111 22222 3333
-
+    value = value.replace(/(\d{1})(\d{1,1})$/, "$1-$2"); // 1-2
+    value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1'); // 1234-5
+    
     return value;
   },
 }
@@ -225,18 +225,53 @@ function alertDelete() {
   });
 }
 
-// function salarioFuncao() {
-//   const funcaoSelected = document.querySelector("#selectFuncao").value;
-//   if (funcaoSelected == "Pedreiro") {
-//     document.getElementById("valorSalario").value = 1910.65;
-//   } else if (funcaoSelected == "Ajudante Comum") {
-//     document.getElementById("valorSalario").value = 1128.34;
-//   } else {
-//     document.getElementById("valorSalario").value = 900.00;
-//   }
+function salarioFuncao() {
+  const funcaoSelected = document.querySelector("#selectFuncao").value;
+  if (funcaoSelected == "Pedreiro") {
+    document.getElementById("valorSalario").value = 191065;
+  } else if (funcaoSelected == "Ajudante Comum") {
+    document.getElementById("valorSalario").value = 112834;
+  } else {
+    document.getElementById("valorSalario").value = 90000;
+  }
   
-//   console.log('Formulário do Funcionário!');  
-// }
+  console.log('Lista das Funções');
+}
+
+function modalDependente() {
+  console.log('MODAL!');
+
+	const modal = document.querySelector('.modal');
+  modal.classList.add("active");
+  // const openModal = document.querySelector('#open-modal-dependente');
+  // openModal.addEventListener("click", function() {
+    
+  // });
+  console.log('MODAL-2!');
+  // .open-modal-dependente
+
+	// const grids = document.querySelectorAll('.receita');
+	// for (let grid of grids) {
+	// 	grid.addEventListener("click", function() {
+	// 		const imageId = grid.querySelector("input").name;
+	// 		const imageSrc = grid.querySelector("img").style.backgroundImage;
+	// 		const titulo = grid.querySelector("h3").innerHTML;
+	// 		const dono = grid.querySelector("p").innerHTML;
+
+			
+			
+	// 		modal.querySelector(".image-modal").id = imageId;
+	// 		modal.querySelector("img").style.backgroundImage = imageSrc;
+	// 		modal.querySelector("h3").innerHTML = titulo;
+	// 		modal.querySelector("p").innerHTML = dono;
+	// 	});
+	// }
+
+  document.querySelector(".close").addEventListener("click", function(event) {
+		event.preventDefault(event);
+		modal.classList.remove("active");
+	});
+}
 
 // *******************************************
 

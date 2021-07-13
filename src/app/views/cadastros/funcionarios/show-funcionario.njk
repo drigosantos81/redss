@@ -13,33 +13,37 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3 edit-data-registro">
-        <h6 class="m-0 font-weight-bold text-primary">{{funcionario.funcao}}</h6>
-        <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{funcionario.id}}/editar">Editar</a>
+        <h6 class="m-0 font-weight-bold text-primary"><strong>FUNÇÃO: </strong>{{funcionario.funcao}}</h6>
+        <div class="menu-edita-cadastro">
+          <p id="open-modal-dependente" class="botoes-edita-registro" onclick="modalDependente()">Incluir Dependente</p>
+          <p class="botoes-edita-registro" >Documentos</p>
+          <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{funcionario.id}}/editar">Editar</a>
+        </div>
       </div>
 
       <div class="card-body">
-        <div>
+        <div> {# CENTRO DE CUSTO #}
           <span class="rotulo">
             <strong>Centro de Custo: </strong>
           </span>
           <label class="label-all">{{funcionario.cencusto}}</label>
         </div>
 
-        <div>
+        <div> {# DATA ADMISSÃO #}
           <span class="rotulo">
             <strong>Admissão: </strong>
           </span>
           <label class="label-all">{{funcionario.data_admissao}}</label>
         </div>
 
-        <div>
+        <div> {# SALÁRIO #}
           <span class="rotulo">
             <strong>Salário: </strong>
           </span>
           <label class="label-all">{{funcionario.salario}}</label>
         </div>
 
-        <div>
+        <div> {# TIPO CONTRATO #}
           <span class="rotulo">
             <strong>Tipo do Contrato: </strong>
           </span>
@@ -48,35 +52,35 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <div>
+        <div> {# CPF #}
           <span class="rotulo">
             <strong>CPF: </strong>
           </span>
           <label class="label-all">{{funcionario.cpf}}</label>
         </div>
 
-        <div>
+        <div> {# RG #}
           <span class="rotulo">
             <strong>RG: </strong>
           </span>
           <label class="label-all">{{funcionario.rg}}</label>
         </div>
 
-        <div>
+        <div> {# PIS #}
           <span class="rotulo">
             <strong>PIS: </strong>
           </span>
           <label class="label-all">{{funcionario.pis}}</label>
         </div>
 
-        <div>
+        <div> {# CTPS #}
           <span class="rotulo">
             <strong>CTPS: </strong>
           </span>
           <label class="label-all">{{funcionario.ctps}} / <strong>Série: </strong>{{funcionario.serie_ctps}} / <strong>UF: </strong>{{funcionario.uf_ctps}}</label>
         </div>
 
-        <div>
+        <div> {# TÍTULO ELEITOR #}
           <span class="rotulo">
             <strong>Título de Eleitor: </strong>
           </span>
@@ -85,21 +89,21 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <div>
+        <div> {# NASCIMENTO #}
           <span class="rotulo">
             <strong>Nascimento: </strong>
           </span>
           <label class="label-all">{{funcionario.nascimento}} <strong>Idade: </strong>{{funcionario.idade}}</label>
         </div>
 
-        <div>
+        <div> {# NACIONALIDADE #}
           <span class="rotulo">
             <strong>Nacionalidade: </strong>
           </span>
           <label class="label-all">{{funcionario.nacionalidade}}</label>
         </div>
 
-        <div>
+        <div> {# NATURAL DE #}
           <span class="rotulo">
             <strong>Natural de: </strong>
           </span>
@@ -108,21 +112,21 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <div>
+        <div> {# FILIAÇÃO #}
           <span class="rotulo">
             <strong>Filiação</strong>
           </span>
           <p></p>
         </div>
 
-        <div>
+        <div> {# MÃE #}
           <span class="rotulo">
             <strong>Nome da Mãe: </strong>
           </span>
           <label class="label-all">{{funcionario.nome_mae}}</label>
         </div>
 
-        <div>
+        <div> {# PAI #}
           <span class="rotulo">
             <strong>Nome do Pai: </strong>
           </span>
@@ -131,35 +135,35 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <div>
+        <div> {# ENDEREÇO E CONTATO #}
           <span class="rotulo">
             <strong>Endereço e Contatos</strong>
           </span>
           <p></p>
         </div>
 
-        <div>
+        <div> {# TELEFONES #}
           <span class="rotulo">
             <strong>Telefones: </strong>
           </span>
           <label class="label-all">{{funcionario.telefone}}</label>
         </div>
 
-        <div>
+        <div> {# CEP #}
           <span class="rotulo">
             <strong>CEP: </strong>
           </span>
           <label class="label-all">{{funcionario.cep}}</label>
         </div>
 
-        <div>
+        <div> {# LOGRADOOURO #}
           <span class="rotulo">
             <strong>Logradouro: </strong>
           </span>
           <label class="label-all">{{funcionario.endereco}}, Nº: {{funcionario.numero_end}}</label>
         </div>
 
-        <div>
+        <div> {# BAIRRO #}
           <span class="rotulo">
             <strong>Bairro: </strong>
           </span>
@@ -168,23 +172,32 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <div>
+        <div> {# ESDADO CIVIL #}
           <span class="rotulo">
             <strong>Estado Civil: </strong>
           </span>
           <label class="label-all">{{funcionario.estado_civil}} <strong>Cônjuge: </strong>{{funcionario.conjuge}}</label>
         </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
-        <div>
+        <div> {# DEPENDENTES #}
           <span class="rotulo">
-            <strong>Filhos: </strong>
+            <strong>Dependentes</strong>
+          </span>
+          <p></p>
+        </div>
+
+        <div> {# FILHOS #}
+          <span class="rotulo">
+            <strong>Filho: </strong>
           </span>
           <label class="label-all">{{funcionario.filhos}} <strong>Nascimento: </strong>CPF: <strong></strong></label>
         </div>
-
-      </div>
+      </div>      
     </div>
     
   </div>
   <!-- /.container-fluid -->
+  {% include 'parts/modal-dependente.njk' %}
 {% endblock %}

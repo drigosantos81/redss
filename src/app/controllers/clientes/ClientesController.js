@@ -9,9 +9,15 @@ module.exports = {
       let results = await CentroCusto.all();
       const clientes = results.rows;
 
-      clientes.valor_contrato = formatPrice(clientes.valor_contrato);
+      const formatPromise = clientes.map(async cliente => {
+        cliente.data_contrato = date(cliente.data_contrato).format;
+        cliente.valor_contrato = formatPrice(cliente.valor_contrato);
 
-      return res.render('cadastros/clientes/index', { clientes });
+        return cliente;
+      });
+      const allClientes = await Promise.all(formatPromise);
+
+      return res.render('cadastros/clientes/index', { clientes: allClientes });
       
     } catch (error) {
       console.log(error);

@@ -47,8 +47,19 @@
   justify-content: space-between;
 }
 
-.bloco-1 div:nth-child(1) select {
+.select-texto {
   width: 200px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.select-texto-conta {
+  width: 190px;
   height: 28px;
   font-size: 16px;
   text-transform: uppercase;
@@ -74,7 +85,7 @@
   color: black;
 }
 
-.bloco-1 div:nth-child(2) input {
+.bloco-1 div:nth-child(3) input {
   width: 125px;
   height: 28px;
   font-size: 16px;
@@ -83,21 +94,9 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
-  background-color: var(--cinza);
 }
 
-.bloco-1 div:nth-child(3) select {
-  width: 300px;
-  height: 28px;
-  font-size: 16px;
-  text-transform: uppercase;
-  border-radius: 5px;
-  border-width: 2px;
-  border-style: inset;
-  border-image: initial;
-}
-
-.bloco-1 div:nth-child(4) input {
+.bloco-1 div:nth-child(5) input {
   width: 122px;
   height: 28px;
   font-size: 16px;
@@ -128,16 +127,8 @@
   row-gap: 5px;
 }
 
-.bloco-2 div input {
-  width: 100%;
-  height: 28px;
-  font-size: 16px;
-  padding: 0 5px;
-  border-radius: 5px;
-  margin: 0;
-}
-
-.bloco-2 div .nome, .bloco-3 div .nome {
+.bloco-2 div .nome, .bloco-3 div .nome,
+.bloco-4 .filhos .dados-filhos div .nome {
   width: 320px;
   height: 28px;
   font-size: 16px;
@@ -186,10 +177,20 @@
 
 .ctps div:nth-child(1) input {
   width: 160px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
 }
 
 .ctps div:nth-child(2) input {
   width: 80px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
 }
 
 .titulo div:nth-child(1) input {
@@ -204,11 +205,15 @@
 }
 
 .bloco-2-3 {
-  display: flex;
-  justify-content: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   column-gap: 13px;
   row-gap: 5px;
   margin: 0 0 10px 0;
+}
+
+.natural_de {
+  border-right: 2px solid;
 }
 
 .bloco-2-2 div select {
@@ -233,27 +238,76 @@
   border-image: initial;
 }
 
-.bloco-2-3 div:nth-child(2) select,
-.bloco-2-3 div:nth-child(3) select {
-  width: auto;
-  height: 28px;
-  font-size: 16px;
-  text-transform: uppercase;
-  border-radius: 5px;
-  border-width: 2px;
-  border-style: inset;
-  border-image: initial;
+.filiacao {
+  border-left: 2px solid;
+  padding: 0 0 0 10px;
 }
 
-.bloco-2-3 div:nth-child(4) select {
-  width: 230px;
+.rotulo-endereco {
+  margin: 8px 0 0 0;
+  height: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+}
+
+.endereco {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+}
+
+.cep {
+  width: 105px;
   height: 28px;
   font-size: 16px;
-  text-transform: uppercase;
+  padding: 0 5px;
   border-radius: 5px;
-  border-width: 2px;
-  border-style: inset;
-  border-image: initial;
+  margin: 0;
+}
+
+.numero_end {
+  width: 65px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.logradouro {
+  width: 400px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.bairro-uf {
+  display: flex;
+  column-gap: 5px;
+}
+
+.bairro,
+.cidade-func {
+  width: 200px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px 0 5px;
+  margin: 0 10px 0 0;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.uf_end {
+  width: 40px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
 }
 
 .bloco-3 {
@@ -272,7 +326,7 @@
   padding: 0 5px 10px 5px;
   margin: 0 0 15px 0;
   display: grid;
-  grid-template-columns: 330px 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .bloco-3 div select {
@@ -286,36 +340,12 @@
   border-image: initial;
 }
 
-.bloco-3-1 {
+.est-civil {
   display: grid;
-  grid-template-columns: 1fr;
-  border-left-color: black;
-  border-left-style: solid;
-  border-left-width: 1px;
-  box-shadow: -1px 0px grey, 0px 0 0px;
-  padding: 0 0 0px 5px;
-}
-
-.bloco-3-1 div input {
-  width: 100%;
-  height: 28px;
-  font-size: 16px;
-  padding: 0 5px;
-  border-radius: 5px;
+  grid-template-columns: 1fr 1fr;
   margin: 0;
-}
-
-.bloco-3-1 .est-civil {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  margin: 0;
-  border-bottom: 2px solid;
-}
-
-.bloco-3-1 .endereco {
-  display: grid;
-  grid-template-columns: 125px 1fr 55px 1fr;
-  column-gap: 10px;
+  border-right: 2px solid;
+  padding: 0 5px 0 0;
 }
 
 .modulo {
@@ -324,14 +354,6 @@
 
 .modulo div {
   margin: 0 0 3px 0;
-}
-
-.rotulo-endereco {
-  margin: 8px 0 0 0;
-  height: 20px;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
 }
 
 .bloco-4 {
@@ -350,7 +372,8 @@
   padding: 0 5px 10px 5px;
   margin: 0 0 15px 0;
   display: grid;
-  grid-template-columns: 520px 1fr;
+  grid-template-columns: 1fr 270px;
+  column-gap: 5px;
 }
 
 .dados-filhos div:nth-child(2) input {
@@ -383,8 +406,7 @@
 }
 
 .dados-filhos {
-  display: grid;
-  grid-template-columns: 320px 190px;
+  display: flex;
   column-gap: 10px;
   margin: 0 0 10px 0;
 }
@@ -405,8 +427,7 @@
 
 .telefone {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  
+  grid-template-columns: 1fr 1fr;  
   width: 150px;
   height: 28px;
   margin: 0 5px 0 0;
@@ -416,33 +437,22 @@
   gap: 5px;
 }
 
-.telefone div {
-  display: flex;
-  align-items: center;
-}
-
 .telefone div span {
   margin: 0 5px 0 0;
 }
 
-.dados-banco{
+.dados-conta-banco {
   display: flex;
-  gap: 5px;
-  justify-content: space-around;
-  border-top: 2px solid;
-  padding: 7px 0 0 0;
+  justify-content: space-between;
 }
 
-.agencia {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 70px;
+.campos-dados-banco {
+  width: 190px;
   height: 28px;
-  margin: 0 5px 0 0;
   font-size: 16px;
   padding: 0 5px;
   border-radius: 5px;
-  gap: 5px;
+  margin: 0;
 }
 
 form button {

@@ -10,13 +10,16 @@ module.exports = {
       let results = await Funcionarios.all();
       const funcionarios = results.rows;
 
-      // funcionarios.nascimento = birthDay(funcionarios.nascimento).iso;
-      // funcionarios.formatData_admissao = date(funcionarios.data_admissao).format;
-      // funcionarios.salario = formatPrice(funcionarios.salario);
+      const formatPromise = funcionarios.map(async funcionario => {
+        funcionario.nascimento = birthDay(funcionario.nascimento).iso;
+        funcionario.data_admissao = date(funcionario.data_admissao).format;
+        funcionario.salario = formatPrice(funcionario.salario);
 
-      console.log('LISTA DOS FUNCIONÁRIOS: ', funcionarios);
+        return funcionario;
+      });
+      const allFuncionarios = await Promise.all(formatPromise);
       
-      return res.render('cadastros/funcionarios/index', { funcionarios });
+      return res.render('cadastros/funcionarios/index', { funcionarios: allFuncionarios });
       
     } catch (error) {
       console.log(error);
@@ -47,26 +50,24 @@ module.exports = {
       //   }
       // }
 
-      let { nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor,
-        zona_titulo, secao_titulo, data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id,
-        uf, nome_mae, nome_pai, estado_civil, telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato,
-        filhos, centro_custo_id } = req.body;
+      let { nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor, zona_titulo, secao_titulo,
+        data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id, uf, nome_mae, nome_pai, estado_civil,
+        telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato, centro_custo_id,
+        nasc_filho, cpf_filho, cidade_end, uf_end, dados_conta } = req.body;
 
       salario = salario.replace(/\D/g,"");
 
       const funcionarioId = await Funcionarios.post({
-        nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor,
-        zona_titulo, secao_titulo, data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id,
-        uf, nome_mae, nome_pai, estado_civil, telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato,
-        filhos, centro_custo_id
+        nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor, zona_titulo, secao_titulo,
+        data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id, uf, nome_mae, nome_pai, estado_civil,
+        telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato, centro_custo_id,
+        nasc_filho, cpf_filho, cidade_end, uf_end, dados_conta
       });
       
       // const funcionarioId = results.rows[0].id;
-
-      console.log('DADOS DO FUNCIONÁRIO: ', funcionarioId);
       
-      return res.redirect(`/cadastros/funcionarios`);
-      // return res.redirect(`/cadastros/funcionarios/form-funcionario/${funcionarioId}`);
+      // return res.redirect(`/cadastros/funcionarios`);
+      return res.redirect(`/cadastros/funcionarios/show-funcionario/${funcionarioId}`);
       
     } catch (error) {
       console.log(error);
@@ -79,7 +80,6 @@ module.exports = {
       let results = await Funcionarios.find(req.params.id);
       const funcionario = results.rows[0];
 
-      console.log('UM FUNCIONÁRIO: ', funcionario);
       funcionario.data_admissao = date(funcionario.data_admissao).format;
       funcionario.nascimento = date(funcionario.nascimento).format;
       funcionario.idade = age(funcionario.nascimento);
@@ -98,7 +98,6 @@ module.exports = {
       let results = await Funcionarios.find(req.params.id);
       const funcionario = results.rows[0];
 
-      console.log('UM FUNCIONÁRIO: ', funcionario);
       funcionario.data_admissao = date(funcionario.data_admissao).format;
       funcionario.nascimento = date(funcionario.nascimento).format;
       funcionario.idade = age(funcionario.nascimento);
@@ -110,4 +109,25 @@ module.exports = {
       console.log(error);
     }
   },
+
+  // COMANDO PUT PARA ATUALIZAÇÃO DO FUNCIONÁRIO
+  async putFuncionario(req, res) {
+    try {
+			const keys = Object.keys(req.body);
+			// Verifica se todos os campos estão preenchidos
+			for (key of keys) {
+				if ((req.body.path == '') || req.body[key] == '') {
+					return res.send('Preencha todos os campos.');
+				}
+			}
+
+      await Funcionarios.updateFuncionario(req.body);
+
+      return res.redirect(`/cadastros/funcionarios/show-funcionario/${req.body.id}`);
+    
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 }
