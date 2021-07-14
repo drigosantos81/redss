@@ -44,6 +44,7 @@
   background-color: cornflowerblue;
   color: aliceblue;
 }
+
 .menu-edita-cadastro {
   display: flex;
   column-gap: 5px;
@@ -57,6 +58,7 @@
   border-radius: 3px;
   font-weight: bold;
   margin: 0;
+  width: fit-content;
 }
 
 .botoes-edita-registro:hover {
@@ -88,5 +90,8 @@
   border-width: 2px;
   border-style: outset;
   border-image: initial;
-  /* border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133)); */
+}
+
+.bar-divider-voltar {
+  padding: 10px 0 0 0;
 }

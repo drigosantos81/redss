@@ -1,6 +1,6 @@
 /* ==== MODAL ==== */
 
-.modal {
+.modal-overlay {
   background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
@@ -11,63 +11,66 @@
   visibility: hidden;
 }
 
-.modal-on {
+.modal-dependente {
   background-color: white;
-  width: 660px;
-  height: 413px;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  border-radius: 16px;
-  text-align: center;
-  transform: translate(-50%, -10%);
-}
-
-.modal-on h3 {
-  font-size: 24px;
-  color: #111111;
-  margin: 20px 0px 0px 0px;
-  font-weight: 400;
-}
-
-.modal-on p {
-  font-size: 18px;
-  color: #777777;
-  margin: 5px 0px 0px 0px;
-  font-weight: 400;
-}
-
-.modal.active {
-  visibility: visible;
-  opacity: 1;
-}
-
-.image-modal {
-  padding: 30px 30px 0px 30px;
-  
-}
-
-.image-modal img {
-  max-width: 100%;
   width: 600px;
-  height: 200px;
-  border-radius: 20px;
-  background-position: center center;
+  height: auto;
+  margin: 10vh auto;
+  padding: 0 0 15px 0;
+  border-radius: 8px;
+  position: relative;
 }
 
-.image-modal img:hover {
+.modal-dependente .close-modal-dependente i {
+  color: red;
+  position: absolute;
+  right: 5px;
+  top: 5px;
   cursor: pointer;
 }
 
-.close {
-  background-color: white;
-  margin: 60px 0px 0px 0px;
+/* === MODAL ATIVO === */
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dados-filhos div:nth-child(2) input {
+  width: 122px;
+}
+
+.filhos {
+  padding: 0 0 0px 5px;
+}
+
+.add-filho {
+  margin: 0 0 10px 0;
+}
+
+.add-filho a {
+  background-color: #398CBF;
+  color: white;
+  font-size: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
   padding: 5px 10px;
-  border-radius: 20px;
-  color: #999999;
-  font-weight: 400;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
 }
 
-.close:hover {
-  cursor: pointer;
+.dados-filhos {
+  display: flex;
+  column-gap: 10px;
+  margin: 0 0 15px 0;
+}
+
+.dados-filhos div input {
+  width: 100%;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
 }

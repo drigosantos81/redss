@@ -6,7 +6,6 @@
 
 {% block content %}
   <div class="container-fluid">
-
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">{{funcionario.nome}}</h1>
 
@@ -14,6 +13,7 @@
     <div class="card shadow mb-4">
       <div class="card-header py-3 edit-data-registro">
         <h6 class="m-0 font-weight-bold text-primary"><strong>FUNÇÃO: </strong>{{funcionario.funcao}}</h6>
+        
         <div class="menu-edita-cadastro">
           <p id="open-modal-dependente" class="botoes-edita-registro" onclick="modalDependente()">Incluir Dependente</p>
           <p class="botoes-edita-registro" >Documentos</p>
@@ -194,10 +194,17 @@
           </span>
           <label class="label-all">{{funcionario.filhos}} <strong>Nascimento: </strong>CPF: <strong></strong></label>
         </div>
-      </div>      
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0 bar-divider-voltar">
+        <a class="edita-registro" href="/cadastros/funcionarios">Voltar</a>
+      </div>
     </div>
     
+    
+    
+    {% include 'parts/modal-dependente.njk' %}
   </div>
   <!-- /.container-fluid -->
-  {% include 'parts/modal-dependente.njk' %}
+  
 {% endblock %}

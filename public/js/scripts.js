@@ -239,49 +239,11 @@ function salarioFuncao() {
 }
 
 function modalDependente() {
-  console.log('MODAL!');
+	const modalOverlay = document.querySelector('.modal-overlay');
+  modalOverlay.classList.add('active');
 
-	const modal = document.querySelector('.modal');
-  modal.classList.add("active");
-  // const openModal = document.querySelector('#open-modal-dependente');
-  // openModal.addEventListener("click", function() {
-    
-  // });
-  console.log('MODAL-2!');
-  // .open-modal-dependente
-
-	// const grids = document.querySelectorAll('.receita');
-	// for (let grid of grids) {
-	// 	grid.addEventListener("click", function() {
-	// 		const imageId = grid.querySelector("input").name;
-	// 		const imageSrc = grid.querySelector("img").style.backgroundImage;
-	// 		const titulo = grid.querySelector("h3").innerHTML;
-	// 		const dono = grid.querySelector("p").innerHTML;
-
-			
-			
-	// 		modal.querySelector(".image-modal").id = imageId;
-	// 		modal.querySelector("img").style.backgroundImage = imageSrc;
-	// 		modal.querySelector("h3").innerHTML = titulo;
-	// 		modal.querySelector("p").innerHTML = dono;
-	// 	});
-	// }
-
-  document.querySelector(".close").addEventListener("click", function(event) {
-		event.preventDefault(event);
-		modal.classList.remove("active");
-	});
+  document.querySelector('.close-modal-dependente').addEventListener("click", function() {
+    event.preventDefault(event);
+    modalOverlay.classList.remove('active');
+  });
 }
-
-// *******************************************
-
-// function showFunc() {
-	// const tbodyFunc = document.querySelector('.tbody-func');
-	// const trFuncs = document.getElementsByTagName('tr');
-	// for (let trFunc of trFuncs) {
-  //   trFunc.addEventListener("click", function() {
-  //     const dataFunc = trFunc.getAttribute("id");
-  //     window.location.href = `/cadastros/funcionarios/funcionario/${dataFunc}`;
-  //   });
-	// }
-// }

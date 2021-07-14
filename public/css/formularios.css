@@ -244,7 +244,8 @@
 }
 
 .rotulo-endereco {
-  margin: 8px 0 0 0;
+  margin: 0 0 10px 0;
+  padding: 0 0 23px 0;
   height: 20px;
   font-size: 16px;
   font-weight: bold;
@@ -371,53 +372,9 @@
   box-shadow: 1px 2px gray, 0px 0 0px;
   padding: 0 5px 10px 5px;
   margin: 0 0 15px 0;
-  display: grid;
-  grid-template-columns: 1fr 270px;
+  /* display: grid;
+  grid-template-columns: 1fr 270px; */
   column-gap: 5px;
-}
-
-.dados-filhos div:nth-child(2) input {
-  width: 122px;
-}
-
-.filhos {
-  border-right-color: black;
-  border-right-style: solid;
-  border-right-width: 1px;
-  box-shadow: 1px 0px grey, 0px 0 0px;
-  padding: 0 0 0px 5px;
-}
-
-.add-filho {
-  margin: 0 0 10px 0;
-}
-
-.add-filho a {
-  background-color: #398CBF;
-  color: white;
-  font-size: 12px;
-  text-decoration: none;
-  text-transform: uppercase;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border-width: 2px;
-  border-style: outset;
-  border-image: initial;
-}
-
-.dados-filhos {
-  display: flex;
-  column-gap: 10px;
-  margin: 0 0 10px 0;
-}
-
-.dados-filhos div input {
-  width: 100%;
-  height: 28px;
-  font-size: 16px;
-  padding: 0 5px;
-  border-radius: 5px;
-  margin: 0;
 }
 
 .dados-telefone {

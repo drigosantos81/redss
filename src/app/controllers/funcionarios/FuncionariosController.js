@@ -50,24 +50,13 @@ module.exports = {
       //   }
       // }
 
-      let { nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor, zona_titulo, secao_titulo,
-        data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id, uf, nome_mae, nome_pai, estado_civil,
-        telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato, centro_custo_id,
-        nasc_filho, cpf_filho, cidade_end, uf_end, dados_conta } = req.body;
+      req.body.salario = req.body.salario.replace(/\D/g,"");
 
-      salario = salario.replace(/\D/g,"");
+      let results = await Funcionarios.post(req.body);
+      const funcionarioId = results.rows[0].id;
 
-      const funcionarioId = await Funcionarios.post({
-        nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor, zona_titulo, secao_titulo,
-        data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id, uf, nome_mae, nome_pai, estado_civil,
-        telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato, centro_custo_id,
-        nasc_filho, cpf_filho, cidade_end, uf_end, dados_conta
-      });
-      
-      // const funcionarioId = results.rows[0].id;
-      
       // return res.redirect(`/cadastros/funcionarios`);
-      return res.redirect(`/cadastros/funcionarios/show-funcionario/${funcionarioId}`);
+      return res.redirect(`/cadastros/funcionarios/funcionario/${funcionarioId}`);
       
     } catch (error) {
       console.log(error);

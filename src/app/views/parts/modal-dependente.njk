@@ -1,13 +1,52 @@
 <!-- Modal -->
-<div class="modal">
-  <div class="modal-on">
-    <div class="image-modal" id="">
-      <img id="" style="" onclick="modalDescPrato()"> 
-    </div>
-    <div>
-      <h3></h3>
-      <p></p>
-      <button class="close">Fechar</button>
-    </div>
+<div class="modal-overlay">
+  <div class="modal-dependente">
+    <a class="close-modal-dependente">
+      <i class="material-icons">close</i>
+    </a>
+
+    <form action="/cadastros/funcionarios" method="post">
+      {# FILHOS #}
+      <div class="filhos">
+        <div class="add-filho"> {# BOTÃO #}
+          <div class="rotulo-dependente">Incluir Dependentes</div>
+        </div>
+
+        {# REPETIÇÂO FOR AQUI #}
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+        <div class="dados-filhos">
+          <div> {# NOME #}
+            <div class="rotulo">Nome: </div>
+            <input class="nome" placeholder="Nome do filho(a)" type="text" name="filhos[]">
+          </div>
+
+          <div> {# NASCIMENTO #}
+            <div class="rotulo">Data de Nascimento</div>
+            <input
+              placeholder="DD/MM/AAAA"
+              type="text"
+              name="nasc_filho"
+              onkeydown="Mask.apply(this, 'data')"
+            >
+          </div>
+
+          <div> {# CPF #}
+            <div class="rotulo">CPF</div>
+            <input
+              placeholder="000.000.000-00"
+              type="text"
+              name="cpf_filho"
+              onkeydown="Mask.apply(this, 'cpf')"
+            >
+          </div>
+        </div>
+
+        <div> {# BOTÃO ADD #}
+          <p class="botoes-edita-registro">Adicionar</p>
+        </div>
+      </div>
+    </form>
+    
   </div>
 </div>

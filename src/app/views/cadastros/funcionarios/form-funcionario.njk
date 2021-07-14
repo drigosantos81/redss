@@ -311,88 +311,43 @@
 
           {# **** BLOCO 4 **** #}
           <div class="bloco-4">
-
-            {# FILHOS #}
-            <div class="filhos">
-              <div class="add-filho"> {# BOTÃO #}
-                <div class="rotulo">Filhos</div>
-                <div>
-                  <a href="/#">Incluir filho</a>
-                </div>
-              </div>
-
-              {# REPETIÇÂO FOR AQUI #}
-              <div class="dados-filhos">
-                <div> {# NOME #}
-                  <div class="rotulo">Nome: </div>
-                  <input class="nome" placeholder="Nome do filho(a)" type="text" name="filhos[]">
-                </div>
-
-                <div> {# NASCIMENTO #}
-                  <div class="rotulo">Data de Nascimento</div>
-                  <input
-                    placeholder="DD/MM/AAAA"
-                    type="text"
-                    name="nasc_filho"
-                    onkeydown="Mask.apply(this, 'data')"
-                  >
-                </div>
-
-                <div> {# CPF #}
-                  <div class="rotulo">CPF</div>
-                  <input
-                    placeholder="000.000.000-00"
-                    type="text"
-                    name="cpf_filho"
-                    onkeydown="Mask.apply(this, 'cpf')"
-                  >
-                </div>
-              </div>
-            
-            </div>
-
+            <div class="rotulo-endereco">Dados bancários</div>
             <div> {# BANCO #}
-              <div class="dados-conta-banco">
-                <span class="rotulo">Banco: </span>
-                <input
-                  class="campos-dados-banco"
-                  type="text"
-                  name="dados_conta[]"
-                  placeholder="Nome do Banco"
-                >
-              </div>
+              <span class="rotulo">Banco: </span>
+              <input
+                class="campos-dados-banco"
+                type="text"
+                name="dados_conta[]"
+                placeholder="Nome do Banco"
+              >
 
-              <div class="dados-conta-banco"> {# CP ou CC #}
-                <span class="rotulo">Tipo: </span>
-                <select class="select-texto-conta" name="dados_conta[]">
-                  <option>Selecione</option>
-                  <option value="Conta Corrente">Conta Corrente</option>
-                  <option value="Conta Poupança">Conta Poupança</option>
-                </select>
-              </div>
+              <span class="rotulo">Tipo: </span>
+              <select class="select-texto-conta" name="dados_conta[]">
+                <option>Selecione</option>
+                <option value="Conta Corrente">Conta Corrente</option>
+                <option value="Conta Poupança">Conta Poupança</option>
+              </select>
 
-              <div class="dados-conta-banco"> {# AGÊNCIA #}
-                <span class="rotulo">Ag.: </span>
-                <input
-                  class="campos-dados-banco"
-                  type="text"
-                  name="dados_conta[]"
-                  placeholder="0000"
-                >
-              </div>
+              <span class="rotulo">Ag.: </span>
+              <input
+                class="campos-dados-banco"
+                type="text"
+                name="dados_conta[]"
+                placeholder="0000"
+              >
 
-              <div class="dados-conta-banco"> {# CONTA #}
-                <span class="rotulo">Conta: </span>
-                <input
-                  class="campos-dados-banco"
-                  type="text"
-                  name="dados_conta[]"
-                  placeholder="Nº cem o dígito"
-                  onkeydown="Mask.apply(this, 'conta')"
-                > {#  #}
-              </div>
-            </div>
-          
+              <span class="rotulo">Conta: </span>
+              <input
+                class="campos-dados-banco"
+                type="text"
+                name="dados_conta[]"
+                placeholder="Nº cem o dígito"
+                onkeydown="Mask.apply(this, 'conta')"
+              >
+
+
+              
+            </div>          
           </div>
 
           <button type="submit">Cadastrar</button>
