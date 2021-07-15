@@ -52,6 +52,7 @@
             <div> {# QUANDO SELECINAR A FUNÇÃO EXIBIR O VALOR #}
               <div class="rotulo">Salário</div>
               <input
+                class="campo-salario"
                 id="valorSalario"
                 placeholder="R$ 00.000,00"
                 type="text"
@@ -73,6 +74,7 @@
             <div> {# DATA #}
               <div class="rotulo">Data da admissão</div>
               <input
+              class="data"
                 placeholder="DD/MM/AAAA"
                 type="text"
                 name="data_admissao"
@@ -92,6 +94,7 @@
               <div> {# CPF #}
                 <div class="rotulo">CPF</div>
                 <input
+                  class="cpf-pis-rg"
                   placeholder="000.000.000-00"
                   type="text"
                   name="cpf"
@@ -102,6 +105,7 @@
               <div> {# PIS #}
                 <div class="rotulo">PIS</div>
                 <input
+                  class="cpf-pis-rg"
                   placeholder="000.00000.00-0"
                   type="text"
                   name="pis"
@@ -111,12 +115,13 @@
 
               <div> {# RG #}
                 <div class="rotulo">RG</div>
-                <input placeholder="Dígite o RG..." type="text" name="rg">
+                <input class="cpf-pis-rg" placeholder="Dígite o RG..." type="text" name="rg">
               </div>
 
               <div> {# NASCIMENTO #}
                 <div class="rotulo">Nascimento</div>
                 <input
+                  class="data"
                   placeholder="DD/MM/AAAA"
                   type="text"
                   name="nascimento"
@@ -126,20 +131,20 @@
             </div>
 
             <div class="bloco-2-2">
-              <div class="ctps"> {# CTPS #}
+              <div class="ctps-titulo-border"> {# CTPS #}
                 <div>
                   <label class="rotulo">CTPS: </label>
-                  <input placeholder="Dígite o CTPS..." type="text" name="ctps">
+                  <input class="ctps-titulo" placeholder="Dígite o CTPS..." type="text" name="ctps">
                 </div>
 
                 <div> {# SÉRIE #}
                   <label class="rotulo">Série: </label>
-                  <input placeholder="Série" type="text" name="serie_ctps">
+                  <input class="campo-6-digitos" placeholder="Série" type="text" name="serie_ctps">
                 </div>
 
                 <div> {# UF #}
                   <label class="rotulo">UF: </label>
-                  <select name="uf_ctps">
+                  <select class="select-uf" name="uf_ctps">
                     <option value="BA">BA</option>
                     <option value="PE">PE</option>
                     <option value="SP">SP</option>
@@ -147,10 +152,11 @@
                 </div>
               </div>
               
-              <div class="titulo"> {# TÍTULO #}
-                <div>
+              <div class="ctps-titulo-border"> {# TÍTULO #}
+                <div> {# TÍTULO #}
                   <label class="rotulo">Título de Eleitor: </label>
                   <input
+                    class="ctps-titulo"
                     placeholder="0000 0000 0000"
                     type="text"
                     name="titulo_eleitor"
@@ -161,6 +167,7 @@
                 <div> {# ZONA #}
                   <label class="rotulo">Zona: </label>
                   <input
+                    class="campo-4-digitos"
                     placeholder="000"
                     type="text"
                     name="zona_titulo"
@@ -171,6 +178,7 @@
                 <div> {# SEÇÃO #}
                   <label class="rotulo">Seção: </label>
                   <input
+                    class="campo-4-digitos"
                     placeholder="000"
                     type="text"
                     name="secao_titulo"
@@ -223,7 +231,7 @@
 
                   <div> {# Nº #}
                     <div class="sub-rotulo">Número</div>
-                    <input class="numero_end" placeholder="Nº" type="text" name="numero_end">
+                    <input class="campo-6-digitos" placeholder="Nº" type="text" name="numero_end">
                   </div>
 
                   <div class="bairro-uf">

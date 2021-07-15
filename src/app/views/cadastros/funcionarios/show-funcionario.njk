@@ -16,8 +16,9 @@
         
         <div class="menu-edita-cadastro">
           <p id="open-modal-dependente" class="botoes-edita-registro" onclick="modalDependente()">Incluir Dependente</p>
-          <p class="botoes-edita-registro" >Documentos</p>
+          <button class="botoes-edita-registro" onclick="abreJanela()">Documentos</button>
           <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{funcionario.id}}/editar">Editar</a>
+          <input id="func-dependente-id" type="hidden" name="id" value="{{dependente_func}}">
         </div>
       </div>
 
@@ -201,10 +202,18 @@
       </div>
     </div>
     
-    
-    
     {% include 'parts/modal-dependente.njk' %}
   </div>
   <!-- /.container-fluid -->
   
+  <script>  
+    function abreJanela() {
+      const idPaiDependente = document.querySelector('#func-dependente-id');
+      const janela = window.open(`dependentes`, "_blank", "Width=820,Height=485");
+    }
+
+    function fechaJanela() {
+      const janela = window.close();
+    }
+  </script>
 {% endblock %}

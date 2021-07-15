@@ -16,82 +16,271 @@
 
     <div class="mb-4">
       <div class="cad-cliente">
-        <form id="salva_cliente" action="/cadastros/clientes?_method=PUT" method="post">
+        <form id="salva_funcionario" action="/cadastros/funcionarios?_method=PUT" method="post">
           <div class="form-cliente">
-            <div>
+            <div> {# NOME #}
               <div class="rotulo">
-                NOME: 
+                NOME 
               </div>
               <input
-                class="fields-cliente"
-                placeholder="Nome / Razão Social"
+                class="campos-padrao-edite"
+                placeholder="Nome"
                 type="text"
                 name="nome"
                 value="{{ funcionario.nome }}"
               >
             </div>
 
-            <div>
-              <div class="rotulo">
-                CEI: 
-              </div>
+            <div> {# CENTRO DE CUSTO #}
+              <div class="rotulo">Centro de Custo </div>
               <input
-                class="fields-cliente"
-                placeholder="00.000.00000/00"
+                class="campos-padrao-edite"
+                placeholder="Setor"
                 type="text"
-                name="cei"
-                value="{{ funcionario.cei }}"
-                onkeydown="Mask.apply(this, 'cei')"
+                name="centro_custo_id"
+                value="{{ funcionario.centro_custo_id }}"
               >
             </div>
 
-             <div>
+            <div> {# CPF #}
               <div class="rotulo">
-                CNPJ ou CPF: 
+                CPF 
               </div>
               <input
-                class="fields-cliente"
-                placeholder="Nº do CNPJ ou CPF"
+                class="campos-padrao-edite"
+                placeholder="000.000.000-00"
                 type="text"
-                name="cnpj_cpf"
-                value="{{ funcionario.cnpj_cpf }}"
-                onkeydown="Mask.apply(this, 'cpfCnpj')"
+                name="cpf"
+                value="{{ funcionario.cpf }}"
+                onkeydown="Mask.apply(this, 'cpf')"
               >
             </div>
 
-            <div>
+             <div> {# RG #}
               <div class="rotulo">
-                Valor do Contrato: 
+                RG 
               </div>
               <input
-                class="fields-cliente"
-                placeholder="R$ 000.000,00"
+                class="campos-padrao-edite"
+                placeholder="Nº do RG"
                 type="text"
-                name="valor_contrato"
-                value="{{ funcionario.valor_contrato }}"
-                onkeydown="Mask.apply(this, 'formatBRL')"
+                name="rg"
+                value="{{ funcionario.rg }}"
               >
             </div>
 
-            <div>
+            <div> {# NASCIMENTO #}
               <div class="rotulo">
-                Data da assinatura do Contrato: 
+                Data de nascimento 
               </div>
-              <input 
-                class="data-contrato"
-                placeholder="DD/MM/AAAA"
+              <input
+                class="data"
+                placeholder="00/00/0000"
                 type="text"
-                name="data_contrato"
-                value="{{ funcionario.data_contrato }}"
+                name="nascimento"
+                value="{{ funcionario.nascimento }}"
                 onkeydown="Mask.apply(this, 'data')"
               >
             </div>
 
-            <div>
-              <div class="rotulo">CEP: </div>
+            <div> {# CTPS #}
+              <div class="rotulo">
+                Carteira de Trabalho 
+              </div>
+              <input 
+                class="campos-padrao-edite"
+                placeholder="Nº da CTPS"
+                type="text"
+                name="ctps"
+                value="{{ funcionario.ctps }}"
+              >
+            </div>
+
+            <div> {# SERIE CTPS #}
+              <div class="rotulo">Série </div>
               <input
-                class="fields-cliente-cep"
-                placeholder="00.000-000"
+                class="campos-padrao-edite"
+                placeholder="Série"
+                type="text"
+                name="serie_ctps"
+                value="{{ funcionario.serie_ctps }}"
+              >
+            </div>
+
+            <div> {# UF CTPS #}
+              <div class="rotulo">UF da Carteira </div>
+              <input
+                class="campo-4-digitos"
+                placeholder="UF da CTPS"
+                type="text"
+                name="uf_ctps"
+                value="{{ funcionario.uf_ctps }}"
+              >
+            </div>
+
+            <div> {# TÍTULO ELEITOR #}
+              <div class="rotulo">Título de Eleitor </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="0000 0000 0000"
+                type="text"
+                name="titulo_eleitor"
+                value="{{ funcionario.titulo_eleitor }}"
+                onkeydown="Mask.apply(this, 'titulo')"
+              >
+            </div>
+
+            <div> {# ZONA #}
+              <div class="rotulo">Zona </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Zona"
+                type="text"
+                name="zona_titulo"
+                value="{{ funcionario.zona_titulo }}"
+              >
+            </div>
+
+            <div> {# SEÇÃO #}
+              <div class="rotulo">Seção </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Seção"
+                type="text"
+                name="secao_titulo"
+                value="{{ funcionario.secao_titulo }}"
+              >
+            </div>
+
+            <div> {# ADMISSÃO #}
+              <div class="rotulo">Admissão </div>
+              <input
+                class="data"
+                placeholder="00/00/0000"
+                type="text"
+                name="data_admissao"
+                value="{{ funcionario.data_admissao }}"
+                onkeydown="Mask.apply(this, 'data')"
+              >
+            </div>
+
+            <div> {# FUNÇÃO #}
+              <div class="rotulo">Função </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Função"
+                type="text"
+                name="funcao"
+                value="{{ funcionario.funcao }}"
+              >
+            </div>
+
+            <div> {# SALÁRIO #}
+              <div class="rotulo">Salário </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="R$ 00.000,00"
+                type="text"
+                name="salario"
+                value="{{ funcionario.salario }}"
+                onkeydown="Mask.apply(this, 'formatBRL')"
+              >
+            </div>
+
+            <div> {# PIS #}
+              <div class="rotulo">PIS </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="00.000.00000.0-0"
+                type="text"
+                name="pis"
+                value="{{ funcionario.pis }}"
+                onkeydown="Mask.apply(this, 'nPis')"
+              >
+            </div>
+
+            <div> {# NACIONALIDADE #}
+              <div class="rotulo">Nacionaidade </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="País"
+                type="text"
+                name="nacionalidade"
+                value="{{ funcionario.nacionalidade }}"
+              >
+            </div>
+
+            <div> {# NATURALIDADE #}
+              <div class="rotulo">Natural de </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Natural de"
+                type="text"
+                name="naturalidade_id"
+                value="{{ funcionario.naturalidade_id }}"
+              >
+            </div>
+
+            <div> {# UF #}
+              <div class="rotulo">UF </div>
+              <input
+                class="campo-4-digitos"
+                placeholder="UF"
+                type="text"
+                name="uf"
+                value="{{ funcionario.uf }}"
+              >
+            </div>
+
+            <div> {# MÃE #}
+              <div class="rotulo">Mãe </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Mãe"
+                type="text"
+                name="nome_mae"
+                value="{{ funcionario.nome_mae }}"
+              >
+            </div>
+
+            <div> {# PAI #}
+              <div class="rotulo">PAI </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Pai"
+                type="text"
+                name="nome_pai"
+                value="{{ funcionario.nome_pai }}"
+              >
+            </div>
+
+            <div> {# ESTADO CIVIL #}
+              <div class="rotulo">Estado Civil </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Estado Civil"
+                type="text"
+                name="estado_civil"
+                value="{{ funcionario.estado_civil }}"
+              >
+            </div>
+
+            <div> {# CONJUGE #}
+              <div class="rotulo">Conjuge </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Conjuge"
+                type="text"
+                name="conjuge"
+                value="{{ funcionario.conjuge }}"
+              >
+            </div>
+
+            <div> {# CEP #}
+              <div class="rotulo">CEP </div>
+              <input
+                class="cep"
+                placeholder="000.00000-000"
                 type="text"
                 name="cep"
                 value="{{ funcionario.cep }}"
@@ -99,96 +288,154 @@
               >
             </div>
 
-            <div>
-              <div class="rotulo">Logradouro: </div>
+            <div> {# LOGRADOURO #}
+              <div class="rotulo">Logradouro </div>
               <input
-                class="fields-cliente"
-                placeholder="Rua, Av."
+                class="campos-padrao-edite"
+                placeholder="Rua"
                 type="text"
                 name="endereco"
                 value="{{ funcionario.endereco }}"
               >
             </div>
 
-            <div>
-              <div class="rotulo">Nº: </div>
+            <div> {# NÚMERO #}
+              <div class="rotulo">Número </div>
               <input
-                class="fields-cliente"
-                placeholder="Nº ou S/N."
+                class="campo-6-digitos"
+                placeholder="Nº"
                 type="text"
                 name="numero_end"
                 value="{{ funcionario.numero_end }}"
               >
             </div>
 
-            <div>
-              <div class="rotulo">Bairro: </div>
+            <div> {# Bairro #}
+              <div class="rotulo">Bairro </div>
               <input
-                class="fields-cliente"
-                placeholder="Nome do bairro."
+                class="campos-padrao-edite"
+                placeholder="Bairro"
                 type="text"
                 name="bairro"
                 value="{{ funcionario.bairro }}"
               >
             </div>
 
-            <div>
-              <div class="rotulo">País: </div>
+            <div> {# TIPO CONTRATO #}
+              <div class="rotulo">Situação do Contrato </div>
               <input
-                class="fields-cliente"
-                placeholder="Nome do país."
+                class="campos-padrao-edite"
+                placeholder="Tipo do Contrato"
                 type="text"
-                name="pais"
-                value="{{ funcionario.pais }}"
+                name="tipo_contrato"
+                value="{{ funcionario.tipo_contrato }}"
               >
             </div>
 
-            <div>
-              <div class="rotulo">UF: </div>
+            <div> {# CIDADE #}
+              <div class="rotulo">Cidade </div>
               <input
-                class="fields-cliente"
-                placeholder="UF."
-                type="text"
-                name="uf"
-                value="{{ funcionario.uf }}"
-              >
-            </div>
-
-            <div>
-              <div class="rotulo">Cidade: </div>
-              <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="Cidade"
                 type="text"
-                name="cidade"
-                value="{{ funcionario.cidade }}"
+                name="cidade_end"
+                value="{{ funcionario.cidade_end }}"
               >
             </div>
 
-            <div>
-              <div class="rotulo">Data do Encerramento do Contrato</div>
+            <div> {# UF ENDEREÇO #}
+              <div class="rotulo">UF </div>
               <input
-                class="data-contrato"
-                placeholder="DD/MM/AAAA"
+                class="campo-4-digitos"
+                placeholder="UF"
                 type="text"
-                name="data_fim_contrato"
-                value="{{ funcionario.data_fim_contrato }}"
-                onkeydown="Mask.apply(this, 'data')"
+                name="uf_end"
+                value="{{ funcionario.uf_end }}"
               >
             </div>
+
+            <div> {# TELEFONE #}
+                <div class="rotulo">Celular </div>
+                <input
+                  class="campos-padrao-edite"
+                  placeholder="(00) 0 0000-0000)"
+                  type="text"
+                  name="telefone"
+                  value="{{ funcionario.telefone[0] }}"
+                  onkeydown="Mask.apply(this, 'telefone')"
+                >
+              </div>
+
+              <div> {# TELEFONE #}
+                <div class="rotulo">Telefone </div>
+                <input
+                  class="campos-padrao-edite"
+                  placeholder="(00) 0 0000-0000)"
+                  type="text"
+                  name="telefone"
+                  value="{{ funcionario.telefone[1] }}"
+                  onkeydown="Mask.apply(this, 'telefone')"
+                >
+              </div>
+
+              <div> {# BANCO #}
+                <div class="rotulo">Banco </div>
+                <input
+                  class="campos-padrao-edite"
+                  placeholder="Banco"
+                  type="text"
+                  name="dados_conta"
+                  value="{{ funcionario.dados_conta[0] }}"
+                >
+              </div>
+
+              <div> {# AGÊNCIA #}
+                <div class="rotulo">Agência </div>
+                <input
+                  class="campos-padrao-edite"
+                  placeholder="0000"
+                  type="text"
+                  name="dados_conta"
+                  value="{{ funcionario.dados_conta[1] }}"
+                >
+              </div>
+
+              <div> {# TIPO #}
+                <div class="rotulo">Tipo </div>
+                <input
+                  class="campos-padrao-edite"
+                  placeholder="Poupança ou Corrente"
+                  type="text"
+                  name="dados_conta"
+                  value="{{ funcionario.dados_conta[2] }}"
+                >
+              </div>
+
+              <div> {# CONTA #}
+                <div class="rotulo">Conta </div>
+                <input
+                  class="campos-padrao-edite"
+                  placeholder="0000"
+                  type="text"
+                  name="dados_conta"
+                  value="{{ funcionario.dados_conta[3] }}"
+                  onkeydown="Mask.apply(this, 'conta')"
+                >
+              </div>
+
           </div>
           <input type="hidden" name="id" value="{{ funcionario.id }}">
         </form>
 
         <div class="crud-button">
-          <button class="submit-crud-button" form="salva_cliente" type="submit">Atualizar</button>
+          <button class="submit-crud-button" form="salva_funcionario" type="submit">Atualizar</button>
 
-          <form id="form-delete" action="/cadastros/clientes?_method=DELETE" method="post">
+          <form id="form-delete" action="/cadastros/funcionarios?_method=DELETE" method="post">
             <input type="hidden" name="id" value="{{ funcionario.id }}">
             <button class="delete-crud-button" type="submit" onclick="alertDelete()">Deletar</button>
           </form>
 
-          <a id="cancelar" href="/cadastros/clientes/show-cliente/{{funcionario.id}}">Cancelar</a>
+          <a id="cancelar" href="/cadastros/funcionarios/show-funcionario/{{funcionario.id}}">Cancelar</a>
         </div>
       </div>
     </div>

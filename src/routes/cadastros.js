@@ -8,10 +8,12 @@ const clientesController = require('../app/controllers/clientes/ClientesControll
 /* ==== FUNCIONÁRIOS ==== */
 routes.get('/funcionarios/', funcionariosController.index);
 routes.get('/funcionarios/form-funcionario', funcionariosController.formFunc);
-routes.get('/funcionarios/funcionario/:id', funcionariosController.find);
+routes.get('/funcionarios/show-funcionario/:id', funcionariosController.find);
 routes.get('/funcionarios/edit-funcionario/:id/editar', funcionariosController.editValues);
+routes.get('/funcionarios/dependentes', funcionariosController.formDependentes);
 
 routes.post('/funcionarios', funcionariosController.post);
+routes.put('/funcionarios', funcionariosController.putFuncionario);
 
 /* ==== FORNECEDORES ==== */
 routes.get('/fornecedores', fornecedoresController.index);

@@ -1,0 +1,135 @@
+.data {
+  width: 122px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.nome {
+  width: 320px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.cpf-pis-rg {
+  width: 136px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.select-texto {
+  width: 200px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.campo-salario {
+  width: 125px;
+  height: 28px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.ctps-titulo-border {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.ctps-titulo {
+  width: 150px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.campo-4-digitos {
+  width: 45px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.campo-6-digitos {
+  width: 90px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.select-uf {
+  width: 50px;
+  height: 28px;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: inset;
+  border-image: initial;
+}
+
+.cep {
+  width: 105px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.logradouro {
+  width: 400px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.telefone {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  
+  width: 150px;
+  height: 28px;
+  margin: 0 5px 0 0;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  gap: 5px;
+}
+
+.campos-padrao-edite {
+  width: 450px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+  color: var(--blue);
+}

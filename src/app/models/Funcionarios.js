@@ -57,10 +57,6 @@ module.exports = {
 			`, [id]
 			);
 
-      // SELECT recipes.*, chefs.name AS chef_name FROM recipes 
-      // LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-      // WHERE recipes.id = $1
-
 		} catch (error) {
 			console.log(error);
 		}
@@ -69,17 +65,19 @@ module.exports = {
   updateFuncionario(data) {
 		try {
 			const query = (`
-				UPDATE funcionario SET
-				nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor,
-        zona_titulo, secao_titulo, data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id,
-        uf, nome_mae, nome_pai, estado_civil, telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato,
-        created_at, updated_at, filhos, centro_custo_id				
-        WHERE id = $14
+				UPDATE funcionarios SET
+				nome=($1), cpf=($2), rg=($3), nascimento=($4), ctps=($5), serie_ctps=($6), uf_ctps=($7), titulo_eleitor=($8),
+        zona_titulo=($9), secao_titulo=($10), data_admissao=($11), funcao=($12), salario=($13), pis=($14), nacionalidade=($15), naturalidade_id=($16),
+        uf=($17), nome_mae=($18), nome_pai=($19), estado_civil=($20), telefone=($21), conjuge=($22), cep=($23), endereco=($24), numero_end=($25), bairro=($26), tipo_contrato=($27),
+        centro_custo_id=($28), dados_conta=($29)
+        WHERE id = $30
 			`);
       // created_at, updated_at
 			const values = [
-				data.nome, data.cei, data.cnpj_cpf, data.cep, data.endereco, data.numero_end, data.bairro, data.pais, data.uf,
-        data.cidade, data.data_contrato, data.data_fim_contrato, data.valor_contrato,
+				data.nome, data.cpf, data.rg, data.nascimento, data.ctps, data.serie_ctps, data.uf_ctps, data.titulo_eleitor,
+        data.zona_titulo, data.secao_titulo, data.data_admissao, data.funcao, data.salario, data.pis, data.nacionalidade, data.naturalidade_id,
+        data.uf, data.nome_mae, data.nome_pai, data.estado_civil, data.telefone, data.conjuge, data.cep, data.endereco, data.numero_end, data.bairro, data.tipo_contrato,
+        data.centro_custo_id, data.dados_conta,
         data.id
 			]
 
@@ -88,6 +86,44 @@ module.exports = {
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	},
+
+  findFuncionario(id) {
+    try {
+			return db.query(`
+        SELECT id, nome FROM funcionarios
+        WHERE id = $1
+			`, [id]
+			);
+
+		} catch (error) {
+			console.log(error);
+		}
+  },
+
+  // Comando POST para os dependentes
+  postDependente(data) {
+    try {
+      const query = `
+        INSERT INTO dependente_func (
+          nome, cpf, nascimento, funcionario_id
+        )        
+        VALUES (
+          $1, $2, $3, $4
+          )
+        RETURNING id
+      `;
+
+      const values = [
+        data.nome, data.cpf, data.nascimento, data.funcionario_id
+      ]
+
+      return db.query(query, values);
+    } catch (error) {
+      console.log(error);
+    }	
+  },
+
+
 
 }

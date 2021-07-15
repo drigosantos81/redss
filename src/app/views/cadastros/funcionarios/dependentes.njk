@@ -1,0 +1,15 @@
+{# {% extends 'layout.njk' %} #}
+
+{% block head %}
+  <title>Dependente de {{funcionario.nome}} | REDSS</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <h1>Dependentes</h1>
+        
+    {% include 'parts/modal-dependente.njk' %}
+  
+  </div>
+
+{% endblock %}

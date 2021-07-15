@@ -44,19 +44,13 @@ module.exports = {
       //     return res.send("Por favor, preencha todos os campos.");
       //   }
       // }
-
-      let { nome, cei, cnpj_cpf, cep, endereco, numero_end, bairro, pais, uf,
-        cidade, data_contrato, data_fim_contrato, valor_contrato } = req.body;
-
-      valor_contrato = valor_contrato.replace(/\D/g,"");
-
-      const clienteId = await CentroCusto.post({
-        nome, cei, cnpj_cpf, cep, endereco, numero_end, bairro, pais, uf,
-        cidade, data_contrato, data_fim_contrato, valor_contrato
-      });
       
-      return res.redirect(`/cadastros/clientes`);
-      // return res.redirect(`/cadastros/clientes/form-cliente/${clienteId}`);
+      req.body.valor_contrato = req.body.valor_contrato.replace(/\D/g,"");
+
+      let results = await CentroCusto.post(req.body);
+      const clienteId = results.rows[0].id;
+
+      return res.redirect(`/cadastros/clientes/show-cliente/${clienteId}`);
       
     } catch (error) {
       console.log(error);

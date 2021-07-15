@@ -63,18 +63,63 @@ module.exports = {
     }
   },
 
+  // EXIBE PÁGINA DE CADASTRO DE DEPENDENTES
+  async formDependentes(req, res) {
+    try {
+      let results = await Funcionarios.findFuncionario(req.params.id);
+      const funcionario = results.rows[0];
+
+      console.log('REQ.BODY: ', req.body);
+      console.log('REQ.BODY.DEPENDENTE_FUNC: ', funcionario);
+
+      return res.render(`cadastros/funcionarios/dependentes`, { funcionario });
+      
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  // CADASTRA NOVO FUNCIONÁRIO
+  async postDependente(req, res) {
+    try {
+      const keys = Object.keys(req.body);
+
+      for (key of keys) {
+        if (req.body[key] == "") {
+          return res.send("Por favor, preencha todos os campos.");
+        }
+      }
+
+      console.log('DEPENDENTE: ', req.body);
+      console.log('DEPENDENTE.ID-FUNC: ', req.body.dependente_func);
+
+      let results = await Funcionarios.postDependente(req.body);
+      const dependenteId = results.rows[0].id;
+
+      return res.redirect(`/cadastros/funcionarios/funcionario/${req.body.dependente_func}`);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   // RETORNA UM FUNCIONÁRIO
   async find(req, res) {
     try {
       let results = await Funcionarios.find(req.params.id);
       const funcionario = results.rows[0];
 
+      // let resultsDependentes = await Funcionarios.findFuncionario(req.params.id);
+      // const dependente_func = resultsDependentes.rows[0].id;
+
       funcionario.data_admissao = date(funcionario.data_admissao).format;
       funcionario.nascimento = date(funcionario.nascimento).format;
       funcionario.idade = age(funcionario.nascimento);
       funcionario.salario = formatPrice(funcionario.salario);
       
-      return res.render('cadastros/funcionarios/show-funcionario', { funcionario });
+      console.log('FUNCIONÁRIO: ', funcionario);
+      // console.log('DEPENDENTE-FUNC: ', dependente_func);
+      return res.render('cadastros/funcionarios/show-funcionario', { funcionario/*, dependente_func*/ });
       
     } catch (error) {
       console.log(error);
@@ -110,6 +155,8 @@ module.exports = {
 				}
 			}
 
+      req.body.salario = req.body.salario.replace(/\D/g,"");
+      console.log('REQ.BODY.FUNC-PUT', req.body);
       await Funcionarios.updateFuncionario(req.body);
 
       return res.redirect(`/cadastros/funcionarios/show-funcionario/${req.body.id}`);

@@ -5,7 +5,7 @@
       <i class="material-icons">close</i>
     </a>
 
-    <form action="/cadastros/funcionarios" method="post">
+    <form action="/cadastros/funcionarios/show-funcionario/{{dependente_func}}" method="post">
       {# FILHOS #}
       <div class="filhos">
         <div class="add-filho"> {# BOTÃO #}
@@ -15,10 +15,12 @@
         {# REPETIÇÂO FOR AQUI #}
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
+        <input type="hidden" name="funcionario_id" value="{{dependente_func}}">
+
         <div class="dados-filhos">
           <div> {# NOME #}
             <div class="rotulo">Nome: </div>
-            <input class="nome" placeholder="Nome do filho(a)" type="text" name="filhos[]">
+            <input class="nome" placeholder="Nome do filho(a)" type="text" name="nome">
           </div>
 
           <div> {# NASCIMENTO #}
@@ -26,7 +28,7 @@
             <input
               placeholder="DD/MM/AAAA"
               type="text"
-              name="nasc_filho"
+              name="nascimento"
               onkeydown="Mask.apply(this, 'data')"
             >
           </div>
@@ -36,7 +38,7 @@
             <input
               placeholder="000.000.000-00"
               type="text"
-              name="cpf_filho"
+              name="cpf"
               onkeydown="Mask.apply(this, 'cpf')"
             >
           </div>
@@ -46,7 +48,9 @@
           <p class="botoes-edita-registro">Adicionar</p>
         </div>
       </div>
+
+      <button type="submit">Salvar</button>
     </form>
-    
+
   </div>
 </div>
