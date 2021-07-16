@@ -27,27 +27,30 @@
                 <th>Função</th>
                 <th>Lotação</th>
                 <th>Contratação</th>
+                <th>Idade</th>
                 <th>Salário</th>
                 <th>Detalhes</th>
               </tr>
             </thead>
+
             <tbody class="tbody-func">
               {% for funcionario in funcionarios %}
                 <tr id="{{funcionario.id}}">
-                  {# onclick="showFunc()" #}
                   <td>{{funcionario.nome}}</td>
                   <td>{{funcionario.funcao}}</td>
                   <td>{{funcionario.setor}}</td>
                   <td>{{funcionario.data_admissao}}</td>
-                  <td>{{funcionario.salario}}</td>
-                  <td><a class="edita-registro" href="/cadastros/funcionarios/show-funcionario/{{funcionario.id}}">Editar</a></td>
+                  <td>{{funcionario.nascimento}}</td>
+                  <td id="salario">{{funcionario.salario}}</td>
+                  <td><a class="ver-detalhes" href="/cadastros/funcionarios/show-funcionario/{{funcionario.id}}">Editar</a></td>
                 </tr>
               {% endfor %}
-            </tbody>                
+            </tbody>
+
           </table>
         </div>
       </div>
     </div>
-
 	</div>
+
 {% endblock %}

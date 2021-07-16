@@ -20,7 +20,7 @@
 		<!-- Sidebar -->
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-			<!-- Sidebar - Brand - LOGO -->
+			<!-- Sidebar - LOGO -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="\">
 				<div class="sidebar-brand-icon">{# rotate-n-15 #}					
 					<i class="fas fas fa-hard-hat"></i>
@@ -31,7 +31,7 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
-			<!-- Nav Item - Dashboard -->
+			<!-- DASHBOARD -->
 			<li class="nav-item active">
 				<a class="nav-link" href="\">
 				<i class="fas fa-fw fa-tachometer-alt"></i>
@@ -43,15 +43,15 @@
 
 			<!-- Heading - CONSULTAS -->
 			<div class="sidebar-heading">
-				Consultas
+				Engenharia
 			</div>
 
-			<!-- Nav Item - Pages Collapse Menu - CLIENTES -->
-			<li class="nav-item">
+			<!-- ENGENHARIA -->
+			<li class="nav-item"> <!-- CENTRO DE CUSTO -->
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
 					aria-expanded="true" aria-controls="collapseTwo">
 					<i class="fas fa-fw fa-cog"></i>
-					<span>Clientes</span>
+					<span>Centro de Custo</span>
 				</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -62,8 +62,7 @@
 				</div>
 			</li>
 
-			<!-- Nav Item - Utilities Collapse Menu - FERRAMENTAS -->
-			<li class="nav-item">
+			<li class="nav-item"> <!-- FERRAMENTAS -->
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
 					aria-expanded="true" aria-controls="collapseUtilities">
 					<i class="fas fa-fw fa-wrench"></i>
@@ -72,12 +71,9 @@
 				<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Consultas:</h6>
-						<a class="collapse-item" href="utilities-color.html">Colors</a>
-						<a class="collapse-item" href="utilities-border.html">Borders</a>
-						<h6 class="collapse-header">Edição:</h6>
-						<a class="collapse-item" href="utilities-animation.html">Animations</a>
-						<a class="collapse-item" href="utilities-other.html">Other</a>
+						<h6 class="collapse-header">Orçamentos:</h6>
+						<a class="collapse-item" href="utilities-color.html">Orçamento</a>
+						<a class="collapse-item" href="utilities-border.html">Ordem de Compra</a>
 					</div>
 				</div>
 			</li>
@@ -85,12 +81,32 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Heading -->
+			<!-- ADMINISTRATIVO -->
 			<div class="sidebar-heading">
 				Administrativo
 			</div>
 
-			<!-- Nav Item - Pages Collapse Menu - CADASTROS  -->
+			<!-- FINANCEIRO  -->
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFinanceiroo"
+						aria-expanded="true" aria-controls="collapseFinanceiroo">
+					<i class="fas fa-fw fa-table"></i>
+					<span>Financeiro</span>
+				</a>
+				<div id="collapseFinanceiroo" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Pagamentos:</h6>
+						<a class="collapse-item" href="/financeiro/despesas">Contas a Pagar</a>
+						<a class="collapse-item" href="/financeiro/entradas">Contas a Receber</a>
+						<a class="collapse-item" href="/graficos"><div class="link-grafico"><i class="fas fa-fw fa-chart-area"></i><span>Gráficos</span></div></a>
+						<h6 class="collapse-header">Contábil:</h6>
+						<a class="collapse-item" href="forgot-password.html">Balanço</a>
+						<a class="collapse-item" href="forgot-password.html">Escrituração</a>
+					</div>
+				</div>
+			</li>
+
+			<!-- CADASTROS  -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastro"
 						aria-expanded="true" aria-controls="collapseCadastro">
@@ -103,6 +119,7 @@
 						<a class="collapse-item" href="/cadastros/funcionarios">Funcionários</a>
 						<a class="collapse-item" href="/cadastros/fornecedores">Fornecedores</a>
 						<a class="collapse-item" href="/cadastros/clientes">Clientes | Setor</a>
+						<a class="collapse-item" href="/cadastros/fornecedores">Empreiteiros</a>
 						<h6 class="collapse-header">Projetos:</h6>
 						<a class="collapse-item" href="forgot-password.html">Urbanização</a>
 						<a class="collapse-item" href="forgot-password.html">Arquitetura</a>
@@ -110,7 +127,23 @@
 				</div>
 			</li>
 
-			<!-- Nav Item - Pages Collapse Menu - PAGES  -->
+			<!-- GRÁFICOS -->
+			<li class="nav-item">
+				<a class="nav-link" href="/graficos">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>Gráficos</span>
+				</a>
+			</li>
+
+			<!-- CONTÁBIL -->
+			<li class="nav-item">
+				<a class="nav-link" href="/financeiro/despesas">
+					<i class="fas fa-fw fa-calculator"></i>
+					<span>Contábil</span>
+				</a>
+			</li>
+
+			<!-- PAGES  -->
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
 						aria-expanded="true" aria-controls="collapsePages">
@@ -129,22 +162,6 @@
 						<a class="collapse-item" href="blank.html">Blank Page</a>
 					</div>
 				</div>
-			</li>
-
-			<!-- Nav Item - GRÁFICOS -->
-			<li class="nav-item">
-				<a class="nav-link" href="/graficos">
-					<i class="fas fa-fw fa-chart-area"></i>
-					<span>Gráficos</span>
-				</a>
-			</li>
-
-			<!-- Nav Item - Financeiro -->
-			<li class="nav-item">
-				<a class="nav-link" href="/financeiro/despesas">
-					<i class="fas fa-fw fa-table"></i>
-					<span>Financeiro</span>
-				</a>
 			</li>
 
 			<!-- Divider -->

@@ -11,11 +11,11 @@ module.exports = {
     }
   },
 
-  async formFunc(req, res) {
+  async formDespesa(req, res) {
     try {
-      console.log('Formulário de Cadastro');
+      console.log('Formulário de Novo Pagamento');
       
-      return res.render('graficos/funcionarios');
+      return res.render('financeiro/despesas/form-inclui-pgto');
       
     } catch (error) {
       console.log(error);

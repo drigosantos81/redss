@@ -15,9 +15,14 @@
         <h6 class="m-0 font-weight-bold text-primary"><strong>FUNÇÃO: </strong>{{funcionario.funcao}}</h6>
         
         <div class="menu-edita-cadastro">
+          <a class="edita-registro" href="/cadastros/funcionarios">Voltar</a>
+          
           <p id="open-modal-dependente" class="botoes-edita-registro" onclick="modalDependente()">Incluir Dependente</p>
+          
           <button class="botoes-edita-registro" onclick="abreJanela()">Documentos</button>
+          
           <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{funcionario.id}}/editar">Editar</a>
+          
           <input id="func-dependente-id" type="hidden" name="id" value="{{dependente_func}}">
         </div>
       </div>
@@ -145,9 +150,9 @@
 
         <div> {# TELEFONES #}
           <span class="rotulo">
-            <strong>Telefones: </strong>
+            <strong>Telefone: </strong>
           </span>
-          <label class="label-all">{{funcionario.telefone}}</label>
+          <label class="label-all">{{ funcionario.telefone[1] }} <strong>Celular: </strong>{{ funcionario.telefone[0] }}</label>
         </div>
 
         <div> {# CEP #}
@@ -193,11 +198,31 @@
           <span class="rotulo">
             <strong>Filho: </strong>
           </span>
-          <label class="label-all">{{funcionario.filhos}} <strong>Nascimento: </strong>CPF: <strong></strong></label>
+          <label class="label-all">{{funcionario.filhos}} <strong>Nascimento: </strong><strong>CPF: </strong></label>
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0 bar-divider-voltar">
+
+        <div> {# DADOS DA CONTA #}
+          <span class="rotulo">
+            <strong>Dados da conta para pagamento</strong>
+          </span>
+          <p></p>
+        </div>
+
+        <div> {# CONTA #}
+          <span class="rotulo">
+            <strong>Banco: </strong>
+          </span>
+          <label class="label-all">{{ funcionario.dados_conta[0] }} 
+            <strong>Agência: </strong>{{ funcionario.dados_conta[1] }} 
+            <strong>Tipo: </strong>{{ funcionario.dados_conta[2] }} 
+            <strong>Conta: </strong>{{ funcionario.dados_conta[3] }} </label>
         </div>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0 bar-divider-voltar">
+
         <a class="edita-registro" href="/cadastros/funcionarios">Voltar</a>
       </div>
     </div>

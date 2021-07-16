@@ -34,19 +34,18 @@
             </div>
 
             <div> {# CENTRO DE CUSTO #}
-              <div  class="rotulo">Setor: </div>  {# id="centro_custo_id" #}
-                <select class="select-texto" name="centro_custo_id"> {# id="selectFuncao" #}
-                  <option>Selecione</option>
-                  {% for cliente in clienteName %}
-                    <option
-                      value="{{cliente.id}}"
-                      {% if cliente.id == funcionario.centro_custo_id %}
-                        selected
-                      {% endif %}
-                    >{{cliente.nome}}</option>
-                  {% endfor %}
-                </select>
-              
+              <div  class="rotulo">Setor: </div>
+              <select class="select-texto" name="centro_custo_id">
+                <option>Selecione</option>
+                {% for cliente in clienteName %}
+                  <option
+                    value="{{cliente.id}}"
+                    {% if cliente.id == funcionario.centro_custo_id %}
+                      selected
+                    {% endif %}
+                  >{{cliente.nome}}</option>
+                {% endfor %}
+              </select>
             </div>
             
             <div> {# QUANDO SELECINAR A FUNÇÃO EXIBIR O VALOR #}
@@ -292,7 +291,7 @@
               </div>
             </div>
 
-            <div class="telefone"> {# TELEFONES #}
+            <div class="telefone-border"> {# TELEFONES #}
               <div>
                 <span class="rotulo">Celular: </span>
                 <input

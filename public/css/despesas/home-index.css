@@ -1,0 +1,25 @@
+.card-body-valores {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 0 1.25rem;
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.valor-pgto {
+  font-weight: bold;
+}
+
+.table-home td:last-child{
+  text-align: right;
+  padding: 0 8px 0 0;
+}
+
+.table-home tr:hover {
+  background-color: cornflowerblue;
+  color: aliceblue;
+}

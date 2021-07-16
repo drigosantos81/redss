@@ -32,14 +32,18 @@
             </div>
 
             <div> {# CENTRO DE CUSTO #}
-              <div class="rotulo">Centro de Custo </div>
-              <input
-                class="campos-padrao-edite"
-                placeholder="Setor"
-                type="text"
-                name="centro_custo_id"
-                value="{{ funcionario.centro_custo_id }}"
-              >
+              <div  class="rotulo">Setor: </div>
+              <select class="select-texto" name="centro_custo_id">
+                <option>Selecione</option>
+                {% for cliente in clienteName %}
+                  <option
+                    value="{{cliente.id}}"
+                    {% if cliente.id == funcionario.centro_custo_id %}
+                      selected
+                    {% endif %}
+                  >{{cliente.nome}}</option>
+                {% endfor %}
+              </select>
             </div>
 
             <div> {# CPF #}
@@ -56,7 +60,7 @@
               >
             </div>
 
-             <div> {# RG #}
+            <div> {# RG #}
               <div class="rotulo">
                 RG 
               </div>
@@ -354,74 +358,74 @@
               >
             </div>
 
+            <div> {# CELULAR #}
+              <div class="rotulo">Celular </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="(00) 0 0000-0000)"
+                type="text"
+                name="telefone"
+                value="{{ funcionario.telefone[0] }}"
+                onkeydown="Mask.apply(this, 'telefone')"
+              >
+            </div>
+
             <div> {# TELEFONE #}
-                <div class="rotulo">Celular </div>
-                <input
-                  class="campos-padrao-edite"
-                  placeholder="(00) 0 0000-0000)"
-                  type="text"
-                  name="telefone"
-                  value="{{ funcionario.telefone[0] }}"
-                  onkeydown="Mask.apply(this, 'telefone')"
-                >
-              </div>
+              <div class="rotulo">Telefone </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="(00) 0 0000-0000)"
+                type="text"
+                name="telefone"
+                value="{{ funcionario.telefone[1] }}"
+                onkeydown="Mask.apply(this, 'telefone')"
+              >
+            </div>
 
-              <div> {# TELEFONE #}
-                <div class="rotulo">Telefone </div>
-                <input
-                  class="campos-padrao-edite"
-                  placeholder="(00) 0 0000-0000)"
-                  type="text"
-                  name="telefone"
-                  value="{{ funcionario.telefone[1] }}"
-                  onkeydown="Mask.apply(this, 'telefone')"
-                >
-              </div>
+            <div> {# BANCO #}
+              <div class="rotulo">Banco </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Banco"
+                type="text"
+                name="dados_conta"
+                value="{{ funcionario.dados_conta[0] }}"
+              >
+            </div>
 
-              <div> {# BANCO #}
-                <div class="rotulo">Banco </div>
-                <input
-                  class="campos-padrao-edite"
-                  placeholder="Banco"
-                  type="text"
-                  name="dados_conta"
-                  value="{{ funcionario.dados_conta[0] }}"
-                >
-              </div>
+            <div> {# AGÊNCIA #}
+              <div class="rotulo">Agência </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="0000"
+                type="text"
+                name="dados_conta"
+                value="{{ funcionario.dados_conta[1] }}"
+              >
+            </div>
 
-              <div> {# AGÊNCIA #}
-                <div class="rotulo">Agência </div>
-                <input
-                  class="campos-padrao-edite"
-                  placeholder="0000"
-                  type="text"
-                  name="dados_conta"
-                  value="{{ funcionario.dados_conta[1] }}"
-                >
-              </div>
+            <div> {# TIPO #}
+              <div class="rotulo">Tipo </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Poupança ou Corrente"
+                type="text"
+                name="dados_conta"
+                value="{{ funcionario.dados_conta[2] }}"
+              >
+            </div>
 
-              <div> {# TIPO #}
-                <div class="rotulo">Tipo </div>
-                <input
-                  class="campos-padrao-edite"
-                  placeholder="Poupança ou Corrente"
-                  type="text"
-                  name="dados_conta"
-                  value="{{ funcionario.dados_conta[2] }}"
-                >
-              </div>
-
-              <div> {# CONTA #}
-                <div class="rotulo">Conta </div>
-                <input
-                  class="campos-padrao-edite"
-                  placeholder="0000"
-                  type="text"
-                  name="dados_conta"
-                  value="{{ funcionario.dados_conta[3] }}"
-                  onkeydown="Mask.apply(this, 'conta')"
-                >
-              </div>
+            <div> {# CONTA #}
+              <div class="rotulo">Conta </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="0000"
+                type="text"
+                name="dados_conta"
+                value="{{ funcionario.dados_conta[3] }}"
+                onkeydown="Mask.apply(this, 'conta')"
+              >
+            </div>
 
           </div>
           <input type="hidden" name="id" value="{{ funcionario.id }}">

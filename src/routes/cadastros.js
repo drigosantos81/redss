@@ -13,7 +13,9 @@ routes.get('/funcionarios/edit-funcionario/:id/editar', funcionariosController.e
 routes.get('/funcionarios/dependentes', funcionariosController.formDependentes);
 
 routes.post('/funcionarios', funcionariosController.post);
+routes.post('/funcionarios', funcionariosController.postDependente);
 routes.put('/funcionarios', funcionariosController.putFuncionario);
+routes.delete('/funcionarios', funcionariosController.deleteFunc);
 
 /* ==== FORNECEDORES ==== */
 routes.get('/fornecedores', fornecedoresController.index);

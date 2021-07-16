@@ -8,7 +8,7 @@ module.exports = {
       return db.query(`
         SELECT funcionarios.*, centro_custo.nome AS SETOR FROM funcionarios
         LEFT JOIN centro_custo ON (funcionarios.centro_custo_id = centro_custo.id)
-        ORDER BY funcionarios.data_admissao DESC
+        ORDER BY setor ASC, funcionarios.data_admissao DESC
       `);
 
     } catch (error) {
@@ -62,6 +62,7 @@ module.exports = {
 		}
   },
 
+  // Atualiza um Funcionário
   updateFuncionario(data) {
 		try {
 			const query = (`
@@ -88,6 +89,7 @@ module.exports = {
 		}
 	},
 
+  // Retorna os dados de um Funcionário
   findFuncionario(id) {
     try {
 			return db.query(`
@@ -99,6 +101,19 @@ module.exports = {
 		} catch (error) {
 			console.log(error);
 		}
+  },
+
+  //  Deleta um Funcionário
+  delete(id) {
+    try {
+      return db.query(`
+        DELETE FROM funcionarios
+        WHERE id = $1
+      `, [id]);
+
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   // Comando POST para os dependentes

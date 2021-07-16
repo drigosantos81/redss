@@ -6,6 +6,7 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
 }
 
 .nome {
@@ -15,6 +16,7 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
 }
 
 .cpf-pis-rg {
@@ -24,6 +26,7 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
 }
 
 .select-texto {
@@ -35,17 +38,18 @@
   border-width: 2px;
   border-style: inset;
   border-image: initial;
+  color: var(--blue);
 }
 
 .campo-salario {
   width: 125px;
   height: 28px;
   font-size: 16px;
-  font-weight: bold;
   text-transform: uppercase;
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
 }
 
 .ctps-titulo-border {
@@ -63,6 +67,7 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
 }
 
 .campo-4-digitos {
@@ -72,6 +77,7 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
 }
 
 .campo-6-digitos {
@@ -81,6 +87,7 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
 }
 
 .select-uf {
@@ -92,6 +99,7 @@
   border-width: 2px;
   border-style: inset;
   border-image: initial;
+  color: var(--blue);
 }
 
 .cep {
@@ -101,6 +109,7 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
 }
 
 .logradouro {
@@ -110,6 +119,19 @@
   padding: 0 5px;
   border-radius: 5px;
   margin: 0;
+  color: var(--blue);
+}
+
+.telefone-border {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  
+  width: 150px;
+  height: 28px;
+  margin: 0 5px 0 0;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  gap: 5px;
 }
 
 .telefone {
@@ -122,6 +144,7 @@
   padding: 0 5px;
   border-radius: 5px;
   gap: 5px;
+  color: var(--blue);
 }
 
 .campos-padrao-edite {

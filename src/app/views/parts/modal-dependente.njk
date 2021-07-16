@@ -5,7 +5,8 @@
       <i class="material-icons">close</i>
     </a>
 
-    <form action="/cadastros/funcionarios/show-funcionario/{{dependente_func}}" method="post">
+    {# /show-funcionario/{{dependente_func}} #}
+    <form id="salva_dependente" action="/cadastros/funcionarios" method="post">
       {# FILHOS #}
       <div class="filhos">
         <div class="add-filho"> {# BOTÃO #}
@@ -49,7 +50,7 @@
         </div>
       </div>
 
-      <button type="submit">Salvar</button>
+      <button form="salva_dependente" type="submit">Salvar</button>
     </form>
 
   </div>

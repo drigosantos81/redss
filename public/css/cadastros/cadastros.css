@@ -45,6 +45,11 @@
   color: aliceblue;
 }
 
+.tbody-func td:first-child{
+  text-align: left;
+  padding: 0 0 0 8px;
+}
+
 .menu-edita-cadastro {
   display: flex;
   column-gap: 5px;
@@ -74,6 +79,17 @@
 }
 
 .edita-registro:hover {
+  color: white;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.ver-detalhes {
+  color: #858796;
+  padding: 2px 6px;
+}
+
+.ver-detalhes:hover {
   color: white;
   text-decoration: none;
   text-transform: none;

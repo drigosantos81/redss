@@ -1,5 +1,3 @@
-/* ==== MODAL ==== */
-
 .modal-overlay {
   background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
@@ -11,6 +9,8 @@
   visibility: hidden;
 }
 
+/* ==== MODAL ==== */
+
 .modal-dependente {
   background-color: white;
   width: 600px;
@@ -20,6 +20,12 @@
   border-radius: 8px;
   position: relative;
 }
+
+/* 
+.modal-overlay.fade .modal-dependente {
+  transition: transform 0.3s ease-out;
+  transform: translate(0, -50px);
+} */
 
 .modal-dependente .close-modal-dependente i {
   color: red;

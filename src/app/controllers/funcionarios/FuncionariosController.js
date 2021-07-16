@@ -11,7 +11,7 @@ module.exports = {
       const funcionarios = results.rows;
 
       const formatPromise = funcionarios.map(async funcionario => {
-        funcionario.nascimento = birthDay(funcionario.nascimento).iso;
+        funcionario.nascimento = age(funcionario.nascimento);
         funcionario.data_admissao = date(funcionario.data_admissao).format;
         funcionario.salario = formatPrice(funcionario.salario);
 
@@ -55,8 +55,7 @@ module.exports = {
       let results = await Funcionarios.post(req.body);
       const funcionarioId = results.rows[0].id;
 
-      // return res.redirect(`/cadastros/funcionarios`);
-      return res.redirect(`/cadastros/funcionarios/funcionario/${funcionarioId}`);
+      return res.redirect(`/cadastros/funcionarios/show-funcionario/${funcionarioId}`);
       
     } catch (error) {
       console.log(error);
@@ -90,13 +89,14 @@ module.exports = {
         }
       }
 
-      console.log('DEPENDENTE: ', req.body);
-      console.log('DEPENDENTE.ID-FUNC: ', req.body.dependente_func);
-
       let results = await Funcionarios.postDependente(req.body);
       const dependenteId = results.rows[0].id;
 
-      return res.redirect(`/cadastros/funcionarios/funcionario/${req.body.dependente_func}`);
+      console.log('DEPENDENTE: ', req.body);
+      console.log('DEPENDENTE.ID-FUNC: ', req.body.dependente_func);
+      console.log('dependenteId: ', dependenteId);
+
+      return res.redirect(`/cadastros/funcionarios/show-funcionario/${req.body.dependente_func}`);
       
     } catch (error) {
       console.log(error);
@@ -109,8 +109,8 @@ module.exports = {
       let results = await Funcionarios.find(req.params.id);
       const funcionario = results.rows[0];
 
-      // let resultsDependentes = await Funcionarios.findFuncionario(req.params.id);
-      // const dependente_func = resultsDependentes.rows[0].id;
+      let resultsDependentes = await Funcionarios.findFuncionario(req.params.id);
+      const dependente_func = resultsDependentes.rows[0].id;
 
       funcionario.data_admissao = date(funcionario.data_admissao).format;
       funcionario.nascimento = date(funcionario.nascimento).format;
@@ -118,8 +118,8 @@ module.exports = {
       funcionario.salario = formatPrice(funcionario.salario);
       
       console.log('FUNCIONÁRIO: ', funcionario);
-      // console.log('DEPENDENTE-FUNC: ', dependente_func);
-      return res.render('cadastros/funcionarios/show-funcionario', { funcionario/*, dependente_func*/ });
+      console.log('DEPENDENTE-FUNC: ', dependente_func);
+      return res.render('cadastros/funcionarios/show-funcionario', { funcionario, dependente_func });
       
     } catch (error) {
       console.log(error);
@@ -129,6 +129,9 @@ module.exports = {
   // RETORNA OS DADOS DE UM FUNCIONÁRIO PARA OS CAMPOS DE EDIÇÃO
   async editValues(req, res) {
     try {
+      let resultsCliente = await CentroCusto.clienteSelector();
+      const clienteName = resultsCliente.rows;
+
       let results = await Funcionarios.find(req.params.id);
       const funcionario = results.rows[0];
 
@@ -137,7 +140,7 @@ module.exports = {
       funcionario.idade = age(funcionario.nascimento);
       funcionario.salario = formatPrice(funcionario.salario);
       
-      return res.render('cadastros/funcionarios/edit-funcionario', { funcionario });
+      return res.render('cadastros/funcionarios/edit-funcionario', { funcionario, clienteName });
 
     } catch (error) {
       console.log(error);
@@ -156,11 +159,22 @@ module.exports = {
 			}
 
       req.body.salario = req.body.salario.replace(/\D/g,"");
-      console.log('REQ.BODY.FUNC-PUT', req.body);
+      
       await Funcionarios.updateFuncionario(req.body);
 
       return res.redirect(`/cadastros/funcionarios/show-funcionario/${req.body.id}`);
     
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  // COMANDO DELE PARA EXCLUSÃO DE UM FUNCIONÁRIO
+  async deleteFunc(req, res) {
+    try {
+      await Funcionarios.delete(req.body.id);
+
+      return res.redirect('/cadastros/funcionarios');
     } catch (error) {
       console.log(error);
     }
