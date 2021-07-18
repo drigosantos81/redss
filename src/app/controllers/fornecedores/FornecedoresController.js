@@ -8,17 +8,8 @@ module.exports = {
       // Retorna os dados de todos os Fornecedores
       let results = await Fornecedores.all();
       const fornecedores = results.rows;
-
-      const formatPromise = fornecedores.map(async fornecedores => {
-        fornecedores.nascimento = age(fornecedores.nascimento);
-        fornecedores.data_admissao = date(fornecedores.data_admissao).format;
-        fornecedores.salario = formatPrice(fornecedores.salario);
-
-        return fornecedores;
-      });
-      const allFornecedores = await Promise.all(formatPromise);
       
-      return res.render('cadastros/fornecedores/index', { fornecedores: allFornecedores });
+      return res.render('cadastros/fornecedores/index', { fornecedores });
       
     } catch (error) {
       console.log(error);
@@ -26,12 +17,12 @@ module.exports = {
   },
 
   // EXIBE O FORMULÁRIO
-  async formFunc(req, res) {
+  async formFornecedor(req, res) {
     try {
-      let results = await CentroCusto.clienteSelector();
-      const clienteName = results.rows;
+      let results = await Fornecedores.fornecedorSelector();
+      const fornecedorName = results.rows;
 
-      return res.render('cadastros/funcionarios/form-funcionario', { clienteName });
+      return res.render('cadastros/fornecedores/form-fornecedor', { fornecedorName });
       
     } catch (error) {
       console.log(error);
@@ -64,20 +55,12 @@ module.exports = {
   // RETORNA UM FUNCIONÁRIO
   async find(req, res) {
     try {
-      let results = await Funcionarios.find(req.params.id);
-      const funcionario = results.rows[0];
-
-      let resultsDependentes = await Funcionarios.findFuncionario(req.params.id);
-      const dependente_func = resultsDependentes.rows[0].id;
-
-      funcionario.data_admissao = date(funcionario.data_admissao).format;
-      funcionario.nascimento = date(funcionario.nascimento).format;
-      funcionario.idade = age(funcionario.nascimento);
-      funcionario.salario = formatPrice(funcionario.salario);
+      let results = await Fornecedores.findFornecedor(req.params.id);
+      const fornecedor = results.rows[0];
       
-      console.log('FUNCIONÁRIO: ', funcionario);
-      console.log('DEPENDENTE-FUNC: ', dependente_func);
-      return res.render('cadastros/funcionarios/show-funcionario', { funcionario, dependente_func });
+      console.log('FUNCIONÁRIO: ', fornecedor);
+      
+      return res.render('cadastros/fornecedores/show-fornecedor', { fornecedor });
       
     } catch (error) {
       console.log(error);

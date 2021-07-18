@@ -19,6 +19,7 @@ routes.delete('/funcionarios', funcionariosController.deleteFunc);
 
 /* ==== FORNECEDORES ==== */
 routes.get('/fornecedores', fornecedoresController.index);
+routes.get('/fornecedores/show-fornecedor/:id', fornecedoresController.find);
 
 /* ==== CLIENTES ==== */
 routes.get('/clientes', clientesController.index);
