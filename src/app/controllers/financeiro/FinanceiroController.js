@@ -1,10 +1,22 @@
+const Financeiro = require('../../models/financeiro/saldos');
+const { date, age, formatPrice, birthDay } = require('../../../libs/utils');
+
 module.exports = {
   // ÍNICIO
   index(req, res) {
     try {
+      
       console.log('FINANCEIRO');
       
       return res.render('financeiro/despesas/index');
+      
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  
+  async saldoHome(req, res) {
+    try {
       
     } catch (error) {
       console.log(error);

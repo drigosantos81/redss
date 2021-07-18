@@ -2,9 +2,10 @@
 CREATE DATABASE "redss";
 
 -- PASSO 2 - CRIAÇÃO DAS TABELAS DO BANCO DE DADOS
-CREATE TABLE "funcinoarios" (
+CREATE TABLE "funcionarios" (
   "id" SERIAL PRIMARY KEY,
-  "nome" text NOT NULL,
+  "first_nome" text NOT NULL,
+  "sobrenome" text NOT NULL,
   "cpf" text NOT NULL,
   "rg" text NOT NULL,
   "nascimento" timestamp NOT NULL,
@@ -21,31 +22,52 @@ CREATE TABLE "funcinoarios" (
   "nacionalidade" text NOT NULL,
   "naturalidade_id" text NOT NULL,
   "uf" text NOT NULL,
+  "centro_custo_id" int,
   "nome_mae" text NOT NULL,
   "nome_pai" text,
   "estado_civil" text NOT NULL,
   "telefone" text[] NOT NULL,
-  "conjuge" int,
-  "cep" text NOT NULL,
+  "conjuge" text,
+  "cep" text,
   "endereco" text,
   "numero_end" text NOT NULL,
   "bairro" text,
+  "cidade_end" text,
+  "uf_end" text,
   "tipo_contrato" text,
-  "filhos" text[],
-  "nasc_filho" timestamp,
-  "centro_custo_id" int,
+  "dados_conta" text[],
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT (now())
 );
 
+CREATE TABLE "dependente_func" (
+  "id" SERIAL PRIMARY KEY,
+  "nome" text NOT NULL,
+  "cpf" text NOT NULL,
+  "nascimento" timestamp NOT NULL,
+  "funcionario_id" int
+);
+
 CREATE TABLE "fornecedor" (
   "id" SERIAL PRIMARY KEY,
-  "nome" int NOT NULL,
-  "cnpj" int,
-  "centro_custo_id" int,
-  "telefone" text[] NOT NULL,
+  "pj_pf" text NOT NULL,
+  "nome_razao" text NOT NULL,
+  "nome_fantasia" int,
+  "cnpj_cpf" int,
+  "ie" text,
+  "i_municipal" text,
   "email" text,
-  "created_at" timestamp DEFAULT (now())
+  "telefone" text[] NOT NULL,
+  "whatsapp" text,
+  "celular" text[],
+  "contato" text,
+  "endereco" text,
+  "numero_end" text NOT NULL,
+  "bairro" text,
+  "cidade_end" text,
+  "uf_end" text,
+  "created_at" timestamp DEFAULT (now()),
+  "updated_at" timestamp DEFAULT (now())
 );
 
 CREATE TABLE "folha_pgto" (
@@ -58,10 +80,11 @@ CREATE TABLE "folha_pgto" (
 CREATE TABLE "recebimentos" (
   "id" SERIAL PRIMARY KEY,
   "nome_aporte" text NOT NULL,
-  "competencia" datetime NOT NULL,
+  "data_pgto" timestamp NOT NULL,
   "descricao" text,
+  "documento" text,
   "centro_custo_id" int,
-  "valor" float
+  "valor" int
 );
 
 CREATE TABLE "centro_custo" (
@@ -72,22 +95,41 @@ CREATE TABLE "centro_custo" (
   "cep" text,
   "endereco" text,
   "numero_end" text NOT NULL,
-  "bairro" text
+  "bairro" text,
+  "pais" text NOT NULL,
+  "uf" text NOT NULL,
+  "cidade" text NOT NULL,
+  "data_contrato" timestamp NOT NULL,
+  "data_fim_contrato" timestamp NOT NULL,
+  "valor_contrato" int NOT NULL,
+  "created_at" timestamp DEFAULT (now()),
+  "updated_at" timestamp DEFAULT (now())
 );
 
 CREATE TABLE "ordem_pagamento" (
   "id" SERIAL PRIMARY KEY,
-  "fornecedor_id" int,
-  "competencia" datetime NOT NULL,
+  "vencimento" timestamp NOT NULL,
+  "dt_pgto" timestamp,
+  "centro_custo_id" int NOT NULL,
+  "fornecedor_id" int NOT NULL,
   "descricao" text,
-  "valor" int,
-  "status" boolean
+  "competencia" text NOT NULL,
+  "documento" text,
+  "status" text,
+  "valor" int NOT NULL
+);
+
+CREATE TABLE "saldo" (
+  "id" SERIAL PRIMARY KEY,
+  "entrada" int,
+  "saida" int,
+  "total" int
 );
 
 -- PASSO 3 - CRIAR OS RELACIONAMENTOS
-ALTER TABLE "funcinoarios" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "centro_custo" ("id");
+ALTER TABLE "funcionarios" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "centro_custo" ("id");
 
-ALTER TABLE "fornecedor" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "centro_custo" ("id");
+ALTER TABLE "dependente_func" ADD FOREIGN KEY ("funcionario_id") REFERENCES "funcionarios" ("id");
 
 ALTER TABLE "folha_pgto" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "centro_custo" ("id");
 
@@ -95,7 +137,13 @@ ALTER TABLE "folha_pgto" ADD FOREIGN KEY ("ordem_pagamento_id") REFERENCES "orde
 
 ALTER TABLE "recebimentos" ADD FOREIGN KEY ("centro_custo_id") REFERENCES "centro_custo" ("id");
 
+ALTER TABLE "ordem_pagamento" ADD FOREIGN KEY ("id") REFERENCES "centro_custo" ("id");
+
 ALTER TABLE "ordem_pagamento" ADD FOREIGN KEY ("fornecedor_id") REFERENCES "fornecedor" ("id");
+
+ALTER TABLE "saldo" ADD FOREIGN KEY ("entrada") REFERENCES "recebimentos" ("id");
+
+ALTER TABLE "saldo" ADD FOREIGN KEY ("saida") REFERENCES "ordem_pagamento" ("id");
 
 
 /* PASSO 4: Criar Procedure para atualização automática do campo "updated_at" */
@@ -114,8 +162,8 @@ $function$
 /* PASSO 5: Aplicar a Trigger nas tabelas seleionadas */
 
 /* ==== CONFIGURAÇÃO DA TRIGGER  ==== */
-/* Trigger para tabela centro_custo */
 
+/* Trigger para tabela centro_custo */
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON centro_custo
 FOR EACH ROW
@@ -124,6 +172,12 @@ EXECUTE PROCEDURE trigger_set_timestamp();
 /* Trigger para tabela funcionarios */
 CREATE TRIGGER set_timestamp
 BEFORE UPDATE ON funcionarios
+FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_timestamp();
+
+/* Trigger para tabela fornecedores */
+CREATE TRIGGER set_timestamp
+BEFORE UPDATE ON fornecedor
 FOR EACH ROW
 EXECUTE PROCEDURE trigger_set_timestamp();
 
