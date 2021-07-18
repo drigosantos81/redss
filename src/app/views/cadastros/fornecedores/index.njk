@@ -1,8 +1,56 @@
 {% extends 'layout.njk' %}
 
+{% block head %}
+  <title>Fornecedores | REDSS</title>
+{% endblock %}
+
 {% block content %}	
-		<div class="container-fluid">
-			<h1>Fornecedores</h1>
-		</div>
-	
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Fornecedores</h1>
+      <a class="button-new" href="/cadastros/clientes/form-cliente">Cadastrar Novo</a>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Ranking dos melhores Fornecedores</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">              
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead class="table-thead-home">
+              <tr>
+                <th>Nome</th>
+                <th>CNPJ</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>WhatsApp</th>
+                <th>Celular</th>
+								<th>Contato</th>
+								<th>Detalhes</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-func">
+              {% for fornecedor in fornecedores %}
+                <tr id="{{fonecedor.id}}">
+                  <td>{{fornecedor.nome_fantasia}}</td>
+                  <td>{{fornecedor.cnpj_cpf}}</td>
+                  <td>{{fornecedor.email}}</td>
+                  <td>{{fornecedor.telefone}}</td>
+                  <td>{{fornecedor.whatsapp}}</td>
+									<td>{{fornecedor.celular}}</td>
+									<td>{{fornecedor.contato}}</td>
+                  <td><a class="ver-detalhes" href="/cadastros/fornecedores/show-fornecedor/{{fornecedor.id}}">Editar</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>                
+          </table>
+        </div>
+      </div>
+    </div>
+
+	</div>
 {% endblock %}

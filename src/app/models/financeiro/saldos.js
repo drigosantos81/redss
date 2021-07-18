@@ -1,4 +1,4 @@
-const db = require('../../../config/db'); // ../../config/db
+const db = require('../../../config/db');
 const { date } = require('../../../libs/utils');
 
 module.exports = {
@@ -16,6 +16,7 @@ module.exports = {
     }
   },
 
+	// Total de entradas(Clientes, Sócios, etc)
   totalRecebimentos() {
     try {
       return db.query(`
@@ -28,6 +29,7 @@ module.exports = {
     }
   },
 
+	// Total dos gastos
   totalPago() {
     try {
       return db.query(`

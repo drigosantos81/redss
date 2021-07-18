@@ -15,7 +15,7 @@ module.exports = {
     }
   },
   
-  async saldoHome(req, res) {
+  async saldoPorSetor(req, res) {
     try {
       
     } catch (error) {

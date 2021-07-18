@@ -45,10 +45,10 @@
   color: aliceblue;
 }
 
-.tbody-func td:first-child{
+/* .tbody-func td:first-child{
   text-align: left;
   padding: 0 0 0 8px;
-}
+} */
 
 .menu-edita-cadastro {
   display: flex;

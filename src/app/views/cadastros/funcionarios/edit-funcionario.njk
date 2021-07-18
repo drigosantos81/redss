@@ -18,7 +18,7 @@
       <div class="cad-cliente">
         <form id="salva_funcionario" action="/cadastros/funcionarios?_method=PUT" method="post">
           <div class="form-cliente">
-            <div> {# NOME #}
+            <div> {# PRIMEIRO NOME #}
               <div class="rotulo">
                 NOME 
               </div>
@@ -26,8 +26,21 @@
                 class="campos-padrao-edite"
                 placeholder="Nome"
                 type="text"
-                name="nome"
-                value="{{ funcionario.nome }}"
+                name="first_nome"
+                value="{{ funcionario.first_nome }}"
+              >
+            </div>
+
+            <div> {# SOBRENOME #}
+              <div class="rotulo">
+                SOBRENOME 
+              </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Sobrenome"
+                type="text"
+                name="sobrenome"
+                value="{{ funcionario.sobrenome }}"
               >
             </div>
 

@@ -93,7 +93,7 @@ module.exports = {
   findFuncionario(id) {
     try {
 			return db.query(`
-        SELECT id, nome FROM funcionarios
+        SELECT id, first_nome FROM funcionarios
         WHERE id = $1
 			`, [id]
 			);

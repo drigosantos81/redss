@@ -35,6 +35,7 @@
 
   .table tbody tr{
     text-align: center;
+    font-size: 14px;
   }
 
   /* .table tbody td:last-child{
