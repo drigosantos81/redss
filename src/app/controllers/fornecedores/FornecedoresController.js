@@ -40,12 +40,13 @@ module.exports = {
       //   }
       // }
 
-      req.body.salario = req.body.salario.replace(/\D/g,"");
+      // req.body.salario = req.body.salario.replace(/\D/g,"");
 
-      let results = await Funcionarios.post(req.body);
-      const funcionarioId = results.rows[0].id;
+      let results = await Fornecedores.post(req.body);
+      const fornecedorId = results.rows[0].id;
 
-      return res.redirect(`/cadastros/funcionarios/show-funcionario/${funcionarioId}`);
+      // return res.redirect(`/cadastros/funcionarios/show-funcionario/${fornecedorId}`);
+      return res.redirect(`/cadastros/funcionarios/index`);
       
     } catch (error) {
       console.log(error);

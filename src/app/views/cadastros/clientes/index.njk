@@ -36,11 +36,11 @@
                 <tr id="{{cliente.id}}">
                   <td>{{cliente.nome}}</td>
                   <td>
-                    {% if cliente.cei == '' %}
-                      ******
+                    {% if cliente.cei == '00.000.00000/00' %}
+                      Não Informado
                     {% else %}
                       {{cliente.cei}}
-                    {% endif %}                    
+                    {% endif %}
                   </td>
                   <td>{{cliente.cnpj_cpf}}</td>
                   <td>{{cliente.data_contrato}}</td>

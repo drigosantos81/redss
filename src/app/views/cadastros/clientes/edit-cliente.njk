@@ -18,12 +18,12 @@
       <div class="cad-cliente">
         <form id="salva_cliente" action="/cadastros/clientes?_method=PUT" method="post">
           <div class="form-cliente">
-            <div>
+            <div>{# NOME #}
               <div class="rotulo">
                 NOME: 
               </div>
               <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="Nome / Razão Social"
                 type="text"
                 name="nome"
@@ -31,12 +31,12 @@
               >
             </div>
 
-            <div>
+            <div> {# CEI #}
               <div class="rotulo">
                 CEI: 
               </div>
               <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="00.000.00000/00"
                 type="text"
                 name="cei"
@@ -45,12 +45,12 @@
               >
             </div>
 
-             <div>
+             <div> {# CNPJ / CPF #}
               <div class="rotulo">
                 CNPJ ou CPF: 
               </div>
               <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="Nº do CNPJ ou CPF"
                 type="text"
                 name="cnpj_cpf"
@@ -59,12 +59,12 @@
               >
             </div>
 
-            <div>
+            <div> {# VALOR CONTRATO #}
               <div class="rotulo">
                 Valor do Contrato: 
               </div>
               <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="R$ 000.000,00"
                 type="text"
                 name="valor_contrato"
@@ -73,12 +73,12 @@
               >
             </div>
 
-            <div>
+            <div> {# DATA CONTRATO #}
               <div class="rotulo">
                 Data da assinatura do Contrato: 
               </div>
               <input 
-                class="data-contrato"
+                class="data"
                 placeholder="DD/MM/AAAA"
                 type="text"
                 name="data_contrato"
@@ -87,10 +87,10 @@
               >
             </div>
 
-            <div>
+            <div> {# CEP #}
               <div class="rotulo">CEP: </div>
               <input
-                class="fields-cliente-cep"
+                class="cep"
                 placeholder="00.000-000"
                 type="text"
                 name="cep"
@@ -99,10 +99,10 @@
               >
             </div>
 
-            <div>
+            <div> {# ENDEREÇO #}
               <div class="rotulo">Logradouro: </div>
               <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="Rua, Av."
                 type="text"
                 name="endereco"
@@ -110,10 +110,10 @@
               >
             </div>
 
-            <div>
+            <div> {# NÚMERO #}
               <div class="rotulo">Nº: </div>
               <input
-                class="fields-cliente"
+                class="campo-6-digitos"
                 placeholder="Nº ou S/N."
                 type="text"
                 name="numero_end"
@@ -121,10 +121,10 @@
               >
             </div>
 
-            <div>
+            <div> {# BAIRRO #}
               <div class="rotulo">Bairro: </div>
               <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="Nome do bairro."
                 type="text"
                 name="bairro"
@@ -132,10 +132,10 @@
               >
             </div>
 
-            <div>
+            <div> {# PAÍS #}
               <div class="rotulo">País: </div>
               <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="Nome do país."
                 type="text"
                 name="pais"
@@ -143,10 +143,10 @@
               >
             </div>
 
-            <div>
+            <div> {# UF #}
               <div class="rotulo">UF: </div>
               <input
-                class="fields-cliente"
+                class="campo-4-digitos"
                 placeholder="UF."
                 type="text"
                 name="uf"
@@ -154,10 +154,10 @@
               >
             </div>
 
-            <div>
+            <div> {# CIDADE #}
               <div class="rotulo">Cidade: </div>
               <input
-                class="fields-cliente"
+                class="campos-padrao-edite"
                 placeholder="Cidade"
                 type="text"
                 name="cidade"
@@ -165,10 +165,10 @@
               >
             </div>
 
-            <div>
+            <div> {# DATA FIM CONTRATO #}
               <div class="rotulo">Data do Encerramento do Contrato</div>
               <input
-                class="data-contrato"
+                class="data"
                 placeholder="DD/MM/AAAA"
                 type="text"
                 name="data_fim_contrato"

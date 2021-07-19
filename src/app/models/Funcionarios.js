@@ -67,18 +67,18 @@ module.exports = {
 		try {
 			const query = (`
 				UPDATE funcionarios SET
-				nome=($1), cpf=($2), rg=($3), nascimento=($4), ctps=($5), serie_ctps=($6), uf_ctps=($7), titulo_eleitor=($8),
+				sobrenome=($1), cpf=($2), rg=($3), nascimento=($4), ctps=($5), serie_ctps=($6), uf_ctps=($7), titulo_eleitor=($8),
         zona_titulo=($9), secao_titulo=($10), data_admissao=($11), funcao=($12), salario=($13), pis=($14), nacionalidade=($15), naturalidade_id=($16),
         uf=($17), nome_mae=($18), nome_pai=($19), estado_civil=($20), telefone=($21), conjuge=($22), cep=($23), endereco=($24), numero_end=($25), bairro=($26), tipo_contrato=($27),
-        centro_custo_id=($28), dados_conta=($29)
-        WHERE id = $30
+        centro_custo_id=($28), dados_conta=($29), first_nome=($30)
+        WHERE id = $31
 			`);
       // created_at, updated_at
 			const values = [
-				data.nome, data.cpf, data.rg, data.nascimento, data.ctps, data.serie_ctps, data.uf_ctps, data.titulo_eleitor,
+				data.sobrenome, data.cpf, data.rg, data.nascimento, data.ctps, data.serie_ctps, data.uf_ctps, data.titulo_eleitor,
         data.zona_titulo, data.secao_titulo, data.data_admissao, data.funcao, data.salario, data.pis, data.nacionalidade, data.naturalidade_id,
         data.uf, data.nome_mae, data.nome_pai, data.estado_civil, data.telefone, data.conjuge, data.cep, data.endereco, data.numero_end, data.bairro, data.tipo_contrato,
-        data.centro_custo_id, data.dados_conta,
+        data.centro_custo_id, data.dados_conta, data.first_nome,
         data.id
 			]
 

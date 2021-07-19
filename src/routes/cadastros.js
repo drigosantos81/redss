@@ -21,6 +21,8 @@ routes.delete('/funcionarios', funcionariosController.deleteFunc);
 routes.get('/fornecedores', fornecedoresController.index);
 routes.get('/fornecedores/show-fornecedor/:id', fornecedoresController.find);
 
+routes.get('/fornecedores/form-fornecedor', fornecedoresController.formFornecedor);
+
 /* ==== CLIENTES ==== */
 routes.get('/clientes', clientesController.index);
 routes.get('/clientes/form-cliente', clientesController.formCentroCusto);
