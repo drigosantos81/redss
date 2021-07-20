@@ -40,26 +40,21 @@ module.exports = {
       //   }
       // }
 
-      // req.body.salario = req.body.salario.replace(/\D/g,"");
-
       let results = await Fornecedores.post(req.body);
       const fornecedorId = results.rows[0].id;
 
-      // return res.redirect(`/cadastros/funcionarios/show-funcionario/${fornecedorId}`);
-      return res.redirect(`/cadastros/funcionarios/index`);
+      return res.redirect(`/cadastros/fornecedores/show-fornecedor/${fornecedorId}`);
       
     } catch (error) {
       console.log(error);
     }
   },
 
-  // RETORNA UM FUNCIONÁRIO
+  // RETORNA UM FORNECEDOR
   async find(req, res) {
     try {
       let results = await Fornecedores.findFornecedor(req.params.id);
       const fornecedor = results.rows[0];
-      
-      console.log('FUNCIONÁRIO: ', fornecedor);
       
       return res.render('cadastros/fornecedores/show-fornecedor', { fornecedor });
       
@@ -71,18 +66,10 @@ module.exports = {
   // RETORNA OS DADOS DE UM FUNCIONÁRIO PARA OS CAMPOS DE EDIÇÃO
   async editValues(req, res) {
     try {
-      let resultsCliente = await CentroCusto.clienteSelector();
-      const clienteName = resultsCliente.rows;
+      let results = await Fornecedores.findFornecedor(req.params.id);
+      const fornecedor = results.rows[0];
 
-      let results = await Funcionarios.find(req.params.id);
-      const funcionario = results.rows[0];
-
-      funcionario.data_admissao = date(funcionario.data_admissao).format;
-      funcionario.nascimento = date(funcionario.nascimento).format;
-      funcionario.idade = age(funcionario.nascimento);
-      funcionario.salario = formatPrice(funcionario.salario);
-      
-      return res.render('cadastros/funcionarios/edit-funcionario', { funcionario, clienteName });
+      return res.render('cadastros/fornecedores/edit-fornecedor', { fornecedor });
 
     } catch (error) {
       console.log(error);
@@ -90,7 +77,7 @@ module.exports = {
   },
 
   // COMANDO PUT PARA ATUALIZAÇÃO DO FUNCIONÁRIO
-  async putFuncionario(req, res) {
+  async putFornecedor(req, res) {
     try {
 			const keys = Object.keys(req.body);
 			// Verifica se todos os campos estão preenchidos
@@ -100,11 +87,9 @@ module.exports = {
 				}
 			}
 
-      req.body.salario = req.body.salario.replace(/\D/g,"");
-      
-      await Funcionarios.updateFuncionario(req.body);
+      await Fornecedores.updateFornecedor(req.body);
 
-      return res.redirect(`/cadastros/funcionarios/show-funcionario/${req.body.id}`);
+      return res.redirect(`/cadastros/fornecedores/show-fornecedor/${req.body.id}`);
     
     } catch (error) {
       console.log(error);
@@ -112,11 +97,11 @@ module.exports = {
   },
 
   // COMANDO DELE PARA EXCLUSÃO DE UM FUNCIONÁRIO
-  async deleteFunc(req, res) {
+  async deleteFornecedor(req, res) {
     try {
-      await Funcionarios.delete(req.body.id);
+      await Fornecedores.delete(req.body.id);
 
-      return res.redirect('/cadastros/funcionarios');
+      return res.redirect('/cadastros/fornecedores');
     } catch (error) {
       console.log(error);
     }

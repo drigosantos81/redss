@@ -7,6 +7,7 @@ module.exports = {
     try {
       return db.query(`
         SELECT * FROM fornecedor
+        ORDER BY nome_fantasia ASC
       `);
 
     } catch (error) {
@@ -20,16 +21,17 @@ module.exports = {
       const query = `
         INSERT INTO fornecedor (
           pj_pf, nome_razao, nome_fantasia, cnpj_cpf, ie, i_municipal, email, telefone, whatsapp, celular,
-          contato, endereco, numero_end, bairro, cidade_end, uf_end, created_at, updated_at)
+          contato, endereco, numero_end, bairro, cidade_end, uf_end, created_at, updated_at, cep
+          )
           VALUES (
-          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10',
-          $11, $12, $13, $14, $15, $16, $17, $18)
-          RETURNING id
+          $1, $2, $3, $4, $5, $6, $7, $8, $9, $10,
+          $11, $12, $13, $14, $15, $16, $17, $18, $19
+          ) RETURNING id
       `;
 
       const values = [
-        data.pj_pf, data.nome_razao, data.nome_fantasia, data.ie, data.i_municipal, data.email, data.telefone, data.whatsapp, data.celular,
-        data.contato, data.endereco, data.numero_end, data.bairro, data.cidade_end, data.uf_end, date(Date.now()).iso, date(Date.now()).iso
+        data.pj_pf, data.nome_razao, data.nome_fantasia, data.ie, data.cnpj_cpf, data.i_municipal, data.email, data.telefone, data.whatsapp, data.celular,
+        data.contato, data.endereco, data.numero_end, data.bairro, data.cidade_end, data.uf_end, date(Date.now()).iso, date(Date.now()).iso, data.cep
       ]
 
       return db.query(query, values);
@@ -69,15 +71,15 @@ module.exports = {
   updateFornecedor(data) {
 		try {
 			const query = (`
-				UPDATE centro_custo SET
-				nome=($1), cei=($2), cnpj_cpf=($3), cep=($4), endereco=($5), numero_end=($6), bairro=($7), pais=($8), uf=($9),
-        cidade=($10), data_contrato=($11), data_fim_contrato=($12), valor_contrato=($13)
-				WHERE id = $14
+				UPDATE fornecedor SET
+				pj_pf=($1), nome_razao=($2), nome_fantasia=($3), cnpj_cpf=($4), ie=($5), i_municipal=($6), email=($7), telefone=($8), whatsapp=($9), celular=($10),
+        contato=($11), numero_end=($12), bairro=($13), cidade_end=($14), uf_end=($15), cep=($16)
+				WHERE id = $17
 			`);
-      // created_at, updated_at
+      
 			const values = [
-				data.nome, data.cei, data.cnpj_cpf, data.cep, data.endereco, data.numero_end, data.bairro, data.pais, data.uf,
-        data.cidade, data.data_contrato, data.data_fim_contrato, data.valor_contrato,
+				data.pj_pf, data.nome_razao, data.nome_fantasia, data.cnpj_cpf, data.ie, data.i_municipal, data.email, data.telefone, data.whatsapp, data.celular,
+        data.contato, data.numero_end, data.bairro, data.cidade_end, data.uf_end, data.cep,
         data.id
 			]
 

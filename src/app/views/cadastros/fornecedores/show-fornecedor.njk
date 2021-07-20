@@ -9,91 +9,105 @@
 
     <!-- Page Heading -->
     <div class="novo-botao-func">
-      <h1 class="h3 mb-2 text-gray-800">Dados Fornecedor</h1>
+      <h1 class="h3 mb-2 text-gray-800">Dados do Fornecedor: <strong style="text-transform: uppercase">{{fornecedor.nome_fantasia}}</strong></h1>
     </div>
     
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3 edit-data-registro">
         <h6 class="m-0 font-weight-bold text-primary">{{fornecedor.nome_razao}}</h6>
-        <a class="edita-registro" href="/cadastros/clientes/edit-cliente/{{cliente.id}}/editar">Editar</a>
+        <a class="edita-registro" href="/cadastros/fornecedores/edit-fornecedor/{{fornecedor.id}}/editar">Editar</a>
       </div>
 
       <div class="card-body">
-        <div class="card-body show-data-registro">
-          <div>
-            <span class="rotulo">
-              <strong>CNPJ: </strong>
-            </span>
-            <label class="label-all">{{cliente.cnpj_cpf}}</label>
-          </div>
+        <div> {# 1 - PJ ou PF #}
+          <span class="rotulo">
+            <strong>TIPO: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.pj_pf}}</label>
+        </div>
 
-          <div>
-            <span class="rotulo">
-              <strong>CEI: </strong>
-            </span>
-            <label class="label-all">
-              {% if cliente.cei == "" %}
-                CEI não cadastrado
-              {% else %}
-                {{cliente.cei}}
-              {% endif %}
-            </label>
-          </div>
+        <div> {# 2 - CNPJ ou CPF #}
+          <span class="rotulo">
+            <strong>CNPJ / CPF: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.cnpj_cpf}}</label>
+        </div>
 
-          <div>
-            <span class="rotulo">
-              <strong>Valor do Contrato: </strong>
-            </span>
-            <label class="label-all">{{cliente.valor_contrato}}</label>
-          </div>
+        <div> {# 3 - INSCRIÇÃO ESTADUAL #}
+          <span class="rotulo">
+            <strong>Inscrição Estadual: </strong>
+          </span>
+          <label class="label-all">
+            {% if fornecedor.ie == "" %}
+              Isento
+            {% else %}
+              {{fornecedor.ie}}
+            {% endif %}
+          </label>
+        </div>
 
-          <div>
-            <span class="rotulo">
-              <strong>Data da Assinatura: </strong>
-            </span>
-            <label class="label-all">{{cliente.data_contrato}}</label>
-          </div>
+        <div> {# 4 - INSCRIÇÃO MUNICIPAL #}
+          <span class="rotulo">
+            <strong>Inscrição Municipal: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.i_municipal}}</label>
+        </div>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
 
-          <div>
-            <span class="rotulo">
-              <strong>Logradouro: </strong>
-            </span>
-            <label class="label-all">{{cliente.endereco}}</label>
-          </div>
+        <div> {# 5 - E-MAIL #}
+          <span class="rotulo">
+            <strong>E-mail: </strong>
+          </span>
+          <label class="label-email">{{fornecedor.email}}</label>
+        </div>
 
-          <div>
-            <span class="rotulo">
-              <strong>Nº: </strong>
-            </span>
-            <label class="label-all">{{cliente.numero_end}}</label>
-          </div>
+        <div> {# 6 - TELEFONE #}
+          <span class="rotulo">
+            <strong>Telefone: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.telefone}}</label>
+        </div>
 
-          <div>
-            <span class="rotulo">
-              <strong>Cidade: </strong>
-            </span>
-            <label class="label-all">{{cliente.cidade}}</label>
-          </div>
+        <div> {# 7 - WHATSAPP #}
+          <span class="rotulo">
+            <strong>WhatsApp: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.whatsapp}}</label>
+        </div>
 
-          <div>
-            <span class="rotulo">
-              <strong>UF: </strong>
-            </span>
-            <label class="label-all">{{cliente.uf}}</label>
-          </div>
+        <div> {# 8 - CELULAR #}
+          <span class="rotulo">
+            <strong>Celular: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.celular}}</label>
+        </div>
 
-          <div>
-            <span class="rotulo">
-              <strong>Data do Encerramento do Contrato: </strong>
-            </span>
-            <label class="label-all">{{cliente.data_fim_contrato}}</label>
-          </div>
+        <div> {# 9 - Contato #}
+          <span class="rotulo">
+            <strong>Contato: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.contato}}</label>
+        </div>
+
+        <div> {# 10 - ENDEREÇO #}
+          <span class="rotulo">
+            <strong>Endereço: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.endereco}}, <strong>Nº: </strong>{{fornecedor.numero_end}}, {{fornecedor.bairro}}</label>
+        </div>
+
+        <div> {# 11 - CEP e CIDADE #}
+          <span class="rotulo">
+            <strong>CEP: </strong>
+          </span>
+          <label class="label-all">{{fornecedor.cep}}, {{fornecedor.cidade_end}}/{{fornecedor.uf_end}}</label>
         </div>
         <!-- Divider -->
         <hr class="sidebar-divider my-0 bar-divider-voltar">
-        
-        <a class="edita-registro" href="/cadastros/clientes">Voltar</a>
+
+        <a class="edita-registro" href="/cadastros/fornecedores">Voltar</a>
       </div>
     </div>
     

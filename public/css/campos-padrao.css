@@ -70,6 +70,26 @@
   color: var(--blue);
 }
 
+.label-email {
+  border-width: 2px;
+  border-color: rgb(118, 118, 118);
+  border-image: initial;
+  padding: 0 5px 0 5px;
+  width: auto;
+  font-size: 16px;
+  border-radius: 5px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.radio {
+  margin: 0 5px 0 0;
+}
+
+.span-pj-pf {
+  margin: 0 15px 0 0;
+}
+
 .campo-4-digitos {
   width: 45px;
   height: 28px;

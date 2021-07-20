@@ -1,7 +1,7 @@
 {% extends 'layout.njk' %}
 
 {% block head %}
-  <title>Novo Fornecedor</title>
+  <title>{{fornecedor.nome_fantasia}} | REDSS</title>
 {% endblock %}
 
 {% block content %}
@@ -9,56 +9,81 @@
 
 <!-- Page Heading -->
     <div class="novo-botao-func">
-      <h1 class="h3 mb-2 text-gray-800">Formulário de Cadastro de Novo Fornecedor</h1>
+      <h1 class="h3 mb-2 text-gray-800">Edição do Fornecedor: <strong>{{fornecedor.nome_fantasia}}</strong></h1>
     </div>
 
-    <p class="mb-4">Preencha todos os campos para incluir o novo Fornecedor.</p>
+    <p class="mb-4">Preencha todos os campos para atualizar o cadastro.</p>
 
     <div class="mb-4">
       <div class="cad-cliente">
-        <form action="/cadastros/fornecedores" method="POST">
+        <form id="salva_fornecedor" action="/cadastros/fornecedores?_method=PUT" method="post">
           <div class="form-cliente">
-            <div> {# 1 - PJ ou PF #}
-              <div class="rotulo">TIPO</div>
-              <select class="select-texto" name="pj_pf">
-                <option value="Pessoa Jurídica">Pessoa Jurídica</option>
-                <option value="Pessoa Física">Pessoa Física</option>
-              </select>
+
+            <div> {# 1 - PJ OU PF #}
+              <div class="rotulo">
+                Tipo
+              </div>
+              
+              <span class="span-pj-pf">
+                <input 
+                  class="radio"
+                  type="radio" 
+                  name="pj_pf" 
+                  value="Pessoa Jurídica" 
+                  {% if fornecedor.pj_pf == "Pessoa Jurídica" %}
+                    checked
+                  {% endif %}>Pessoa Jurídica
+              </span>
+
+              <span class="span-pj-pf">
+                <input 
+                  class="radio"
+                  type="radio" 
+                  name="pj_pf" 
+                  value="Pessoa Física"
+                  {% if fornecedor.pj_pf == "Pessoa Física" %}
+                    checked
+                  {% endif %}>Pessoa Física
+              </span>
+              
             </div>
 
-            <div> {# 2 - RAZÃO SOCIAL / NOME #}
+            <div>{# 2 - RAZÃO SOCIAL #}
               <div class="rotulo">
-                RAZÃO SOCIAL / NOME: 
+                Razão Social: 
               </div>
               <input
                 class="campos-padrao-edite"
                 placeholder="Nome / Razão Social"
                 type="text"
                 name="nome_razao"
+                value="{{ fornecedor.nome_razao }}"
               >
             </div>
 
             <div> {# 3 - NOME FANTASIA #}
               <div class="rotulo">
-                NOME FANTASIA: 
+                Nome Fantasia: 
               </div>
               <input
                 class="campos-padrao-edite"
                 placeholder="Nome Fantasia"
                 type="text"
                 name="nome_fantasia"
+                value="{{ fornecedor.nome_fantasia }}"
               >
             </div>
 
-            <div> {# 4 - CNPJ / CPF #}
+             <div> {# 4 - CNPJ / CPF #}
               <div class="rotulo">
-                CNPJ OU CPF: 
+                CNPJ ou CPF: 
               </div>
               <input
                 class="campos-padrao-edite"
-                placeholder="00.000.00000/00 | 000.000.000-00"
+                placeholder="Nº do CNPJ ou CPF"
                 type="text"
                 name="cnpj_cpf"
+                value="{{ fornecedor.cnpj_cpf }}"
                 onkeydown="Mask.apply(this, 'cpfCnpj')"
               >
             </div>
@@ -72,21 +97,23 @@
                 placeholder="Inscrição Estadual"
                 type="text"
                 name="ie"
+                value="{{ fornecedor.ie }}"
                 
-              > {# onkeydown="Mask.apply(this, 'cpfCnpj')" #}
+              > {# onkeydown="Mask.apply(this, 'formatBRL')" #}
             </div>
 
-            <div> {# 6 - INSCRIÇÃO MUNICIPAL #}
+            <div> {# 6 - Inscrição Municipal #}
               <div class="rotulo">
                 Inscrição Municipal: 
               </div>
-              <input
-                class="campos-padrao-edite"
+              <input 
+                class="data"
                 placeholder="Inscrição Municipal"
                 type="text"
                 name="i_municipal"
+                value="{{ fornecedor.i_municipal }}"
                 
-              > {# onkeydown="Mask.apply(this, 'formatBRL')" #}
+              > {# onkeydown="Mask.apply(this, 'data')" #}
             </div>
 
             <div> {# 7 - E-MAIL #}
@@ -98,7 +125,7 @@
                 placeholder="xxxxxx@xxx.xxx.xx"
                 type="text"
                 name="email"
-                
+                value="{{ fornecedor.email }}"
               > {# onkeydown="Mask.apply(this, 'data')" #}
             </div>
 
@@ -112,6 +139,7 @@
                 name="telefone[]"
                 placeholder="(00) 0000-0000"
                 onkeydown="Mask.apply(this, 'telefone')"
+                value="{{ fornecedor.telefone }}"
               >
             </div>
 
@@ -124,6 +152,7 @@
                 type="text"
                 name="whatsapp"
                 placeholder="(00) 9 0000-0000"
+                value="{{ fornecedor.whatsapp }}"
                 onkeydown="Mask.apply(this, 'celular')"
               >
             </div>
@@ -137,6 +166,7 @@
                 type="text"
                 name="celular[]"
                 placeholder="(00) 0 0000-0000"
+                value="{{ fornecedor.celular }}"
                 onkeydown="Mask.apply(this, 'celular')"
               >
             </div>
@@ -150,6 +180,7 @@
                 placeholder="Nome do contato"
                 type="text"
                 name="contato"
+                value="{{ fornecedor.contato }}"
               >
             </div>
 
@@ -161,6 +192,7 @@
                 placeholder="00.000-000"
                 type="text"
                 name="cep"
+                value="{{ fornecedor.cep }}"
                 onkeydown="Mask.apply(this, 'cep')"
                 onblur="pesquisacep(this.value)"
                 >
@@ -174,6 +206,7 @@
                 placeholder="Rua, Av."
                 type="text"
                 name="endereco"
+                value="{{ fornecedor.endereco }}"
                 >
             </div>
 
@@ -184,6 +217,7 @@
                 placeholder="Nº ou S/N."
                 type="text"
                 name="numero_end"
+                value="{{ fornecedor.numero_end }}"
                 >
             </div>
 
@@ -195,6 +229,7 @@
                 placeholder="Nome do bairro."
                 type="text"
                 name="bairro"
+                value="{{ fornecedor.bairro }}"
                 >
             </div>
 
@@ -206,6 +241,7 @@
                 placeholder="Cidade"
                 type="text"
                 name="cidade_end"
+                value="{{ fornecedor.cidade_end }}"
               >
             </div>
 
@@ -217,16 +253,25 @@
                 placeholder="UF" 
                 type="text" 
                 name="uf_end"
+                value="{{ fornecedor.uf_end }}"
               >
             </div>
 
             <input type="hidden" name="" id="ibge">
-
           </div>
-
-          <button type="submit">Cadastrar</button>
-          <a id="cancelar" href="/cadastros/fornecedores">Cancelar</a>
+          <input type="hidden" name="id" value="{{ fornecedor.id }}">
         </form>
+
+        <div class="crud-button">
+          <button class="submit-crud-button" form="salva_fornecedor" type="submit">Atualizar</button>
+
+          <form id="form-delete" action="/cadastros/fornecedores?_method=DELETE" method="post">
+            <input type="hidden" name="id" value="{{ fornecedor.id }}">
+            <button class="delete-crud-button" type="submit" onclick="alertDelete()">Deletar</button>
+          </form>
+
+          <a id="cancelar" href="/cadastros/fornecedores/show-fornecedor/{{fornecedor.id}}">Cancelar</a>
+        </div>
       </div>
     </div>
 
