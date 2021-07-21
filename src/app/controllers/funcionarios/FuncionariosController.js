@@ -1,4 +1,5 @@
 const Funcionarios = require('../../models/Funcionarios');
+const Dependentes = require('../../models/Dependentes');
 const CentroCusto = require('../../models/CentroCusto');
 const { date, age, formatPrice, birthDay } = require('../../../libs/utils');
 
@@ -68,17 +69,14 @@ module.exports = {
       let results = await Funcionarios.find(req.params.id);
       const funcionario = results.rows[0];
 
-      let resultsDependentes = await Funcionarios.findFuncionario(req.params.id);
-      const dependente_func = resultsDependentes.rows[0].id;
-
       funcionario.data_admissao = date(funcionario.data_admissao).format;
       funcionario.nascimento = date(funcionario.nascimento).format;
       funcionario.idade = age(funcionario.nascimento);
       funcionario.salario = formatPrice(funcionario.salario);
       
       console.log('FUNCIONÁRIO: ', funcionario);
-      console.log('DEPENDENTE-FUNC: ', dependente_func);
-      return res.render('cadastros/funcionarios/show-funcionario', { funcionario, dependente_func });
+
+      return res.render('cadastros/funcionarios/show-funcionario', { funcionario });
       
     } catch (error) {
       console.log(error);

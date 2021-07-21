@@ -21,7 +21,7 @@ module.exports = {
     try {
       const query = `
         INSERT INTO funcionarios (
-          nome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor, zona_titulo, secao_titulo,
+          first_nome, sobrenome, cpf, rg, nascimento, ctps, serie_ctps, uf_ctps, titulo_eleitor, zona_titulo, secao_titulo,
           data_admissao, funcao, salario, pis, nacionalidade, naturalidade_id, uf, nome_mae, nome_pai, estado_civil,
           telefone, conjuge, cep, endereco, numero_end, bairro, tipo_contrato, centro_custo_id, created_at, updated_at,
           cidade_end, uf_end, dados_conta          
@@ -29,13 +29,13 @@ module.exports = {
         VALUES (
           $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15,
           $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26, $27, $28, $29, $30,
-          $31, $32, $33
+          $31, $32, $33, $34
           )
         RETURNING id
       `;
 
       const values = [
-        data.nome, data.cpf, data.rg, data.nascimento, data.ctps, data.serie_ctps, data.uf_ctps, data.titulo_eleitor, data.zona_titulo, data.secao_titulo,
+        data.first_nome, data.sobrenome, data.cpf, data.rg, data.nascimento, data.ctps, data.serie_ctps, data.uf_ctps, data.titulo_eleitor, data.zona_titulo, data.secao_titulo,
         data.data_admissao, data.funcao, data.salario, data.pis, data.nacionalidade, data.naturalidade_id, data.uf, data.nome_mae, data.nome_pai, data.estado_civil,
         data.telefone, data.conjuge, data.cep, data.endereco, data.numero_end, data.bairro, data.tipo_contrato, data.centro_custo_id, date(Date.now()).iso, date(Date.now()).iso,
         data.cidade_end, data.uf_end, data.dados_conta
@@ -47,7 +47,7 @@ module.exports = {
     }	
   },
 
-  // Retorna os dados de um Funcionário
+  // Retorna os dados de um Funcionário com nome do Centro de Custo e dependentes
 	find(id) {
 		try {
 			return db.query(`

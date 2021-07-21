@@ -17,14 +17,8 @@
         <hr class="sidebar-divider my-0">
         
         <div> {# FUNCIONÁRIOS #}
-          <div  class="rotulo">Responsável: </div>
-          <select class="select-texto" name="funcionario_id">
-            <option>Selecione</option>
-            {% for funcionario in funcionarios %}
-              <option
-                value="{{funcionario.id}}">{{funcionario.first_nome}}</option>
-            {% endfor %}
-          </select>
+          <div  class="rotulo">Responsável: <input type="hidden"  name="funcionario_id" value="{{funcionario.id}}"></div>
+          
         </div>
 
         <div class="dados-filhos">

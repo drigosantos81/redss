@@ -1,4 +1,4 @@
-// const Funcionarios = require('../../../models/Funcionarios');
+const Funcionarios = require('../../../models/Funcionarios');
 const Dependentes = require('../../../models/Dependentes');
 const { date, age, formatPrice, birthDay } = require('../../../../libs/utils');
 
@@ -27,10 +27,13 @@ module.exports = {
         }
       }
 
+      let resultsFuncionario = await Funcionarios.findFuncionario(req.body.funcionario_id);
+      const funcionarioId = resultsFuncionario.rows[0].id;
+
       let results = await Dependentes.postDependente(req.body);
       const dependenteId = results.rows[0].id;
 
-      return res.redirect(`/cadastros/funcionarios/dependentes/dependentes`);
+      return res.redirect(`/cadastros/funcionarios/show-funcionario/${funcionarioId}`);
       
     } catch (error) {
       console.log(error);

@@ -98,7 +98,7 @@
 
 .bloco-2-1 {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   column-gap: 13px;
   row-gap: 5px;
   margin: 0 0 10px 0;

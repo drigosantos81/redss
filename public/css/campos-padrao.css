@@ -9,6 +9,16 @@
   color: var(--blue);
 }
 
+.rotulo-first-nome {
+  width: 120px;
+  height: 28px;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 5px;
+  margin: 0;
+  color: var(--blue);
+}
+
 .nome {
   width: 320px;
   height: 28px;
