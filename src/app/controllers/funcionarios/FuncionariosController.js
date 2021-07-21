@@ -62,47 +62,6 @@ module.exports = {
     }
   },
 
-  // EXIBE PÁGINA DE CADASTRO DE DEPENDENTES
-  async formDependentes(req, res) {
-    try {
-      let results = await Funcionarios.findFuncionario(req.params.id);
-      const funcionario = results.rows[0];
-
-      console.log('REQ.BODY: ', req.body);
-      console.log('REQ.BODY.DEPENDENTE_FUNC: ', funcionario);
-
-      return res.render(`cadastros/funcionarios/dependentes`, { funcionario });
-      
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
-  // CADASTRA NOVO FUNCIONÁRIO
-  async postDependente(req, res) {
-    try {
-      const keys = Object.keys(req.body);
-
-      for (key of keys) {
-        if (req.body[key] == "") {
-          return res.send("Por favor, preencha todos os campos.");
-        }
-      }
-
-      let results = await Funcionarios.postDependente(req.body);
-      const dependenteId = results.rows[0].id;
-
-      console.log('DEPENDENTE: ', req.body);
-      console.log('DEPENDENTE.ID-FUNC: ', req.body.dependente_func);
-      console.log('dependenteId: ', dependenteId);
-
-      return res.redirect(`/cadastros/funcionarios/show-funcionario/${req.body.dependente_func}`);
-      
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
   // RETORNA UM FUNCIONÁRIO
   async find(req, res) {
     try {

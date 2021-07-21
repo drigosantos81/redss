@@ -5,8 +5,7 @@
       <i class="material-icons">close</i>
     </a>
 
-    {# /show-funcionario/{{dependente_func}} #}
-    <form id="salva_dependente" action="/cadastros/funcionarios" method="post">
+    <form id="salva_dependente" action="/cadastros/funcionarios/dependentes" method="post">
       {# FILHOS #}
       <div class="filhos">
         <div class="add-filho"> {# BOTÃO #}
@@ -16,17 +15,32 @@
         {# REPETIÇÂO FOR AQUI #}
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-        <input type="hidden" name="funcionario_id" value="{{dependente_func}}">
+        
+        <div> {# FUNCIONÁRIOS #}
+          <div  class="rotulo">Responsável: </div>
+          <select class="select-texto" name="funcionario_id">
+            <option>Selecione</option>
+            {% for funcionario in funcionarios %}
+              <option
+                value="{{funcionario.id}}">{{funcionario.first_nome}}</option>
+            {% endfor %}
+          </select>
+        </div>
 
         <div class="dados-filhos">
           <div> {# NOME #}
             <div class="rotulo">Nome: </div>
-            <input class="nome" placeholder="Nome do filho(a)" type="text" name="nome">
+            <input
+              class="nome"
+              placeholder="Nome do filho(a)"
+              type="text"
+              name="nome">
           </div>
 
           <div> {# NASCIMENTO #}
             <div class="rotulo">Data de Nascimento</div>
             <input
+              class="data"
               placeholder="DD/MM/AAAA"
               type="text"
               name="nascimento"
@@ -37,6 +51,7 @@
           <div> {# CPF #}
             <div class="rotulo">CPF</div>
             <input
+              class="cpf-pis-rg"
               placeholder="000.000.000-00"
               type="text"
               name="cpf"

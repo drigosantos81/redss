@@ -2,6 +2,7 @@ const express = require('express');
 const routes = express.Router();
 
 const funcionariosController = require('../app/controllers/funcionarios/FuncionariosController');
+const dependentesController = require('../app/controllers/funcionarios/dependentes/DependentesController');
 const fornecedoresController = require('../app/controllers/fornecedores/FornecedoresController');
 const clientesController = require('../app/controllers/clientes/ClientesController');
 
@@ -10,12 +11,13 @@ routes.get('/funcionarios/', funcionariosController.index);
 routes.get('/funcionarios/form-funcionario', funcionariosController.formFunc);
 routes.get('/funcionarios/show-funcionario/:id', funcionariosController.find);
 routes.get('/funcionarios/edit-funcionario/:id/editar', funcionariosController.editValues);
-routes.get('/funcionarios/dependentes', funcionariosController.formDependentes);
 
 routes.post('/funcionarios', funcionariosController.post);
-routes.post('/funcionarios', funcionariosController.postDependente);
 routes.put('/funcionarios', funcionariosController.putFuncionario);
 routes.delete('/funcionarios', funcionariosController.deleteFunc);
+/* ---- DEPENDENTES ---- */
+routes.get('/funcionarios/dependentes/dependentes', dependentesController.formDependentes);
+routes.post('/funcionarios/dependentes', dependentesController.postDependente);
 
 /* ==== FORNECEDORES ==== */
 routes.get('/fornecedores', fornecedoresController.index);

@@ -1,0 +1,60 @@
+{% block head %}
+  <title>Dependente de {{funcionario.nome}} | REDSS</title>
+{% endblock %}
+
+{% block content %}
+
+  <div class="container-fluid">
+    <h1>Dependentes</h1>
+        
+    {% include 'parts/modal-dependente.njk' %}
+  
+  </div>
+
+<style>
+  /*:root {
+    --blue:#4e73df;
+    --vermelho: #e66848;
+    --azul: #398CBF;
+    --cinza: #f0f0f0;
+  }*/
+
+  .rotulo {
+    margin: 5px 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .data {
+    width: 122px;
+    height: 28px;
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 0 5px;
+    border-radius: 5px;
+    margin: 0;
+    color: #4e73df;
+  }
+
+  .nome {
+    width: 320px;
+    height: 28px;
+    font-size: 16px;
+    padding: 0 5px;
+    border-radius: 5px;
+    margin: 0;
+    color: #4e73df;
+  }
+
+  .cpf-pis-rg {
+    width: 136px;
+    height: 28px;
+    font-size: 16px;
+    padding: 0 5px;
+    border-radius: 5px;
+    margin: 0;
+    color: #4e73df;
+  }
+</style>
+{% endblock %}
