@@ -1,8 +1,6 @@
 # REDSS ERP - Projeto de um pequeno Gestor de contas para micro empresas.
 
-O REDSS é um pequeno ERP com o layout baseado no template gratuíto distribuído pelo Bootstrap chamado [SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/).
-
-O template do REDSS é um tema de painel de administração de código aberto para [Bootstrap](https://getbootstrap.com/) criado pela [Start Bootstrap](https://startbootstrap.com/).
+O REDSS é um pequeno ERP com o layout baseado no template gratuíto distribuído pelo Bootstrap chamado [SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/). Este template é um tema de painel administrativo de código aberto do [Bootstrap](https://getbootstrap.com/) criado pela [Start Bootstrap](https://startbootstrap.com/).
 
 ## Preview (atualizar print da tela inicial)
 
@@ -15,12 +13,10 @@ O template do REDSS é um tema de painel de administração de código aberto pa
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/StartBootstrap/startbootstrap-sb-admin-2/master/LICENSE)
 [![npm version](https://img.shields.io/npm/v/startbootstrap-sb-admin-2.svg)](https://www.npmjs.com/package/startbootstrap-sb-admin-2)
 [![Build Status](https://travis-ci.org/StartBootstrap/startbootstrap-sb-admin-2.svg?branch=master)](https://travis-ci.org/StartBootstrap/startbootstrap-sb-admin-2)
-[![dependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2/status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2)
-[![devDependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2/dev-status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2?type=dev)
 
 ## Download e Instalação
 
-Para começar a usar este modelo, escolha uma das seguintes opções para começar:
+Para começar a usar este modelo, siga os passos abaixo:
 
 * [Faça o download da última versão em Start Bootstrap](https://startbootstrap.com/theme/sb-admin-2/)
 * Instale via npm: `npm i startbootstrap-sb-admin-2`
