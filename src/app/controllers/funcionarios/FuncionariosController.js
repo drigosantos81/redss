@@ -11,6 +11,13 @@ module.exports = {
       let results = await Funcionarios.all();
       const funcionarios = results.rows;
 
+      var sumSalary = Number('');
+      for (let i = 0; i < funcionarios.length; i++) {
+        const salaryI = funcionarios[i].salario;
+        sumSalary = sumSalary + salaryI;
+      }
+      sumSalary = formatPrice(sumSalary);
+      
       const formatPromise = funcionarios.map(async funcionario => {
         funcionario.nascimento = age(funcionario.nascimento);
         funcionario.data_admissao = date(funcionario.data_admissao).format;
@@ -19,8 +26,8 @@ module.exports = {
         return funcionario;
       });
       const allFuncionarios = await Promise.all(formatPromise);
-      
-      return res.render('cadastros/funcionarios/index', { funcionarios: allFuncionarios });
+
+      return res.render('cadastros/funcionarios/index', { funcionarios: allFuncionarios, sumSalary });
       
     } catch (error) {
       console.log(error);
@@ -69,14 +76,24 @@ module.exports = {
       let results = await Funcionarios.find(req.params.id);
       const funcionario = results.rows[0];
 
+      let resultsDependente = await Funcionarios.dependentePorFunc(req.params.id);
+      const dependentes = resultsDependente.rows;
+
       funcionario.data_admissao = date(funcionario.data_admissao).format;
       funcionario.nascimento = date(funcionario.nascimento).format;
       funcionario.idade = age(funcionario.nascimento);
       funcionario.salario = formatPrice(funcionario.salario);
-      
-      console.log('FUNCIONÁRIO: ', funcionario);
 
-      return res.render('cadastros/funcionarios/show-funcionario', { funcionario });
+      const formatPromise = dependentes.map(async dependente => {
+        dependente.nascimento = date(dependente.nascimento).format;
+
+        return dependente;
+      });
+      const allDependentes = await Promise.all(formatPromise);
+
+      console.log('DEPENDENTES', dependentes);
+   
+      return res.render('cadastros/funcionarios/show-funcionario', { funcionario, dependentes: allDependentes });
       
     } catch (error) {
       console.log(error);

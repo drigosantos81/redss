@@ -7,13 +7,13 @@
 {% block content %}
   <div class="container-fluid">
 
-<!-- Page Heading -->
+  <!-- Page Heading -->
     <div class="novo-botao-func">
       <h1 class="h3 mb-2 text-gray-800">Inclusão de novo pagamento</h1>
     </div>
 
     <p class="mb-4">Preencha todos os campos para incluir a nova despesa.</p>
-
+    <p class="rotulo-data">Data: 28/04/2022</p>
     <div class="mb-4">
       <div class="cad-cliente">
         <form action="/cadastros/clientes" method="POST">
@@ -21,32 +21,50 @@
           <div class="form-cliente">
             <div>
               <div class="rotulo">
-                NOME: 
+                Documento: 
               </div>
-              <input
-                class="fields-cliente"
-                placeholder="Nome / Razão Social"
-                type="text"
-                name="nome"
-              >
+              <select name="centro_custo_id" select-texto="">
+                <option value="">NF</option>
+                <option value="">Recibo</option>
+                <option value="">Fatura</option>
+              </select>
             </div>
 
             <div>
               <div class="rotulo">
-                CEI: 
+                Data da Emissão: 
               </div>
-              <input
+              <input 
+                class="data-contrato"
+                placeholder="DD/MM/AAAA"
+                type="text"
+                name="data_contrato"
+                onkeydown="Mask.apply(this, 'data')"
+              >
+              {# <input
                 class="fields-cliente"
                 placeholder="00.000.00000/00"
                 type="text"
                 name="cei"
                 onkeydown="Mask.apply(this, 'cei')"
+              > #}
+            </div>
+
+            <div>
+              <div class="rotulo">
+                Fornecedor: 
+              </div>
+              <input
+                class="fields-cliente"
+                placeholder="Nome do Fornecedor"
+                type="text"
+                name="cnpj_cpf"
               >
             </div>
 
-             <div>
+            <div>
               <div class="rotulo">
-                CNPJ ou CPF: 
+                CNPJ / CPF: 
               </div>
               <input
                 class="fields-cliente"
@@ -55,24 +73,19 @@
                 name="cnpj_cpf"
                 onkeydown="Mask.apply(this, 'cpfCnpj')"
               >
-            </div>
-
-            <div>
-              <div class="rotulo">
-                Valor do Contrato: 
-              </div>
-              <input
+            {# </div> #}
+              {# <input
                 class="fields-cliente"
                 placeholder="R$ 000.000,00"
                 type="text"
                 name="valor_contrato"
                 onkeydown="Mask.apply(this, 'formatBRL')"
-              >
+              > #}
             </div>
 
             <div>
               <div class="rotulo">
-                Data da assinatura do Contrato: 
+                Vencimento: 
               </div>
               <input 
                 class="data-contrato"
@@ -84,71 +97,36 @@
             </div>
 
             <div>
-              <div class="rotulo">CEP: </div>
-              <input
-                class="fields-cliente-cep"
-                placeholder="00.000-000"
-                type="text"
-                name="cep"
-                onkeydown="Mask.apply(this, 'cep')"
-                >
+              <div class="rotulo">Categoria: </div>
+              <select name="centro_custo_id" select-texto="">
+                <option value="">Selecione</option>
+                <option value="">Materiais</option>
+                <option value="">Ferramentas</option>
+                <option value="">Transporte</option>
+                <option value="">Imposto</option>
+              </select>
             </div>
 
             <div>
-              <div class="rotulo">Logradouro: </div>
-              <input
-                class="fields-cliente"
-                placeholder="Rua, Av."
-                type="text"
-                name="endereco"
-                >
-            </div>
-
-            <div>
-              <div class="rotulo">Nº: </div>
+              <div class="rotulo">XML: </div>
               <input
                 class="fields-cliente"
-                placeholder="Nº ou S/N."
+                placeholder="Código XML"
                 type="text"
-                name="numero_end"
+                name="xml"
                 >
             </div>
 
             <div>
-              <div class="rotulo">Bairro: </div>
+              <div class="rotulo">Valor: </div>
               <input
                 class="fields-cliente"
-                placeholder="Nome do bairro."
+                placeholder="R$ 000,00"
                 type="text"
-                name="bairro"
+                name="valor"
                 >
             </div>
 
-            <div>
-              <div class="rotulo">País: </div>
-              <select id="pais" name="pais"></select>
-            </div>
-
-            <div>
-              <div class="rotulo">UF: </div>
-              <select id="estado" name="uf"></select>
-            </div>
-
-            <div>
-              <div class="rotulo">Cidade: </div>
-                <select id="cidade" name="cidade"></select>
-            </div>
-
-            <div>
-              <div class="rotulo">Data do Encerramento do Contrato</div>
-              <input
-                class="data-contrato"
-                placeholder="DD/MM/AAAA"
-                type="text"
-                name="data_fim_contrato"
-                onkeydown="Mask.apply(this, 'data')"
-              >
-            </div>
           </div>
 
           <button type="submit">Cadastrar</button>

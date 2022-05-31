@@ -114,6 +114,18 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
-  }
+  },
+
+  dependentePorFunc(id) {
+    try {
+      return db.query(`
+        SELECT dependente_func.* FROM dependente_func
+        WHERE dependente_func.funcionario_id = $1 
+      `, [id]);
+
+    } catch (error) {
+      console.log(error);
+    }
+  },
 
 }

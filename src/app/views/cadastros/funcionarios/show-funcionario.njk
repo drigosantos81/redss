@@ -7,23 +7,23 @@
 {% block content %}
   <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">{{funcionario.first_nome}} {{funcionario.sobrenome}}</h1>
-
+    <div class="title-menu">
+      <h1 class="h3 mb-2 text-gray-800">{{funcionario.first_nome}} {{funcionario.sobrenome}}</h1>
+      <a class="cadastro-voltar" href="/cadastros/funcionarios">Voltar</a>
+    </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3 edit-data-registro">
         <h6 class="m-0 font-weight-bold text-primary"><strong>FUNÇÃO: </strong>{{funcionario.funcao}}</h6>
         
         <div class="menu-edita-cadastro">
-          <a class="edita-registro" href="/cadastros/funcionarios">Voltar</a>
-          
           <p id="open-modal-dependente" class="botoes-edita-registro" onclick="modalDependente()">Incluir Dependente</p>
           
-          <button class="botoes-edita-registro" onclick="abreJanela()">Documentos</button>
-          
+          <button class="edita-registro-doc" onclick="abreJanela()">Documentos</button>
+          {# botoes-edita-registro #}
           <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{funcionario.id}}/editar">Editar</a>
           
-          <input id="func-dependente-id" type="hidden" name="id" value="{{dependente_func}}">
+          <input id="func-dependente-id" type="hidden" name="id_dep" value="{{dependente_func}}">
         </div>
       </div>
 
@@ -194,12 +194,24 @@
           <p></p>
         </div>
 
-        <div> {# FILHOS #}
-          <span class="rotulo">
-            <strong>Filho: </strong>
-          </span>
-          <label class="label-all">{{funcionario.filhos}} <strong>Nascimento: </strong><strong>CPF: </strong></label>
-        </div>
+        {% for dependente in dependentes %}
+          <div class="form-exibe-dependentes"> {# FILHOS #}
+            <span class="rotulo">
+              <strong>Nome: </strong>
+            </span>
+            <label class="label-all">{{dependente.nome}}
+              <strong>- Nascimento: </strong>{{dependente.nascimento}} 
+              <strong>- CPF: </strong>{{dependente.cpf}}
+            </label>
+            <span>
+              <form id="form-delete" action="/cadastros/funcionarios?_method=DELETE" method="post">
+                <input type="hidden" name="id" value="{{ dependente.id_dep }}">
+                <button form="form-delete" class="delete-dependente" type="submit" onclick="alertDelete()">X</button>
+              </form> {# delete-crud-button #}
+            </span>
+          </div>
+
+        {% endfor %}
         <!-- Divider -->
         <hr class="sidebar-divider my-0 bar-divider-voltar">
 

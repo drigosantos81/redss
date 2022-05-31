@@ -329,6 +329,26 @@ form button {
   border-color: white;
 }
 
+.delete-dependente {
+  background-color: var(--vermelho);
+  color: var(--white);
+  text-decoration: none;
+  padding: 0;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 5px 0 0;
+  line-height: inherit;
+  border-width: 2px;
+  border-style: outset;
+  border-image: initial;
+  border-color: white;
+  height: 20px;
+  width: 20px;
+}
+
 .cancel-crud-button {
   background-color: var(--azul);
   color: var(--white);

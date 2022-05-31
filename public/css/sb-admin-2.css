@@ -88,6 +88,19 @@ abbr[data-original-title] {
   text-decoration-skip-ink: none;
 }
 
+.rotulo-data {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: bold;
+  border: 1px solid;
+  width: 125px;
+  padding: 0 5px 0 5px;
+  margin: 5px 0 5px 0;
+  font-style: italic;
+  border-radius: 2px;
+  color: crimson;
+}
+
 address {
   margin-bottom: 1rem;
   font-style: normal;

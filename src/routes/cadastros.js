@@ -18,6 +18,7 @@ routes.delete('/funcionarios', funcionariosController.deleteFunc);
 /* ---- DEPENDENTES ---- */
 routes.get('/funcionarios/dependentes/dependentes', dependentesController.formDependentes);
 routes.post('/funcionarios/dependentes', dependentesController.postDependente);
+routes.delete('funcionarios/dependentes', dependentesController.deleteDependente);
 
 /* ==== FORNECEDORES ==== */
 routes.get('/fornecedores', fornecedoresController.index);

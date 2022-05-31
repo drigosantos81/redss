@@ -17,6 +17,10 @@
     <div class="card shadow mb-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Funcionários ativos</h6>
+        <div>
+          <h6>Salário Total Bruto dos Funcionários: </h6>
+          <h6 onclick="sumValues()"> {{ sumSalary }}</h6>
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive">              
@@ -35,7 +39,7 @@
 
             <tbody class="tbody-func">
               {% for funcionario in funcionarios %}
-                <tr id="{{funcionario.id}}">
+                <tr class="employments" id="{{funcionario.id}}">
                   <td>{{funcionario.first_nome}}</td>
                   <td>{{funcionario.funcao}}</td>
                   <td>{{funcionario.setor}}</td>
