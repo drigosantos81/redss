@@ -248,24 +248,10 @@ function modalDependente() {
   });
 }
 
-function sumValues() {
-  // const salaries = document.querySelector('.tbody-func');
-  // const salary = document.querySelectorAll('.employments');
-
-  // // const sumSalary = [];
-  // for (let oneSalary of salary) {
-  //   oneSalary.addEventListener("click", function() {
-  //     // const oneSalary = salary.querySelector("#salario").innerHTML;
-  //     const partialSalary = oneSalary.querySelector('#salario').innerHTML;
-  //     const sumSalary = partialSalary + sumSalary;
-  //     console.log('SUM SALARY: ', sumSalary);
-
-  //   });
-    
-  //   // console.log('SALARY: ', oneSalary);
-  // }
-
-  // // console.log('SALARY: ', oneSalary);
-  // console.log('SALARIES: ',salaries);
-  // // console.log('TOTAL SALARIOS: ', sumSalary);
+function currentDate() {
+  date = new Date();
+  year = date.getFullYear();
+  month = date.getMonth() + 1;
+  day = date.getDate();
+  document.getElementById("current_date").innerHTML = 'Data: ' + day + "/" + month + "/" + year;
 }

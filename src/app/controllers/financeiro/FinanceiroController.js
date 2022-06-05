@@ -1,13 +1,11 @@
-const Financeiro = require('../../models/financeiro/saldos');
+const Financeiro = require('../../models/financeiro/Saldos');
+const Despesa = require('../../models/financeiro/Despesas');
 const { date, age, formatPrice, birthDay } = require('../../../libs/utils');
 
 module.exports = {
   // ÍNICIO
   index(req, res) {
-    try {
-      
-      console.log('FINANCEIRO');
-      
+    try {      
       return res.render('financeiro/despesas/index');
       
     } catch (error) {
@@ -25,9 +23,10 @@ module.exports = {
 
   async formDespesa(req, res) {
     try {
-      console.log('Formulário de Novo Pagamento');
-      
-      return res.render('financeiro/despesas/form-inclui-pgto');
+      let results = await Despesa.providerSelector();
+      const providerName = results.rows;
+
+      return res.render('financeiro/despesas/form-inclui-pgto', { providerName });
       
     } catch (error) {
       console.log(error);

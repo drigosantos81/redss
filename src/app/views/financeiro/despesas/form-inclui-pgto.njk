@@ -10,95 +10,131 @@
   <!-- Page Heading -->
     <div class="novo-botao-func">
       <h1 class="h3 mb-2 text-gray-800">Inclusão de novo pagamento</h1>
+      <p class="rotulo-data" id="current_date"></p>
     </div>
 
     <p class="mb-4">Preencha todos os campos para incluir a nova despesa.</p>
-    <p class="rotulo-data">Data: 28/04/2022</p>
+    
     <div class="mb-4">
       <div class="cad-cliente">
         <form action="/cadastros/clientes" method="POST">
+          <div class="form-default">
 
-          <div class="form-cliente">
-            <div>
+            <div class="field">
+              <div class="rotulo">
+                Fornecedor: 
+              </div>
+              <select class="selects-default" name="id_fornecedor" select-texto="">
+                {% for provider in providerName %}
+                  <option
+                    value="{{provider}}">
+                    {% if provider.id == despesas.id_fornecedor %}
+                      selected
+                    {% endif %}
+                    {{provider.nome_fantasia}}
+                  </option>
+                {% endfor %}
+              </select>
+
+{# 
+              <input
+                class="inputs-default"
+                placeholder="Nome do Fornecedor"
+                type="text"
+                name="id_fornecedor"
+              > #}
+            </div>
+
+            <div class="field">
+              <div class="rotulo">
+                CNPJ / CPF: 
+              </div>
+              <input
+                class="inputs-default"
+                placeholder="Nº do CNPJ ou CPF"
+                type="text"
+                name="cpf_cnpj"
+                onkeydown="Mask.apply(this, 'cpfCnpj')"
+              >
+            </div>
+
+            <div class="field">
               <div class="rotulo">
                 Documento: 
               </div>
-              <select name="centro_custo_id" select-texto="">
+              <select class="selects-default" name="id_documento" select-texto="">
                 <option value="">NF</option>
                 <option value="">Recibo</option>
                 <option value="">Fatura</option>
               </select>
             </div>
 
-            <div>
+            <div class="field">
+              <label class="rotulo">Número: </label>
+                <input
+                  class="inputs-default"
+                  placeholder="0000 0000 0000"
+                  type="text"
+                  name="numero_doc"
+                  onkeydown="Mask.apply(this, 'rg')"
+                >
+            </div>
+
+            <div class="field">
               <div class="rotulo">
                 Data da Emissão: 
               </div>
               <input 
-                class="data-contrato"
+                class="input-dates"
                 placeholder="DD/MM/AAAA"
                 type="text"
-                name="data_contrato"
+                name="data_emissao"
                 onkeydown="Mask.apply(this, 'data')"
               >
-              {# <input
-                class="fields-cliente"
-                placeholder="00.000.00000/00"
-                type="text"
-                name="cei"
-                onkeydown="Mask.apply(this, 'cei')"
-              > #}
             </div>
 
-            <div>
+            <div class="field">
               <div class="rotulo">
-                Fornecedor: 
+                Status: 
               </div>
-              <input
-                class="fields-cliente"
-                placeholder="Nome do Fornecedor"
-                type="text"
-                name="cnpj_cpf"
-              >
+              <div>
+                <input type="radio" id="conta-paga" name="status_pgto" value="PAGO">
+                <label class="label-status" for="conta-paga">PAGO</label>
+              
+                <input type="radio" id="conta-nao-paga" name="status_pgto" value="EM ABERTO" checked>
+                <label class="label-status" for="conta-paga">EM ABERTO</label>
+              </div>
             </div>
 
-            <div>
-              <div class="rotulo">
-                CNPJ / CPF: 
-              </div>
-              <input
-                class="fields-cliente"
-                placeholder="Nº do CNPJ ou CPF"
-                type="text"
-                name="cnpj_cpf"
-                onkeydown="Mask.apply(this, 'cpfCnpj')"
-              >
-            {# </div> #}
-              {# <input
-                class="fields-cliente"
-                placeholder="R$ 000.000,00"
-                type="text"
-                name="valor_contrato"
-                onkeydown="Mask.apply(this, 'formatBRL')"
-              > #}
-            </div>
-
-            <div>
+            <div class="field">
               <div class="rotulo">
                 Vencimento: 
               </div>
               <input 
-                class="data-contrato"
+                class="input-dates"
                 placeholder="DD/MM/AAAA"
                 type="text"
-                name="data_contrato"
+                name="data_vencimento"
                 onkeydown="Mask.apply(this, 'data')"
               >
             </div>
 
-            <div>
-              <div class="rotulo">Categoria: </div>
-              <select name="centro_custo_id" select-texto="">
+            <div class="field">
+              <div class="rotulo">
+                Data da Pagamento: 
+              </div>
+              <input 
+                class="input-dates"
+                placeholder="DD/MM/AAAA"
+                type="text"
+                name="data_pagamento"
+                onkeydown="Mask.apply(this, 'data')"
+              >
+            </div>
+
+            <div class="field">
+              <div class="rotulo">Classificação Contábil: </div>
+              <select class="selects-default" name="id_classe_contabil" select-texto="">
                 <option value="">Selecione</option>
                 <option value="">Materiais</option>
                 <option value="">Ferramentas</option>
@@ -107,20 +143,20 @@
               </select>
             </div>
 
-            <div>
-              <div class="rotulo">XML: </div>
-              <input
-                class="fields-cliente"
-                placeholder="Código XML"
-                type="text"
-                name="xml"
-                >
+            <div class="field">
+              <div class="rotulo">
+                Centro de Custo: 
+              </div>
+                <select class="selects-default" name="id_classe_contabil" select-texto="">
+                  <option value="">MRV</option>
+                  <option value="">ADM</option>
+                </select>
             </div>
 
-            <div>
+            <div class="field">
               <div class="rotulo">Valor: </div>
               <input
-                class="fields-cliente"
+                class="inputs-default"
                 placeholder="R$ 000,00"
                 type="text"
                 name="valor"

@@ -4,10 +4,10 @@
 
  .rotulo-data {
   text-transform: uppercase;
-  font-size: 13px;
+  /* font-size: 13px; */
   font-weight: bold;
   border: 1px solid;
-  width: 125px;
+  width: auto;
   padding: 0 5px 0 5px;
   margin: 5px 0 5px 0;
   font-style: italic;
@@ -80,7 +80,6 @@
 
   .card-header div {
     display: flex;
-    justify-content: baseline;
     text-align: end;
   }
 
