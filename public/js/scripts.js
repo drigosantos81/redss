@@ -255,3 +255,12 @@ function currentDate() {
   day = date.getDate();
   document.getElementById("current_date").innerHTML = 'Data: ' + day + "/" + month + "/" + year;
 }
+
+function currentDate_15() {
+  date = new Date();
+  year = date.getFullYear();
+  month = date.getMonth() + 1;
+  day = date.getDate() + 15;
+  const dueDate = document.querySelector("#previsao-vencimento").value = day + "/" + month + "/" + year;
+  return dueDate;
+}

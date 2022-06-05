@@ -17,7 +17,7 @@
     
     <div class="mb-4">
       <div class="cad-cliente">
-        <form action="/cadastros/clientes" method="POST">
+        <form action="/financeiro/despesas" method="POST">
           <div class="form-default">
 
             <div class="field">
@@ -25,9 +25,10 @@
                 Fornecedor: 
               </div>
               <select class="selects-default" name="id_fornecedor" select-texto="">
+                <option value="">-</option>
+                <option value="new">Inserir novo cadastro</option>
                 {% for provider in providerName %}
-                  <option
-                    value="{{provider}}">
+                  <option value="{{provider.id}}">
                     {% if provider.id == despesas.id_fornecedor %}
                       selected
                     {% endif %}
@@ -35,14 +36,6 @@
                   </option>
                 {% endfor %}
               </select>
-
-{# 
-              <input
-                class="inputs-default"
-                placeholder="Nome do Fornecedor"
-                type="text"
-                name="id_fornecedor"
-              > #}
             </div>
 
             <div class="field">
@@ -63,9 +56,16 @@
                 Documento: 
               </div>
               <select class="selects-default" name="id_documento" select-texto="">
-                <option value="">NF</option>
-                <option value="">Recibo</option>
-                <option value="">Fatura</option>
+                <option value="">-</option>
+                <option value="new">Inserir novo cadastro</option>
+                {% for doc in docName %}
+                  <option value="{{doc.id}}">
+                    {% if doc.id == despesas.id_documento %}
+                      selected
+                    {% endif %}
+                    {{doc.nome}}
+                  </option>
+                {% endfor %}
               </select>
             </div>
 
@@ -73,7 +73,7 @@
               <label class="rotulo">Número: </label>
                 <input
                   class="inputs-default"
-                  placeholder="0000 0000 0000"
+                  placeholder="0000000"
                   type="text"
                   name="numero_doc"
                   onkeydown="Mask.apply(this, 'rg')"
@@ -135,11 +135,16 @@
             <div class="field">
               <div class="rotulo">Classificação Contábil: </div>
               <select class="selects-default" name="id_classe_contabil" select-texto="">
-                <option value="">Selecione</option>
-                <option value="">Materiais</option>
-                <option value="">Ferramentas</option>
-                <option value="">Transporte</option>
-                <option value="">Imposto</option>
+                <option value="-">-</option>
+                <option value="new">Inserir novo cadastro</option>
+                {% for account in accountingName %}
+                  <option value="{{account.id}}">
+                    {% if account.id == despesas.id_classe_contabil %}
+                      selected
+                    {% endif %}
+                    {{account.nome}}
+                  </option>
+                {% endfor %}
               </select>
             </div>
 
@@ -147,9 +152,17 @@
               <div class="rotulo">
                 Centro de Custo: 
               </div>
-                <select class="selects-default" name="id_classe_contabil" select-texto="">
-                  <option value="">MRV</option>
-                  <option value="">ADM</option>
+                <select class="selects-default" name="id_centro_custo" select-texto="">
+                  <option value="-">-</option>
+                  <option value="new">Inserir novo cadastro</option>
+                  {% for cost in costCenterName %}
+                    <option value="{{cost.id}}">
+                      {% if cost.id == despesas.id_centro_custo %}
+                        selected
+                      {% endif %}
+                      {{cost.nome}}
+                    </option>
+                  {% endfor %}
                 </select>
             </div>
 
@@ -160,13 +173,17 @@
                 placeholder="R$ 000,00"
                 type="text"
                 name="valor"
+                onkeydown="Mask.apply(this, 'formatBRL')"
                 >
             </div>
+
+            <input type="hidden" name="categoria" value="{{ categoria }}">
+            <input type="hidden" name="xml" value="{{ xml }}">
 
           </div>
 
           <button type="submit">Cadastrar</button>
-          <a id="cancelar" href="/cadastros/clientes">Cancelar</a>
+          <a id="cancelar" href="/financeiro/despesas">Cancelar</a>
         </form>
       </div>
     </div>
