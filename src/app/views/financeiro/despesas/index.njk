@@ -35,7 +35,20 @@
             </thead>
 
             <tbody class="tbody-home">
-              {# {% for funcionario in funcionarios %} #}
+              {% for expense in expenses %}
+                <tr>
+                  <td>{{expense.data_vencimento}}</td>
+                  <td>{{expense.data_pagamento}}</td>
+                  <td>{{expense.nome_fantasia}}</td>
+                  <td>--</td>
+                  <td>{{expense.nome_setor}}</td>
+                  <td>{{expense.numero_doc}}</td>
+                  <td>06/2021</td>
+                  <td><p class="situacao-alerta">{{expense.status_pgto}}</p></td>
+                  <td><a class="ver-detalhes" href="/cadastros/funcionarios">Ver</a></td>
+                  <td class="valor-pgto">{{expense.valor}}</td>
+                </tr>
+              {% endfor %}
                 <tr>
                   <td>20/07/2021</td>
                   <td></td>
@@ -72,7 +85,6 @@
                   <td><a class="ver-detalhes" href="/cadastros/funcionarios">Ver</a></td>
                   <td class="valor-pgto">R$ 158,00</td>
                 </tr>
-              {# {% endfor %} #}
             </tbody>                
           </table>
         </div>

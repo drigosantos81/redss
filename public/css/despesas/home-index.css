@@ -75,3 +75,12 @@
   text-transform: uppercase;
   font-size: 12px;
 }
+
+#pay-day.active {
+  opacity: 1;
+  visibility: visible;
+}
+/* input[name="status_pgto"].active {
+  opacity: 1;
+  visibility: visible;
+} */

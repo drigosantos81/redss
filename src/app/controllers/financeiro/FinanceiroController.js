@@ -4,10 +4,24 @@ const { date, age, formatPrice, birthDay } = require('../../../libs/utils');
 
 module.exports = {
   // ÍNICIO
-  index(req, res) {
-    try {      
-      return res.render('financeiro/despesas/index');
+  async index(req, res) {
+    try {
+      // Retorna os dados de todas as Despesas
+      let results = await Despesa.allExpense();
+      const expenses = results.rows;
+
+      const formartPromise = expenses.map(async expense => {
+        expense.data_vencimento = date(expense.data_vencimento).format;
+        expense.data_pagamento = date(expense.data_pagamento).format;
+        expense.valor = formatPrice(expense.valor);
+
+        return expense;
+      });
+      const allExpense = await Promise.all(formartPromise);
       
+      console.log('FORMAT PROMISE: ', formartPromise);
+      console.log('EXPENSES: ', allExpense);
+      return res.render('financeiro/despesas/index', { expenses: allExpense });
     } catch (error) {
       console.log(error);
     }

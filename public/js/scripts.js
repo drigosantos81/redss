@@ -220,7 +220,7 @@ function alertDelete() {
   formDelete.addEventListener("submit", function(event) {
     const confirmation = confirm("Deseja mesmo deletar este registro?");
     if (!confirmation) {
-        event.preventDefault();
+      event.preventDefault();
     }
   });
 }
@@ -234,8 +234,33 @@ function salarioFuncao() {
   } else {
     document.getElementById("valorSalario").value = 90000;
   }
-  
-  console.log('Lista das Funções');
+}
+
+function showPayDay() {
+  // function currentDate_15() {
+    date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    day = date.getDate() + 15;
+    const dueDate = document.querySelector("#inDate-payday").value = day + "/" + month + "/" + year;
+  //   return dueDate;
+  // }
+  // date = new Date();
+  // year = date.getFullYear();
+  // month = date.getMonth() + 1;
+  // day = date.getDate() + 15;
+  // var dateH = document.getElementById("current_date").innerHTML = day + "/" + month + "/" + year;
+
+  const showPayDay = document.querySelector('#pay-day');
+  const inputDate = document.querySelector('#inDate-payday')/*.value = dueDate*/;
+  const payDay = document.querySelector('#conta-paga').checked;
+  if (payDay == true) {
+    showPayDay.style="visibility: visible";
+    // inputDate;
+  } else {
+    showPayDay.style="visibility: hidden";
+    inputDate.value = dueDate;
+  }
 }
 
 function modalDependente() {
@@ -256,11 +281,11 @@ function currentDate() {
   document.getElementById("current_date").innerHTML = 'Data: ' + day + "/" + month + "/" + year;
 }
 
-function currentDate_15() {
-  date = new Date();
-  year = date.getFullYear();
-  month = date.getMonth() + 1;
-  day = date.getDate() + 15;
-  const dueDate = document.querySelector("#previsao-vencimento").value = day + "/" + month + "/" + year;
-  return dueDate;
-}
+// function currentDate_15() {
+//   date = new Date();
+//   year = date.getFullYear();
+//   month = date.getMonth() + 1;
+//   day = date.getDate() + 15;
+//   const dueDate = document.querySelector("#previsao-vencimento").value = day + "/" + month + "/" + year;
+//   return dueDate;
+// }

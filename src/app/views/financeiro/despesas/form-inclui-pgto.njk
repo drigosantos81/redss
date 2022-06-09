@@ -95,19 +95,6 @@
 
             <div class="field">
               <div class="rotulo">
-                Status: 
-              </div>
-              <div>
-                <input type="radio" id="conta-paga" name="status_pgto" value="PAGO">
-                <label class="label-status" for="conta-paga">PAGO</label>
-              
-                <input type="radio" id="conta-nao-paga" name="status_pgto" value="EM ABERTO" checked>
-                <label class="label-status" for="conta-paga">EM ABERTO</label>
-              </div>
-            </div>
-
-            <div class="field">
-              <div class="rotulo">
                 Vencimento: 
               </div>
               <input 
@@ -119,15 +106,30 @@
               >
             </div>
 
-            <div class="field">
+            <div class="field"> {# STATUS #}
+              <div class="rotulo">
+                Status: 
+              </div>
+              <div onclick="showPayDay()">
+                <input type="radio" id="conta-paga" name="status_pgto" value="PAGO" >
+                <label class="label-status" for="conta-paga">PAGO</label>
+              
+                <input type="radio" id="conta-nao-paga" name="status_pgto" value="EM ABERTO" checked>
+                <label class="label-status" for="conta-nao-paga">EM ABERTO</label>
+              </div>
+            </div>
+
+            <div id="pay-day" class="field" style="visibility: hidden"> {# DATA PAGAMENTO #}
               <div class="rotulo">
                 Data da Pagamento: 
               </div>
-              <input 
+              <input
+                id="inDate-payday"
                 class="input-dates"
                 placeholder="DD/MM/AAAA"
                 type="text"
                 name="data_pagamento"
+                value=""
                 onkeydown="Mask.apply(this, 'data')"
               >
             </div>
@@ -176,6 +178,8 @@
                 onkeydown="Mask.apply(this, 'formatBRL')"
                 >
             </div>
+
+            
 
             <input type="hidden" name="categoria" value="{{ categoria }}">
             <input type="hidden" name="xml" value="{{ xml }}">

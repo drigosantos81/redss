@@ -2,6 +2,19 @@ const db = require('../../../config/db');
 const { date } = require('../../../libs/utils');
 
 module.exports = {
+  allExpense() {
+    try {
+      return db.query(`
+        SELECT despesas.*, fornecedor.nome_fantasia, centro_custo.nome_setor, documento.nome FROM despesas
+        LEFT JOIN fornecedor ON (fornecedor.id = despesas.id_fornecedor)
+        LEFT JOIN centro_custo ON (centro_custo.id = despesas.id_centro_custo)
+        LEFT JOIN documento ON (documento.id = despesas.id_documento)
+        ORDER BY data_vencimento DESC
+      `);
+    } catch (error) {
+      console.log(error);
+    }
+  },
   post(data) {
     try {
       const query = `
