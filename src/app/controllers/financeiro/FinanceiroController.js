@@ -81,6 +81,13 @@ module.exports = {
       let results = await Despesa.findExpense(req.params.id);
       const expense = results.rows[0];
 
+      expense.valor = formatPrice(expense.valor);
+      expense.data_vencimento = date(expense.data_vencimento).format;
+      expense.data_emissao = date(expense.data_emissao).format;
+      expense.data_pagamento = date(expense.data_pagamento).format;
+      expense.created_at = date(expense.created_at).format;
+      expense.updated_at = date(expense.updated_at).format;
+
       console.log(expense);
 
       return res.render('financeiro/despesas/show-despesa', { expense });

@@ -1,7 +1,7 @@
 {% extends 'layout.njk' %}
 
 {% block head %}
-  <title>{{cliente.nome}} | REDSS</title>
+  <title>{{cliente.nome_setor}} | REDSS</title>
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3 edit-data-registro">
-        <h6 class="m-0 font-weight-bold text-primary">{{cliente.nome}}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">{{cliente.nome_setor}}</h6>
         <a class="edita-registro" href="/cadastros/clientes/edit-cliente/{{cliente.id}}/editar">Editar</a>
       </div>
 

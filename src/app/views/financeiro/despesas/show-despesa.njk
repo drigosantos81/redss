@@ -7,74 +7,121 @@
 {% block content %}
   <div class="container-fluid">
     <!-- Page Heading -->
-    <div class="title-menu">
-      <h1 class="h3 mb-2 text-gray-800">{{funcionario.first_nome}} {{funcionario.sobrenome}}</h1>
-      <a class="cadastro-voltar" href="/financeiro/despesas">Voltar</a>
-    </div>
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3 edit-data-registro">
-        <h6 class="m-0 font-weight-bold text-primary"><strong>FORNECEDOR: </strong>{{funcionario.funcao}}</h6>
+        <h6 class="m-0 font-weight-bold text-primary"><strong>{{expense.nome_fantasia}} | </strong><strong>CPF/CNPJ: </strong>{{expense.cpf_cnpj}}</h6>
         
         <div class="menu-edita-cadastro">
-          <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{funcionario.id}}/editar">Editar</a>
-          <input id="func-dependente-id" type="hidden" name="id_dep" value="{{dependente_func}}">
+          <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{expense.id}}/editar">Editar</a>
         </div>
       </div>
 
       <div class="card-body">
-        <div> {# CENTRO DE CUSTO #}
+        <div> {# 3 STATUS #}
           <span class="rotulo">
-            <strong>Centro de Custo: </strong>
+            <strong>Status do Pagamento: </strong>
           </span>
-          <label class="label-all">{{funcionario.cencusto}}</label>
+          {% if expense.status_pgto == "PAGO" %}
+            <label class="situacao-pgto pago">{{expense.status_pgto}}</label>
+          {% elseif expense.status_pgto == "EM ABERTO" %}
+            <label class="situacao-pgto aberto">{{expense.status_pgto}}</label>
+          {% elseif expense.status_pgto == "VENCIDO" %}
+            <label class="situacao-pgto vencido">{{expense.status_pgto}}</label>
+          {% endif %}
         </div>
 
-        <div> {# DATA ADMISSÃO #}
+        <div> {# 4 VALOR #}
           <span class="rotulo">
-            <strong>Admissão: </strong>
+            <strong>Valor: </strong>
           </span>
-          <label class="label-all">{{funcionario.data_admissao}}</label>
+          <label class="label-all">{{expense.valor}}</label>
         </div>
 
-        <div> {# SALÁRIO #}
+        <div> {# 5 VENCIMENTO #}
           <span class="rotulo">
-            <strong>Salário: </strong>
+            <strong>Data do Vencimento: </strong>
           </span>
-          <label class="label-all">{{funcionario.salario}}</label>
+          <label class="label-all">{{expense.data_vencimento}}</label>
         </div>
 
-        <div> {# TIPO CONTRATO #}
+        <div> {# 6 DATA EMISSÃO #}
           <span class="rotulo">
-            <strong>Tipo do Contrato: </strong>
+            <strong>Data de Emissão: </strong>
           </span>
-          <label class="label-all">{{funcionario.tipo_contrato}}</label>
+          <label class="label-all">{{expense.data_emissao}}</label>
+        </div>
+
+        <div> {# 7 DOCUMENTO #}
+          <span class="rotulo">
+            <strong>Nº do Documento: </strong>
+          </span>
+          <label class="label-all">{{expense.numero_doc}}</label>
+        </div>
+
+        <div> {# 8 COMPETENCIA #}
+          <span class="rotulo">
+            <strong>Competência: </strong>
+          </span>
+          <label class="label-all">{{expense.competencia}}</label>
+        </div>
+
+        <div> {# 9 CENTRO DE CUSTO #}
+          <span class="rotulo">
+            <strong>Setor: </strong>
+          </span>
+          <label class="label-all">{{expense.nome_setor}}</label>
+        </div>
+
+        <div> {# 10 TIPO DOCUMENTO #}
+          <span class="rotulo">
+            <strong>Documento: </strong>
+          </span>
+          <label class="label-all">{{expense.nome}}</label>
+        </div>
+
+        <div> {# 11 DESCRIÇÃO #}
+          <span class="rotulo">
+            <strong>Descrição: </strong>
+          </span>
+          <label class="label-all">{{expense.descricao}}</label>
+        </div>
+
+        <div> {# 12 CLASSE CONTÁBIL #}
+          <span class="rotulo">
+            <strong>Escrituração Contábil: </strong>
+          </span>
+          <label class="label-all">{{expense.classe_contabil}}</label>
+        </div>
+
+        <div> {# 13 DATA PAGAMENTO #}
+          <span class="rotulo">
+            <strong>Data do Pagamento: </strong>
+          </span>
+          <label class="label-all">{{expense.data_pagamento}}</label>
         </div>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0 bar-divider-voltar">
 
-        <div> {# DADOS DA CONTA #}
+        <div> {# ANEXOS #}
           <span class="rotulo">
-            <strong>Dados da conta para pagamento</strong>
+            <strong>Anexos</strong>
           </span>
           <p></p>
         </div>
 
-        <div> {# CONTA #}
-          <span class="rotulo">
-            <strong>Banco: </strong>
-          </span>
-          <label class="label-all">{{ funcionario.dados_conta[0] }} 
-            <strong>Agência: </strong>{{ funcionario.dados_conta[1] }} 
-            <strong>Tipo: </strong>{{ funcionario.dados_conta[2] }} 
-            <strong>Conta: </strong>{{ funcionario.dados_conta[3] }} </label>
-        </div>
-
         <!-- Divider -->
         <hr class="sidebar-divider my-0 bar-divider-voltar">
 
-        <a class="edita-registro" href="/financeiro/despesas">Voltar</a>
+        <div class="cad-expense">
+          <a class="edita-registro" href="/financeiro/despesas">Voltar</a>
+          <div class="created-updated">
+            <label class="label-all">Data do Cadastro: {{expense.created_at}} | </label><label class="label-all">Última Atualização: {{expense.updated_at}}</label>
+          </div>
+        </div>
+        
       </div>
     </div>
     

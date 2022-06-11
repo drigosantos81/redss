@@ -113,6 +113,8 @@ module.exports = {
       funcionario.nascimento = date(funcionario.nascimento).format;
       funcionario.idade = age(funcionario.nascimento);
       funcionario.salario = formatPrice(funcionario.salario);
+      console.log(funcionario);
+      console.log(clienteName);
       
       return res.render('cadastros/funcionarios/edit-funcionario', { funcionario, clienteName });
 
