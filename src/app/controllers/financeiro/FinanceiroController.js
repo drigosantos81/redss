@@ -10,6 +10,13 @@ module.exports = {
       let results = await Despesa.allExpense();
       const expenses = results.rows;
 
+      var sumOverDue = Number('');
+      for (let i = 0; i < expenses.length; i++) {
+        const overDue = expenses[i].valor;
+        sumOverDue = sumOverDue + overDue;
+      }
+      sumOverDue = formatPrice(sumOverDue);
+
       const formartPromise = expenses.map(async expense => {
         expense.data_vencimento = date(expense.data_vencimento).format;
         expense.data_pagamento = date(expense.data_pagamento).format;
@@ -18,23 +25,13 @@ module.exports = {
         return expense;
       });
       const allExpense = await Promise.all(formartPromise);
-      
-      console.log('FORMAT PROMISE: ', formartPromise);
-      console.log('EXPENSES: ', allExpense);
-      return res.render('financeiro/despesas/index', { expenses: allExpense });
+
+      return res.render('financeiro/despesas/index', { expenses: allExpense, sumOverDue });
     } catch (error) {
       console.log(error);
     }
   },
   
-  async saldoPorSetor(req, res) {
-    try {
-      
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
   async formDespesa(req, res) {
     try {
       let resultsProvider = await Despesa.providerSelector();
@@ -77,5 +74,28 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  async findOneExpense(req, res) {
+    try {
+      let results = await Despesa.findExpense(req.params.id);
+      const expense = results.rows[0];
+
+      console.log(expense);
+
+      return res.render('financeiro/despesas/show-despesa', { expense });
+
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async saldoPorSetor(req, res) {
+    try {
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
+
 }

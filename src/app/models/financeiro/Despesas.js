@@ -5,11 +5,16 @@ module.exports = {
   allExpense() {
     try {
       return db.query(`
-        SELECT despesas.*, fornecedor.nome_fantasia, centro_custo.nome_setor, documento.nome FROM despesas
+        SELECT despesas.*,
+          fornecedor.nome_fantasia,
+          centro_custo.nome_setor,
+          documento.nome
+        FROM despesas
         LEFT JOIN fornecedor ON (fornecedor.id = despesas.id_fornecedor)
         LEFT JOIN centro_custo ON (centro_custo.id = despesas.id_centro_custo)
         LEFT JOIN documento ON (documento.id = despesas.id_documento)
-        ORDER BY data_vencimento DESC
+        WHERE status_pgto IN ('EM ABERTO', 'VENCIDO')
+        ORDER BY data_pagamento ASC, status_pgto DESC
       `);
     } catch (error) {
       console.log(error);
@@ -39,6 +44,29 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
+  },
+
+  // Retorna os dados de uma Despesa
+	findExpense(id) {
+		try {
+			return db.query(`
+        SELECT despesas.*,
+          fornecedor.nome_fantasia,
+          centro_custo.nome_setor,
+          documento.nome,
+          classe_contabil.nome_contabil
+        FROM despesas
+        LEFT JOIN fornecedor ON (fornecedor.id = despesas.id_fornecedor)
+        LEFT JOIN centro_custo ON (centro_custo.id = despesas.id_centro_custo)
+        LEFT JOIN documento ON (documento.id = despesas.id_documento)
+        LEFT JOIN classe_contabil ON (classe_contabil.id = despesas.id_classe_contabil)
+        WHERE despesas.id = $1
+			`, [id]
+			);
+
+		} catch (error) {
+			console.log(error);
+		}
   },
 
   providerSelector() {
@@ -77,8 +105,8 @@ module.exports = {
   costCenterSelector() {
     try {
       return db.query(`
-        SELECT nome, id FROM centro_custo
-        ORDER BY nome ASC
+        SELECT nome_setor, id FROM centro_custo
+        ORDER BY nome_setor ASC
       `);
   } catch (error) {
     console.log(error);

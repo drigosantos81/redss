@@ -1,0 +1,84 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>Fornecedor: {{expense.nome_fantasia}} | REDSS</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="title-menu">
+      <h1 class="h3 mb-2 text-gray-800">{{funcionario.first_nome}} {{funcionario.sobrenome}}</h1>
+      <a class="cadastro-voltar" href="/financeiro/despesas">Voltar</a>
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 edit-data-registro">
+        <h6 class="m-0 font-weight-bold text-primary"><strong>FORNECEDOR: </strong>{{funcionario.funcao}}</h6>
+        
+        <div class="menu-edita-cadastro">
+          <a class="edita-registro" href="/cadastros/funcionarios/edit-funcionario/{{funcionario.id}}/editar">Editar</a>
+          <input id="func-dependente-id" type="hidden" name="id_dep" value="{{dependente_func}}">
+        </div>
+      </div>
+
+      <div class="card-body">
+        <div> {# CENTRO DE CUSTO #}
+          <span class="rotulo">
+            <strong>Centro de Custo: </strong>
+          </span>
+          <label class="label-all">{{funcionario.cencusto}}</label>
+        </div>
+
+        <div> {# DATA ADMISSÃO #}
+          <span class="rotulo">
+            <strong>Admissão: </strong>
+          </span>
+          <label class="label-all">{{funcionario.data_admissao}}</label>
+        </div>
+
+        <div> {# SALÁRIO #}
+          <span class="rotulo">
+            <strong>Salário: </strong>
+          </span>
+          <label class="label-all">{{funcionario.salario}}</label>
+        </div>
+
+        <div> {# TIPO CONTRATO #}
+          <span class="rotulo">
+            <strong>Tipo do Contrato: </strong>
+          </span>
+          <label class="label-all">{{funcionario.tipo_contrato}}</label>
+        </div>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0 bar-divider-voltar">
+
+        <div> {# DADOS DA CONTA #}
+          <span class="rotulo">
+            <strong>Dados da conta para pagamento</strong>
+          </span>
+          <p></p>
+        </div>
+
+        <div> {# CONTA #}
+          <span class="rotulo">
+            <strong>Banco: </strong>
+          </span>
+          <label class="label-all">{{ funcionario.dados_conta[0] }} 
+            <strong>Agência: </strong>{{ funcionario.dados_conta[1] }} 
+            <strong>Tipo: </strong>{{ funcionario.dados_conta[2] }} 
+            <strong>Conta: </strong>{{ funcionario.dados_conta[3] }} </label>
+        </div>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0 bar-divider-voltar">
+
+        <a class="edita-registro" href="/financeiro/despesas">Voltar</a>
+      </div>
+    </div>
+    
+  </div>
+  <!-- /.container-fluid -->
+
+{% endblock %}

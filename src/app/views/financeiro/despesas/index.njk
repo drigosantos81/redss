@@ -13,7 +13,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3 cabecalho">
-        <h6 class="m-0 font-weight-bold text-primary"><strong>Contas vencidas: </strong>R$ 2.500,00</h6>
+        <h6 class="m-0 font-weight-bold text-primary"><strong>Contas vencidas: </strong>{{sumOverDue}}</h6>
         <a class="edita-registro" href="/financeiro/despesas/form-inclui-pgto">Adicionar</a>
       </div>
       <div class="card-body">
@@ -22,15 +22,14 @@
             <thead class="table-thead-home">
               <tr>
                 <th>Vencimento</th>
-                <th>Data Pgto.</th>
                 <th>Cedente</th>
-                <th>Descrição</th>
                 <th>Setor</th>
                 <th>Doc.</th>
                 <th>Competência</th>
                 <th>Situação</th>
                 <th>Detalhes</th>
                 <th>Valor</th>
+                <th>Data Pgto.</th>
               </tr>
             </thead>
 
@@ -38,53 +37,28 @@
               {% for expense in expenses %}
                 <tr>
                   <td>{{expense.data_vencimento}}</td>
-                  <td>{{expense.data_pagamento}}</td>
                   <td>{{expense.nome_fantasia}}</td>
-                  <td>--</td>
                   <td>{{expense.nome_setor}}</td>
                   <td>{{expense.numero_doc}}</td>
                   <td>06/2021</td>
-                  <td><p class="situacao-alerta">{{expense.status_pgto}}</p></td>
-                  <td><a class="ver-detalhes" href="/cadastros/funcionarios">Ver</a></td>
+                  <td>
+                    {% if expense.status_pgto == "PAGO" %}
+                      <p class="situacao-pgto pago">{{expense.status_pgto}}</p>
+                    {% elseif expense.status_pgto == "EM ABERTO" %}
+                      <p class="situacao-pgto aberto">{{expense.status_pgto}}</p>
+                    {% elseif expense.status_pgto == "VENCIDO" %}
+                      <p class="situacao-pgto vencido">{{expense.status_pgto}}</p>
+                    {% endif %}
+                  </td>
+                  <td><a class="ver-detalhes" href="/financeiro/despesas/show-despesa/{{expense.id}}">Ver</a></td>
                   <td class="valor-pgto">{{expense.valor}}</td>
+                  {% if expense.data_pagamento != "" %}
+                    <td>{{expense.data_pagamento}}</td>
+                  {% else %}
+                    <td>--</td>
+                  {% endif %}
                 </tr>
               {% endfor %}
-                <tr>
-                  <td>20/07/2021</td>
-                  <td></td>
-                  <td>Folha de Pagamento</td>
-                  <td>Adiantamento Mensal 07/2021</td>
-                  <td>MRV - Porto de Villas</td>
-                  <td>Holerites</td>
-                  <td>06/2021</td>
-                  <td><p class="situacao-alerta">A Vencer</p></td>
-                  <td><a class="ver-detalhes" href="/cadastros/funcionarios">Ver</a></td>
-                  <td class="valor-pgto">R$ 4.411,05</td>
-                </tr>
-                <tr>
-                  <td>12/07/2021</td>
-                  <td></td>
-                  <td>Rocha Contabilidade</td>
-                  <td>Assessoria Contábil 07/2021</td>
-                  <td>ADM - CNPJ</td>
-                  <td>25713</td>
-                  <td>06/2021</td>
-                  <td><p class="situacao-vencido">Vencido</p></td>
-                  <td><a class="ver-detalhes" href="/cadastros/funcionarios">Ver</a></td>
-                  <td class="valor-pgto">R$ 700,00</td>
-                </tr>
-                <tr>
-                  <td>12/07/2021</td>
-                  <td>07/07/2021</td>
-                  <td>Ótimus</td>
-                  <td>Endereço virtual</td>
-                  <td>ADM - CNPJ</td>
-                  <td>103511</td>
-                  <td>06/2021</td>
-                  <td><p class="situacao-pago">Pago</p></td>
-                  <td><a class="ver-detalhes" href="/cadastros/funcionarios">Ver</a></td>
-                  <td class="valor-pgto">R$ 158,00</td>
-                </tr>
             </tbody>                
           </table>
         </div>

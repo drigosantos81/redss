@@ -7,6 +7,7 @@ const financeiroController = require('../app/controllers/financeiro/FinanceiroCo
 /* ==== DESPESAS ==== */
 routes.get('/despesas', financeiroController.index);
 routes.get('/despesas/form-inclui-pgto', financeiroController.formDespesa);
+routes.get('/despesas/show-despesa/:id', financeiroController.findOneExpense);
 
 routes.post('/despesas', financeiroController.POST);
 

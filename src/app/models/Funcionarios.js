@@ -6,7 +6,7 @@ module.exports = {
   all() {
     try {
       return db.query(`
-        SELECT funcionarios.*, centro_custo.nome AS SETOR FROM funcionarios
+        SELECT funcionarios.*, centro_custo.nome_setor AS SETOR FROM funcionarios
         LEFT JOIN centro_custo ON (funcionarios.centro_custo_id = centro_custo.id)
         ORDER BY setor ASC, funcionarios.data_admissao DESC
       `);
@@ -51,7 +51,7 @@ module.exports = {
 	find(id) {
 		try {
 			return db.query(`
-      SELECT funcionarios.*, centro_custo.nome AS CENCUSTO FROM funcionarios
+      SELECT funcionarios.*, centro_custo.nome_setor AS CENCUSTO FROM funcionarios
       LEFT JOIN centro_custo ON (funcionarios.centro_custo_id = centro_custo.id)
       WHERE funcionarios.id = $1
 			`, [id]
