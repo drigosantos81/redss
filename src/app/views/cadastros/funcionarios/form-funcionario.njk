@@ -35,7 +35,7 @@
 
             <div> {# CENTRO DE CUSTO #}
               <div  class="rotulo">Setor: </div>
-              <select class="select-texto" name="centro_custo_id">
+              <select class="select-texto" name="centro_custo_id"> {# nome_setor #}
                 <option>Selecione</option>
                 {% for cliente in clienteName %}
                   <option
@@ -43,7 +43,7 @@
                     {% if cliente.id == funcionario.centro_custo_id %}
                       selected
                     {% endif %}
-                  >{{cliente.nome}}</option>
+                  >{{cliente.nome_setor}}</option>
                 {% endfor %}
               </select>
             </div>

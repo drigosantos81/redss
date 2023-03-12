@@ -51,7 +51,7 @@ module.exports = {
 	find(id) {
 		try {
 			return db.query(`
-      SELECT funcionarios.*, centro_custo.nome_setor AS CENCUSTO FROM funcionarios
+      SELECT funcionarios.*, centro_custo.nome_setor FROM funcionarios
       LEFT JOIN centro_custo ON (funcionarios.centro_custo_id = centro_custo.id)
       WHERE funcionarios.id = $1
 			`, [id]

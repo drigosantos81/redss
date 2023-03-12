@@ -1,0 +1,46 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>Cadastro de nova Função | REDSS</title>
+{% endblock %}
+
+{% block content %}	
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Função</h1>
+      <a class="button-new" href="/cadastros/funcionarios/jobs/form-job">Cadastrar Novo</a>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Funções Cadastradas</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">              
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead class="table-thead-home">
+              <tr>
+                <th>Função</th>
+                <th>SALÁRIO</th>
+                <th>Detalhes</th>
+              </tr>
+            </thead>
+            <tbody class="tbody-func">
+              {% for job in jobs %}
+                <tr id="{{job.id}}">
+                  <td>{{job.job_name}}</td>
+                  <td>{{job.salary}}</td>
+                  <td><a class="ver-detalhes" href="/cadastros/funcionarios/jobs/show-job/{{job.id}}">Editar</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>                
+          </table>
+        </div>
+      </div>
+    </div>
+
+	</div>
+{% endblock %}

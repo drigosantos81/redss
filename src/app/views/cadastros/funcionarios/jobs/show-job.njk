@@ -1,0 +1,70 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>{{job.job_name}} | REDSS</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+
+<!-- Page Heading -->
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Edição da Função: <strong>{{funcionario.nome}}</strong></h1>
+    </div>
+
+    <p class="mb-4">Preencha todos os campos para atualizar o cadastro.</p>
+
+    <div class="mb-4">
+      <div class="cad-cliente">
+        <form id="salva_funcionario" action="/cadastros/funcionarios?_method=PUT" method="post">
+          <div class="form-cliente">
+            <div> {# PRIMEIRO NOME #}
+              <div class="rotulo">
+                FUNÇÃO 
+              </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Função"
+                type="text"
+                name="job_name"
+                value="{{ job.job_name }}"
+              >
+            </div>
+
+            <div> {# SOBRENOME #}
+              <div class="rotulo">
+                SALÁRIO
+              </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="R$ 0,00"
+                type="text"
+                name="salary"
+                value="{{ job.salary }}"
+              >
+            </div>
+
+          </div>
+          <input type="hidden" name="id" value="{{ funcionario.id }}">
+        </form>
+
+        <div class="crud-button">
+          <button class="submit-crud-button" form="salva_funcionario" type="submit">Atualizar</button>
+
+          <form id="form-delete" action="/cadastros/funcionarios?_method=DELETE" method="post">
+            <input type="hidden" name="id" value="{{ funcionario.id }}">
+            <button class="delete-crud-button" type="submit" onclick="alertDelete()">Deletar</button>
+          </form>
+
+          <a id="cancelar" href="/cadastros/funcionarios/show-funcionario/{{funcionario.id}}">Cancelar</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}
+
+{% block scripts %}
+  <script src="/js/scriptsApiExterna.js"></script>
+{% endblock scripts %}

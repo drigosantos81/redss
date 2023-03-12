@@ -3,6 +3,7 @@ const routes = express.Router();
 
 const funcionariosController = require('../app/controllers/funcionarios/FuncionariosController');
 const dependentesController = require('../app/controllers/funcionarios/dependentes/DependentesController');
+const jobController = require('../app/controllers/funcionarios/jobs/JobsController');
 const fornecedoresController = require('../app/controllers/fornecedores/FornecedoresController');
 const clientesController = require('../app/controllers/clientes/ClientesController');
 
@@ -19,6 +20,13 @@ routes.delete('/funcionarios', funcionariosController.deleteFunc);
 routes.get('/funcionarios/dependentes/dependentes', dependentesController.formDependentes);
 routes.post('/funcionarios/dependentes', dependentesController.postDependente);
 routes.delete('funcionarios/dependentes', dependentesController.deleteDependente);
+/* ---- FUNÇÕES ---- */
+routes.get('/funcionarios/jobs', jobController.index);
+routes.get('/funcionarios/jobs/form-job', jobController.formJob);
+routes.get('/funcionarios/jobs/show-job/:id', jobController.findJob);
+
+routes.post('/funcionarios/jobs', jobController.postJob);
+// routes.delete('funcionarios/jobs', dependentesController.deleteDependente);
 
 /* ==== FORNECEDORES ==== */
 routes.get('/fornecedores', fornecedoresController.index);

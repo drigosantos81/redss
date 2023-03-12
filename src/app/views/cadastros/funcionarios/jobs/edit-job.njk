@@ -1,7 +1,7 @@
 {% extends 'layout.njk' %}
 
 {% block head %}
-  <title>Novo Centro de Custo Cliente</title>
+  <title>{{cliente.nome}} | REDSS</title>
 {% endblock %}
 
 {% block content %}
@@ -9,16 +9,16 @@
 
 <!-- Page Heading -->
     <div class="novo-botao-func">
-      <h1 class="h3 mb-2 text-gray-800">Formulário de Cadastro de Novo Cliente ou Obra</h1>
+      <h1 class="h3 mb-2 text-gray-800">Edição do Centro de Custo: <strong>{{cliente.nome}}</strong></h1>
     </div>
 
-    <p class="mb-4">Preencha todos os campos para incluir o novo funcionário.</p>
+    <p class="mb-4">Preencha todos os campos para atualizar o cadastro.</p>
 
     <div class="mb-4">
       <div class="cad-cliente">
-        <form action="/cadastros/clientes" method="POST">
+        <form id="salva_cliente" action="/cadastros/clientes?_method=PUT" method="post">
           <div class="form-cliente">
-            <div> {# NOME #}
+            <div>{# NOME #}
               <div class="rotulo">
                 NOME: 
               </div>
@@ -26,7 +26,8 @@
                 class="campos-padrao-edite"
                 placeholder="Nome / Razão Social"
                 type="text"
-                name="nome_setor"
+                name="nome"
+                value="{{ cliente.nome }}"
               >
             </div>
 
@@ -39,11 +40,12 @@
                 placeholder="00.000.00000/00"
                 type="text"
                 name="cei"
+                value="{{ cliente.cei }}"
                 onkeydown="Mask.apply(this, 'cei')"
               >
             </div>
 
-             <div> {# CNPJ #}
+             <div> {# CNPJ / CPF #}
               <div class="rotulo">
                 CNPJ ou CPF: 
               </div>
@@ -52,6 +54,7 @@
                 placeholder="Nº do CNPJ ou CPF"
                 type="text"
                 name="cnpj_cpf"
+                value="{{ cliente.cnpj_cpf }}"
                 onkeydown="Mask.apply(this, 'cpfCnpj')"
               >
             </div>
@@ -65,6 +68,7 @@
                 placeholder="R$ 000.000,00"
                 type="text"
                 name="valor_contrato"
+                value="{{ cliente.valor_contrato }}"
                 onkeydown="Mask.apply(this, 'formatBRL')"
               >
             </div>
@@ -78,6 +82,7 @@
                 placeholder="DD/MM/AAAA"
                 type="text"
                 name="data_contrato"
+                value="{{ cliente.data_contrato }}"
                 onkeydown="Mask.apply(this, 'data')"
               >
             </div>
@@ -89,8 +94,9 @@
                 placeholder="00.000-000"
                 type="text"
                 name="cep"
+                value="{{ cliente.cep }}"
                 onkeydown="Mask.apply(this, 'cep')"
-                >
+              >
             </div>
 
             <div> {# ENDEREÇO #}
@@ -100,7 +106,8 @@
                 placeholder="Rua, Av."
                 type="text"
                 name="endereco"
-                >
+                value="{{ cliente.endereco }}"
+              >
             </div>
 
             <div> {# NÚMERO #}
@@ -110,7 +117,8 @@
                 placeholder="Nº ou S/N."
                 type="text"
                 name="numero_end"
-                >
+                value="{{ cliente.numero_end }}"
+              >
             </div>
 
             <div> {# BAIRRO #}
@@ -120,22 +128,41 @@
                 placeholder="Nome do bairro."
                 type="text"
                 name="bairro"
-                >
+                value="{{ cliente.bairro }}"
+              >
             </div>
 
             <div> {# PAÍS #}
               <div class="rotulo">País: </div>
-              <select id="pais" name="pais"></select>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Nome do país."
+                type="text"
+                name="pais"
+                value="{{ cliente.pais }}"
+              >
             </div>
 
             <div> {# UF #}
               <div class="rotulo">UF: </div>
-              <select id="estado" name="uf"></select>
+              <input
+                class="campo-4-digitos"
+                placeholder="UF."
+                type="text"
+                name="uf"
+                value="{{ cliente.uf }}"
+              >
             </div>
 
             <div> {# CIDADE #}
               <div class="rotulo">Cidade: </div>
-                <select id="cidade" name="cidade"></select>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Cidade"
+                type="text"
+                name="cidade"
+                value="{{ cliente.cidade }}"
+              >
             </div>
 
             <div> {# DATA FIM CONTRATO #}
@@ -145,14 +172,24 @@
                 placeholder="DD/MM/AAAA"
                 type="text"
                 name="data_fim_contrato"
+                value="{{ cliente.data_fim_contrato }}"
                 onkeydown="Mask.apply(this, 'data')"
               >
             </div>
           </div>
-
-          <button type="submit">Cadastrar</button>
-          <a id="cancelar" href="/cadastros/clientes">Cancelar</a>
+          <input type="hidden" name="id" value="{{ cliente.id }}">
         </form>
+
+        <div class="crud-button">
+          <button class="submit-crud-button" form="salva_cliente" type="submit">Atualizar</button>
+
+          <form id="form-delete" action="/cadastros/clientes?_method=DELETE" method="post">
+            <input type="hidden" name="id" value="{{ cliente.id }}">
+            <button class="delete-crud-button" type="submit" onclick="alertDelete()">Deletar</button>
+          </form>
+
+          <a id="cancelar" href="/cadastros/clientes/show-cliente/{{cliente.id}}">Cancelar</a>
+        </div>
       </div>
     </div>
 

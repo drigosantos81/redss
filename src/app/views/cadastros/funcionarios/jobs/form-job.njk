@@ -1,0 +1,58 @@
+{% extends 'layout.njk' %}
+
+{% block head %}
+  <title>Nova Função</title>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+
+<!-- Page Heading -->
+    <div class="novo-botao-func">
+      <h1 class="h3 mb-2 text-gray-800">Formulário de Cadastro de Nova Função</h1>
+    </div>
+
+    <p class="mb-4">Preencha todos os campos para incluir nova Função.</p>
+
+    <div class="mb-4">
+      <div class="cad-cliente">
+        <form action="/cadastros/funcionarios/jobs" method="POST">
+          <div class="form-cliente">
+            <div> {# NOME #}
+              <div class="rotulo">
+                NOME: 
+              </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="Função"
+                type="text"
+                name="job_name"
+              >
+            </div>
+
+            <div> {# CEI #}
+              <div class="rotulo">
+                CEI: 
+              </div>
+              <input
+                class="campos-padrao-edite"
+                placeholder="R$ 0,00"
+                type="text"
+                name="salary"
+                onkeydown="Mask.apply(this, 'formatBRL')"
+              >
+            </div>
+
+          <button type="submit">Cadastrar</button>
+          <a id="cancelar" href="/cadastros/funcionarios/jobs">Cancelar</a>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  <!-- /.container-fluid -->
+{% endblock %}
+
+{% block scripts %}
+  <script src="/js/scriptsApiExterna.js"></script>
+{% endblock scripts %}
